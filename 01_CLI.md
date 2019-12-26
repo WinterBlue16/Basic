@@ -36,5 +36,15 @@ Command Line Interface(명령형 인터페이스)
 -  `git checkout master` : 윗줄 상태에서 현재 시점으로 다시 돌아옴
 - `git remote [원격저장소 별명][원격저장소 주소]`: github 원격저장소 설정
 - `git remote -v` : 자세한 원격저장소 정보
+
+
+
+## 다른 컴퓨터에서 Github 활용하기
+
+>  clone(한 번만 사용할 것!). push - pull - push....(무한반복) 플로우 반드시 기억할 것!
+
 - `git push [원격저장소 별명] master` : 원격저장소에 git 관리 폴더, 파일 올리기
+- `git clone [Github clone 주소]` : 다른 컴퓨터의 폴더에 작업파일 불러오기, 처음 한번만!
+- `git touch`: 파일 올리고 저장.
+- `git pull origin master` : 다른 컴퓨터에서 작업한 것을 불러오기()
 
