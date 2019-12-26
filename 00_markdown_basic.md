@@ -71,7 +71,7 @@
 
 `add` 한 요소를 remote 저장소에 올리려면 `$ git push origin master`를 터미널에 입력합니다.
 
-```python
+```shell
 $ git add .
 $ git commit -m "first commit"
 $ git push origin master
