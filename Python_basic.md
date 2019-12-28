@@ -316,16 +316,45 @@ del cage['비']
 cage # {'불': '활활', '물':'콸콸', '바람':'휘이잉'}
 ```
 
-```
+```python
 # key, value만 꺼내기 
 
-cage.keys() #
-cage.values() #
+cage.keys() # dict_keys(['불', '물', '바람'])
+cage.values() # dict_values(['활활', '콸콸', '휘이잉'])
+
+# item 꺼내기
+
+cage.items() # dict_items([('불': '활활'), ('물':'콸콸'), ('바람':'휘이잉')])
 ```
 
 
 
+### 1. 6 튜플(tuple)
 
+> `(x, y)`  한 쌍의 형태를 형태를 가지며 값과 크기가 변하지 않는다.
+
+```python
+t = (4, 7) # tuple의 형태
+
+type(t) # tuple
+t[-1] # 7 # tuple에서 값 꺼내기
+```
+
+```python
+# tuple 사용 예시
+
+def return_tuple(x, y): 
+	return x, y # x, y를 대입하면 tuple 형태로 돌려준다. 
+	
+what = return_tuple(9, 2) # (9, 2) 형태의 tuple 생성
+what[0] # 9  
+```
+
+
+
+### 1. 7 집합(set)
+
+> 
 
 
 
