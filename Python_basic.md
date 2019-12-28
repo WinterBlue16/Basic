@@ -354,7 +354,93 @@ what[0] # 9
 
 ### 1. 7 집합(set)
 
-> 
+> 형식은 `list`와 비슷하지만 `[]` 가 아닌 `{}`를 사용한다.  `list`와 다른 점은 값들의 중복을 허용하지 않는다는 점이다.  
+
+```python
+s = {1, 2, 3, 3, 4, 4, 5}
+s # {1, 2, 3, 4, 5} # 중복되는 수는 제거된다!
+```
+
+```python
+# list s에서 중복을 제거하고, 다시 list로 만들기
+
+what = list(set(s))
+s # [1, 2, 3, 4, 5]
+```
+
+
+
+### 1.8 조건문과 반복문
+
+> 조건문과 반복문에는 `if`, `for`, `while` 이 있다. 
+
+#### (1) if 
+
+```python
+# if 구문 예시
+# if, else는 한 번씩만 사용 가능. elif는 여러 번 사용 가능하다!
+
+def check_price(lunch_price):
+    price_label = ''
+    
+    if (10000 < lunch_price) and (lunch_price < 100000):
+        price_label = "프리미엄 도시락"
+    elif lunch_price < 3000: 
+        price_label = "저렴이 도시락"
+    else:
+        price_label = "무난무난 도시락"
+        
+    return price_label
+
+check_price(7000) # '무난무난 도시락'
+```
+
+```python
+# if 구문 예시 2(list)
+
+cage = ['Tiger', 'Weale', 'Rabbit']
+
+if 'Rabbit' in cage: # Rabbit이 list 안에 있을 경우
+	print('토끼가 깡총깡총') # 토끼가 깡총깡총
+	
+# if 구문 예시 3(dict)
+
+cage = {'Tiger':'어흥', 'Weale':'푸우푸우', 'Rabbit':'총총'}
+
+if 'Weale' in cage.keys(): # 'Weale'이 dict 안의 key로 존재할 경우
+	print('고래가 머리 위로 물을 뿜는다') # 고래가 머리 위로 물을 뿜는다 
+```
+
+#### (2) for
+
+```python
+# for 
+# for sth in 그룹형 변수
+
+nums = [1, 2, 3, 4, 5]
+
+for number in nums:
+	print(number)
+	# 1
+	  2
+	  3
+	  4
+	  5
+	  
+for _ in nums:
+	print('xxx')
+	# xxx
+	  xxx
+	  xxx
+	  xxx
+	  xxx
+```
+
+```
+# for 구문으로 1과 4가 연속으로 나오는 숫자 찾기
+
+list_of_nums = [121142131512315, 1241561717265467, 153462615114151231, 1634263414616123, 15236172821568]
+```
 
 
 
