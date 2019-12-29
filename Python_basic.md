@@ -436,10 +436,54 @@ for _ in nums:
 	  xxx
 ```
 
-```
+```python
 # for 구문으로 1과 4가 연속으로 나오는 숫자 찾기
 
 list_of_nums = [121142131512315, 1241561717265467, 153462615114151231, 1634263414616123, 15236172821568]
+for num in list_of_nums:
+    if '14' in str(num):
+        print(num) # 121142131512315 
+        		   # 153462615114151231
+                   # 1634263414616123
+```
+
+```python
+# 범위를 나타내는 함수
+
+range(5) # range(0, 5) 0부터 4까지 범위
+
+for index in range(5):
+    print(index)
+    
+list(range(5))
+# 0
+# 1
+# 2
+# 3
+# 4
+   
+```
+
+```python
+class_1 = ['철수', '영희', '동수', '선이', '보라', '주아']
+
+for student in class_1:
+	print("얘 이름은 {}래요".format(student))
+	# 얘 이름은 철수래요
+	# 얘 이름은 영희래요
+	# 얘 이름은 동수래요
+	# 애 이름은 선이래요
+	# 얘 이름은 보라래요
+	# 얘 이름은 주아래요
+	
+	
+for index, student in enumerate(class_1):
+
+	if index > 4:
+		break
+		
+	else: 
+		print("얘 번호는 {}번이구요. 이름은 {}래요".format(index, student))
 ```
 
 
