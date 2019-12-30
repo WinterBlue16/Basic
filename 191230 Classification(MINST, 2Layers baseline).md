@@ -59,7 +59,7 @@ model = tf.matmul(L2, W3) # 행렬 곱까지만 진행
 
 > 어떤 문제를 푸느냐에 따라 `cost function`이 달라지므로 주의해서 본다. 
 
-```
+```python
 # Regression 문제 
 cost = tf.losses.mean_squared_error(Y, model)
 
@@ -86,9 +86,6 @@ sess.run(init)
 batch_size = 100
 total_batch = int(mnist.train.num_examples/100)
 print(total_batch) # 550
-
-for i in range(total_batch):
-    batch_xs, batch_ys = mnist.train.next_batch(batch_size)~~~
     
 ```
 
@@ -110,8 +107,8 @@ from tqdm import trange, tqdm_notebook # 학습이 완료되는 과정을 시각
 for epoch in tqdm_notebook(range(15)): # 전체 데이터를 한 번 학습하는 과정을 15번 반복
 
 	total_cost = 0
-	for i in range(total_batch):
-		batch_xs, batch_ys = mnist.train.next_batch(100)
+	
+    	for batch_xs, batch_ys in shuffle_batch(X_train, y_train, batch_size): 
 		
 		_, cost_val = sess.run([optimizer, cost], feed_dict={X: batch_xs, Y: batch_ys})
 		total_cost += cost_val
