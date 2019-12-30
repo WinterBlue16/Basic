@@ -562,11 +562,83 @@ cage # ['LionRabbitcamel']
 
 
 
-### 3. 클래스(Class)
+### 3. Python 기본 내장함수 & 외장함수
 
+```python
+# 길이, 갯수 
 
+len('Python') # 6
+```
 
-### 4. Python 기본 내장함수 & 외장함수
+```python
+# 인자들을 list로 추출
+
+list('Python') # ['P', 'y', 't', 'h', 'o', 'n']
+```
+
+```python
+# 클래스별 자체변수 추출하기
+
+dir('Python') 
+```
+
+```python
+# 클래스별 자체변수 추출 예시
+
+from sklearn import linear_model # sklearn에서 linear_model 불러오기
+```
+
+```python
+for name_space in dir(linear_model): 
+# linear_model에서 불러올 자체변수(name_space) 
+	if 'CV' in name_space: # 조건: 해당 자체변수에 'CV'가 들어가야 함.
+		print(name_space) # 조건을 충족하는 자체변수 출력
+		# ElasticNetCV
+		# LarsCV
+		# LassoCV
+		# LassoLarsCV
+		# LogisticRegressionCV
+		# MultiTaskElasticNetCV
+		# MultiTaskLassoCV
+		# OrthogonalMatchingPursuitCV
+		# RidgeCV
+		# RidgeClassifierCV
+```
+
+```python
+# 절대값 추출
+
+abs(-1.2) # 1.2
+```
+
+```python
+# 반올림 
+
+round(3.6) # 4
+```
+
+```python
+# 참/거짓 판별
+
+bool(1) # True
+```
+
+```python
+# 합 구하고 출력하기
+
+sum([1, 2, 3])
+```
+
+```python
+# numpy를 이용한 최대값 구하기
+
+import numpy as np
+numpy.max([1, 2, 3]) # 3
+
+# numpy를 이용한 최소값 구하기 
+
+numpy.min([1, 2, 3]) # 1
+```
 
 
 
