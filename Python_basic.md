@@ -484,6 +484,67 @@ for index, student in enumerate(class_1):
 		
 	else: 
 		print("얘 번호는 {}번이구요. 이름은 {}래요".format(index, student))
+        # 얘 번호는 0번이구요. 이름은 철수래요
+		# 얘 번호는 1번이구요. 이름은 영희래요
+		# 얘 번호는 2번이구요. 이름은 동수래요
+		# 얘 번호는 3번이구요. 이름은 선이래요
+		# 얘 번호는 4번이구요. 이름은 보라래요
+        # 얘 번호는 4번이구요. 이름은 주아래요
+```
+
+```python
+# for문 활용예시(list에 item 추가)
+
+empty_list = []
+for student in class_1:
+	empty_list.append('김'+student) # class_1에 속한 값들 앞에 '김' 성씨 추가
+
+empty_list # 김철수 김영희 김동수 김선이 김보라 김주아
+```
+
+#### (3) while
+
+> 조건을 지정하고 그 조건을 충족하는 동안(while) 실행되게 만드는 구문. 무한루프가 되지 않도록 주의한다.  `pass`를 적절한 상황에 사용하도록 할 것. 
+
+```python
+# while 활용 예시 
+
+temp = 1
+while temp <= 5: # temp가 5보다 작을 경우 실행, 아닌 경우 멈춘다. 
+	print(temp) # temp를 출력한다.
+	temp = temp + 1 # temp에 1을 더하고 첫 부분으로 돌아간다.
+	
+# pass 적용 예시
+
+while true: # 참일 경우 
+	pass # 그냥 지나가고 다음 바퀴로 넘어간다.
+```
+
+```python
+# while 활용 예시 2(+break)
+
+idx = 0 
+while True: # 아래의 조건이 참일 동안만 진행한다.
+	if idx >= 5: # 만약 idx가 5보다 클 경우  
+		break # 진행을 멈춘다.
+	else: # 그 외에는(5보다 작을 경우에는)
+		print(idx) # idx를 출력한다.
+		idx += 1 # idx에 1을 더하고 처음으로 돌아간다.
+```
+
+
+
+### 2. 파일 읽고 쓰기
+
+#### 2.1 파일 쓰기 
+
+> 컴퓨터는 저장 시 데이터를 이진수(ex. 010101110)로 바꿔 저장하며, 이 때 적용되는 규칙을 `encoding`이라 한다. 열 때도 같은 `encoding`을 쓰지 않으면 글자가 깨질 수 있으므로 주의한다. 한글이 포함된 데이터를 열 때 주로 사용하는 것으로는 `utf-8`, `cp949`, `euc-kr` 등이 있다. 
+
+```
+# 파일 열기 
+
+file = open('cage.txt', 'w', encoding='utf-8')
+
 ```
 
 
