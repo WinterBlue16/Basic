@@ -540,12 +540,37 @@ while True: # 아래의 조건이 참일 동안만 진행한다.
 
 > 컴퓨터는 저장 시 데이터를 이진수(ex. 010101110)로 바꿔 저장하며, 이 때 적용되는 규칙을 `encoding`이라 한다. 열 때도 같은 `encoding`을 쓰지 않으면 글자가 깨질 수 있으므로 주의한다. 한글이 포함된 데이터를 열 때 주로 사용하는 것으로는 `utf-8`, `cp949`, `euc-kr` 등이 있다. 
 
-```
+```python
 # 파일 열기 
 
 file = open('cage.txt', 'w', encoding='utf-8')
+file.close()
 
+cage = ['Lion', 'Rabbit', 'camel']
+with open('cage.txt', 'w', encoding='utf-8') as file:
+	for animal in cage:
+		file.write(animal)
 ```
+
+#### 2.2 파일 읽기
+
+```python
+file = open('cage.txt', 'r', encoding = 'utf-8')
+cage = file.readlines() # 여러 줄을 한번에 읽어 리스트에 담는다. 
+cage # ['LionRabbitcamel']
+```
+
+
+
+### 3. 클래스(Class)
+
+
+
+### 4. Python 기본 내장함수 & 외장함수
+
+
+
+
 
 
 
