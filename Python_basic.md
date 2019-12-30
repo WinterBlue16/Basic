@@ -640,7 +640,56 @@ numpy.max([1, 2, 3]) # 3
 numpy.min([1, 2, 3]) # 1
 ```
 
+```python
+# lambda 함수(코드를 단순화할 수 있다!) 
 
+cp = lambda price : 'over' if price > 25 else 'under'
+cp(24) # 'under'
+
+# 비교 코드 
+
+def check_price(price):
+	if price >25:
+		return 'over'
+	else:
+		return 'under'
+		
+check_price(24) # 'under'
+```
+
+
+
+### 4. 라이브러리 활용(Package, Module의 상위 개념)
+
+```python
+%%writefile module_example.py
+# 이하 내용을 모두 담은 파일 module_example.py를 만들라는 것.
+
+def print_something():
+	print('Hi bro')
+	
+def sum_nums(num1, num2):
+	result = num1 + num2
+	return result
+
+# 파일 불러오기, 함수 활용
+
+import module_example # 파일 불러오기
+module_example.print_somthing() # Hi bro # 파일 안의 함수 활용
+module_example.sum_nums(4,5) # 9 #tap 버튼으로 함수 검색, 활용 가능 
+```
+
+```
+# numpy 라이브러리 설치
+
+!pip install numpy
+import numpy as np
+
+# numpy 자료형 표기
+
+a = numpy.array([1, 2, 3])
+
+```
 
 
 
