@@ -679,7 +679,7 @@ module_example.print_somthing() # Hi bro # 파일 안의 함수 활용
 module_example.sum_nums(4,5) # 9 #tap 버튼으로 함수 검색, 활용 가능 
 ```
 
-```
+```python
 # numpy 라이브러리 설치
 
 !pip install numpy
@@ -688,6 +688,22 @@ import numpy as np
 # numpy 자료형 표기
 
 a = numpy.array([1, 2, 3])
+```
+
+```python
+import random # 외장함수 # 0 ~ 1 사이에서 랜덤한 실수를 불러오는 함수
+
+x = random.random()
+x # ex) 0.109623523
+
+x = random.(1.100) # 1에서 100 사이의 '정수'를 랜덤하게 뽑기
+x 
+```
+
+```python
+import os # 외장함수
+
+os.getcwd() # get current working directory
 
 ```
 
