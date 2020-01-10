@@ -1,9 +1,11 @@
 # 06_Web Scraping Basic
 
-## 1.1 다음 어학사전  `scraping`하기 
+## 1.  다음 어학사전  `scraping`하기 
 
 > - 다음 사전을 낱말 뜻과 설명을 스크래핑하여, 웹 스크래핑의 기초에 해당하는 코드와 라이브러리를 학습한다.
 > - 다음 사전에서 `achieve`을 검색했을 때 출력되는 화면에서 단어 뜻과 그 의미를 출력해 본다.  
+
+![](C:\Users\student\Desktop\캡처5.PNG)
 
 ```python
 # 필요한 라이브러리 설치
@@ -55,14 +57,108 @@ print(web_page)
 
 ```python
 # 태그에 해당하는 것만 가져오기 - 예시
-
 web_page.find('span', {'class':'txt_emph1'}) # span 클래스에서 특정 인자 뽑아오기
+type(web_page.find('span', {'class':'txt_emph1'}) # type 확인(Tag)
+type(web_page.find_all('a', {'class':'link_menu'})) # type 확인(ResultSet), list와 비슷한 자료형
+     
+web_page.find('span', {'class':'txt_emph1'}).get_text() # text만 추출(find_all에서는 적용할 수 없다!)
+     
+web_page.find_all('a', {'class':'link_menu'})[1].attrs['href'] # 링크 주소 추출     
+     
 
-type(web_page.find('span', {'class':'txt_emph1'}) # type 확인
-     
-web_page.find('span', {'class':'txt_emph1'}).get_text() # text만 추출
-     
-web_page.find_all('a', {'class':'link_menu'})[1].attrs['href'] # 링크로 추출     
-    
+# 찾는 단어 꺼내오기(하나일 때)
+box1 = web_page.find('span', {'class':'txt_emph1'})
+print(box1.get_text) # print(box1.get_) => 태그를 걷어내고 내부의 텍스트만 꺼낼 수 있는 code
+
+# 단어 뜻 꺼내기(여러 개일 때)
+box2 = web_page.find_all('span', {'class':'txt_search'}) # get_text() 사용 금지
+for tag in box2:
+     print(tag.get_text())
+```
+
+![](C:\Users\student\Desktop\캡처3.PNG)
+
+```python
+# 단어 & 단어 뜻 전부 출력하기
+
+print(box1.get_text())
+print()
+
+for definition in web_page.find_all('span', {'class':'txt_search'}):
+    print(definition.get_text().strip()) # strip():공백을 없애주는 함수, ex)' p '.strip()
+```
+
+![](C:\Users\student\Desktop\캡처4.PNG)
+
+
+
+## 2. 영화 정보 출력하기
+
+> IMDb 사이트에서 영화 The dark Knight의 제목(title)과 감독(director)을 출력해본다. 
+
+![](C:\Users\student\Desktop\the dark knight.PNG)
+
+```python
+# 라이브러리 불러오기
+from bs4 import BeautifulSoup
+from urllib.request import urlopen
+
+# 불러오려는 url 입력하기
+url = 'https://www.imdb.com/title/tt0468569/?ref_=nv_sr_srsg_0'
+
+# urlopen 함수를 통해 web 변수를 생성
+web = urlopen(url)
+
+# BeautifulSoup으로 web 페이지상의 HTML 구조 parsing
+web_page = BeautifulSoup(web, 'html.parser')
+```
+
+```python
+# 영화 제목 출력
+title = web_page.find('h1')
+print('Movie Title :')
+print(title.get_text())
+```
+
+![](C:\Users\student\Desktop\movietitle.PNG)
+
+```python
+# 영화 줄거리 출력
+summary = web_page.find('div', {'class':'summary_text'})
+print('Movie Summary :')
+print(summary.get_text().strip())
+```
+
+![](C:\Users\student\Desktop\moviesummary.PNG)
+
+```python
+# 감독 이름을 출력(부모 tag 체크 => 그 안의 tag 추출)
+directors = web_page.find('div', 'class':'credit_summary_item').find_all('a')
+
+for director in directors:
+    print(director.get_text())
+```
+
+![](C:\Users\student\Desktop\moviedirector.PNG)
+
+## 3. 영화 리뷰 출력해 파일에 저장하기
+
+> 영화 The Dark Knight의 리뷰 내용을 출력하고, `txt file`로 저장해 본다. 
+
+![](C:\Users\student\AppData\Roaming\Typora\typora-user-images\image-20200110160723794.png)
+
+```python
+# 라이브러리 불러오기 생략
+# 불러오려는 url 입력
+url = 'https://www.imdb.com/title/tt0468569/reviews?ref_=tt_urv'
+
+# urlopen 함수를 통해 web 변수 생성
+web = urlopen(url)
+
+# BeautifulSoup으로 web 페이지상의 HTML 구조 parsing
+source = BeautifulSoup(web, 'html.parser')
+
+# 리뷰 데이터 출력 => 파일로 저장
+reviews = source.find_all()
 ```
 
