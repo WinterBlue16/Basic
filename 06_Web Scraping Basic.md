@@ -54,6 +54,15 @@ print(web_page)
 >   ![](C:\Users\student\Desktop\캡처2.PNG)
 
 ```python
-# 태그에 해당하는 것만 
+# 태그에 해당하는 것만 가져오기 - 예시
+
+web_page.find('span', {'class':'txt_emph1'}) # span 클래스에서 특정 인자 뽑아오기
+
+type(web_page.find('span', {'class':'txt_emph1'}) # type 확인
+     
+web_page.find('span', {'class':'txt_emph1'}).get_text() # text만 추출
+     
+web_page.find_all('a', {'class':'link_menu'})[1].attrs['href'] # 링크로 추출     
+    
 ```
 
