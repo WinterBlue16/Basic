@@ -148,7 +148,7 @@ for director in directors:
 ![](C:\Users\student\AppData\Roaming\Typora\typora-user-images\image-20200110160723794.png)
 
 ```python
-# 라이브러리 불러오기 생략
+![moviereview](C:\Users\User\Downloads\img_06\moviereview.PNG)# 라이브러리 불러오기 생략
 # 불러오려는 url 입력
 url = 'https://www.imdb.com/title/tt0468569/reviews?ref_=tt_urv'
 
@@ -162,3 +162,20 @@ source = BeautifulSoup(web, 'html.parser')
 reviews = source.find_all()
 ```
 
+```python
+# 리뷰 데이터를 출력하고 파일로 저장
+reviews = source.find_all(div, {'class':'content'})
+
+with open('moviereview.txt', 'w', encoding='utf-8') as f:
+    for review in reviews:
+        print(review.get_text())
+        f.write(review.get_text())
+```
+
+![](C:\Users\User\Downloads\img_06\moviereview.PNG)
+
+
+
+## 4. 신문 기사 출력해 저장하기
+
+> Boston globe
