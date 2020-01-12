@@ -178,4 +178,18 @@ with open('moviereview.txt', 'w', encoding='utf-8') as f:
 
 ## 4. 신문 기사 출력해 저장하기
 
-> Boston globe
+> -  The Washingtonpost의 웹 페이지에서 글을 불러와 파일로 저장한다.
+
+```python
+# 불러오려는 url 입력하기
+url = 'https://www.washingtonpost.com/world/zelensky-calls-for-admission-of-guilt-justice-after-iran-admits-to-mistakenly-shooting-down-ukrainian-plane/2020/01/11/2c85cb08-33d8-11ea-971b-43bec3ff9860_story.html'
+
+# urlopen 함수를 통해 web 변수 생성
+web = urlopen(url)
+
+# BeautifulSoup으로 페이지상의 HTML 구조 parsing
+source = BeautifulSoup(web, 'html.parser')
+
+
+```
+
