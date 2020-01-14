@@ -96,7 +96,7 @@ for definition in web_page.find_all('span', {'class':'txt_search'}):
 
 > IMDb 사이트에서 영화 The dark Knight의 제목(title)과 감독(director)을 출력해본다. 
 
-![](./img/the dark knight.png)
+![the dark knight](./img/the dark knight.png)
 
 ```python
 # 라이브러리 불러오기
