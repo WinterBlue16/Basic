@@ -5,7 +5,7 @@
 > - 다음 사전을 낱말 뜻과 설명을 스크래핑하여, 웹 스크래핑의 기초에 해당하는 코드와 라이브러리를 학습한다.
 > - 다음 사전에서 `achieve`을 검색했을 때 출력되는 화면에서 단어 뜻과 그 의미를 출력해 본다.  
 
-![](C:\Users\student\Desktop\캡처5.PNG)
+![](C:\Users\student\TIL\img\캡처5.PNG)
 
 ```python
 # 필요한 라이브러리 설치
@@ -39,7 +39,7 @@ web_page = BeautifulSoup(web, 'html.parser')
 print(web_page)
 ```
 
-![](C:\Users\student\Desktop\캡처.PNG)
+![](C:\Users\student\TIL\img\캡처.PNG)
 
 > - **Scarping에서의 Parsing**
 >
@@ -53,7 +53,7 @@ print(web_page)
 >   - `F12` , `Ctrl` +`Shift`+`i`
 >   - 좌측 상단의 화살표 모양을 눌러 특정한 좌표의 `element`를 확인할 수 있다. 
 >
->   ![](C:\Users\student\Desktop\캡처2.PNG)
+>   ![](C:\Users\student\TIL\img\캡처2.PNG)
 
 ```python
 # 태그에 해당하는 것만 가져오기 - 예시
@@ -76,7 +76,7 @@ for tag in box2:
      print(tag.get_text())
 ```
 
-![](C:\Users\student\Desktop\캡처3.PNG)
+![](C:\Users\student\TIL\img\캡처3.PNG)
 
 ```python
 # 단어 & 단어 뜻 전부 출력하기
@@ -88,7 +88,7 @@ for definition in web_page.find_all('span', {'class':'txt_search'}):
     print(definition.get_text().strip()) # strip():공백을 없애주는 함수, ex)' p '.strip()
 ```
 
-![](C:\Users\student\Desktop\캡처4.PNG)
+![](C:\Users\student\TIL\img\캡처4.PNG)
 
 
 
@@ -96,7 +96,7 @@ for definition in web_page.find_all('span', {'class':'txt_search'}):
 
 > IMDb 사이트에서 영화 The dark Knight의 제목(title)과 감독(director)을 출력해본다. 
 
-![](C:\Users\student\Desktop\the dark knight.PNG)
+![](C:\Users\student\TIL\img\the dark knight.PNG)
 
 ```python
 # 라이브러리 불러오기
@@ -120,7 +120,7 @@ print('Movie Title :')
 print(title.get_text())
 ```
 
-![](C:\Users\student\Desktop\movietitle.PNG)
+![](C:\Users\student\TIL\img\movietitle.PNG)
 
 ```python
 # 영화 줄거리 출력
@@ -129,7 +129,7 @@ print('Movie Summary :')
 print(summary.get_text().strip())
 ```
 
-![](C:\Users\student\Desktop\moviesummary.PNG)
+![](C:\Users\student\TIL\img\moviesummary.PNG)
 
 ```python
 # 감독 이름을 출력(부모 tag 체크 => 그 안의 tag 추출)
@@ -139,7 +139,7 @@ for director in directors:
     print(director.get_text())
 ```
 
-![](C:\Users\student\Desktop\moviedirector.PNG)
+![](C:\Users\student\TIL\img\moviedirector.PNG)
 
 ## 3. 영화 리뷰 출력해 파일에 저장하기
 
@@ -148,7 +148,7 @@ for director in directors:
 ![](C:\Users\student\AppData\Roaming\Typora\typora-user-images\image-20200110160723794.png)
 
 ```python
-![moviereview](C:\Users\User\Downloads\img_06\moviereview.PNG)# 라이브러리 불러오기 생략
+# 라이브러리 불러오기 생략
 # 불러오려는 url 입력
 url = 'https://www.imdb.com/title/tt0468569/reviews?ref_=tt_urv'
 
@@ -164,7 +164,7 @@ reviews = source.find_all()
 
 ```python
 # 리뷰 데이터를 출력하고 파일로 저장
-reviews = source.find_all(div, {'class':'content'})
+reviews = source.find_all('div', {'class':'content'})
 
 with open('moviereview.txt', 'w', encoding='utf-8') as f:
     for review in reviews:
@@ -172,7 +172,7 @@ with open('moviereview.txt', 'w', encoding='utf-8') as f:
         f.write(review.get_text())
 ```
 
-![](C:\Users\User\Downloads\img_06\moviereview.PNG)
+![](C:\Users\student\TIL\img\moviereviews.PNG)
 
 
 
@@ -189,7 +189,87 @@ web = urlopen(url)
 
 # BeautifulSoup으로 페이지상의 HTML 구조 parsing
 source = BeautifulSoup(web, 'html.parser')
+```
 
+![](C:\Users\student\TIL\img\washingtonpost.PNG)
+
+```python
+# 기사 내용 불러오기
+with open('washingtonpost.txt', 'w', encoding = 'utf-8') as f:
+    post = source.find('div', {'class' : 'article-body'})
+    article = post.find_all('p')
+    
+    for content in article:
+        print(content.get_text())
+        f.write(content.get_text()+ '\n')
+```
+
+![](C:\Users\student\TIL\img\article.PNG)
+
+
+
+## 5. Postype 기사글 출력하고 저장하기
+
+> - 포스타입에 올라온 포스팅을 불러와 파일로 저장해본다. 
+
+```python
+# 불러오려는 url 입력하기
+url = 'https://mingyeolin.postype.com/post/5341737'
+
+# urlopen 함수를 통해 web 변수를 생성한다.
+web = urlopen(url)
+
+# BeautifulSoup으로 web 페이지상의 HTML 구조 parsing
+source = BeautifulSoup(web, 'html.parser')
+```
+
+![](C:\Users\student\TIL\img\postype.PNG)
+
+```python
+# postype에 있는 글을 불러온다 
+with open('postype.txt', 'w', encoding = 'utf-8') as f:
+    all_text = source.find('div', {'id': 'post-content'})
+    article = all_text.find_all('p')
+            
+    for content in article:
+        print(content.get_text())
+        f.write(content.get_text() + '\n') 
+```
+
+![](C:\Users\student\TIL\img\article2.PNG)
+
+```python
+# 여러 글 페이지를 불러와 저장하기
+# postype은 번호가 규칙적으로 적용되지 않으므로 brunch를 이용
+# str에는 str만 더할 수 있다!
+
+import time
+error_urls=[]
+
+for i in range(10): # 숫자가 너무 클 경우 ip가 차단되는 경우가 있으니 주의!
+    try:
+        url = 'https://brunch.co.kr/@imagineer/' + str(i)
+        web = urlopen(url)
+        source = BeautifulSoup(web, 'html.parser')
+        
+        with open('brunch_all.txt', 'a', encoding='utf-8') as f: 
+            # 'w'로 쓸 경우 파일이 계속 덮어쓰기되므로 수정 모드 'a' 사용
+            all_text.find('div', {'class' : 'wrap_body'})
+            article = all_text.find_all('p')
+            
+            for content in article:
+                print(content.get_text())
+                f.write(content.get_text() + '\n')
+                
+     except:
+        print('*** URL {} 게시글에서 에러가 발생하였습니다. ***'.format(url))
+        error_urls.append(url)
+        
+     time.sleep(3) # 한 번 크롤링하고 3초 쉬고 다시 크롤링
+    
+ 
+error_url # 오류가 난 페이지들 주소 확인
 
 ```
 
+![](C:\Users\student\TIL\img\article3.PNG)
