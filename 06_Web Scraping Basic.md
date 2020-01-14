@@ -5,7 +5,7 @@
 > - 다음 사전을 낱말 뜻과 설명을 스크래핑하여, 웹 스크래핑의 기초에 해당하는 코드와 라이브러리를 학습한다.
 > - 다음 사전에서 `achieve`을 검색했을 때 출력되는 화면에서 단어 뜻과 그 의미를 출력해 본다.  
 
-![](C:\Users\student\TIL\img\캡처5.PNG)
+![](./img/캡처5.png)
 
 ```python
 # 필요한 라이브러리 설치
@@ -39,7 +39,7 @@ web_page = BeautifulSoup(web, 'html.parser')
 print(web_page)
 ```
 
-![](C:\Users\student\TIL\img\캡처.PNG)
+![](./img/캡처.png)
 
 > - **Scarping에서의 Parsing**
 >
@@ -53,7 +53,7 @@ print(web_page)
 >   - `F12` , `Ctrl` +`Shift`+`i`
 >   - 좌측 상단의 화살표 모양을 눌러 특정한 좌표의 `element`를 확인할 수 있다. 
 >
->   ![](C:\Users\student\TIL\img\캡처2.PNG)
+>   ![](./img/캡처2.png)
 
 ```python
 # 태그에 해당하는 것만 가져오기 - 예시
@@ -76,7 +76,7 @@ for tag in box2:
      print(tag.get_text())
 ```
 
-![](C:\Users\student\TIL\img\캡처3.PNG)
+![](./img/캡처3.png)
 
 ```python
 # 단어 & 단어 뜻 전부 출력하기
@@ -88,7 +88,7 @@ for definition in web_page.find_all('span', {'class':'txt_search'}):
     print(definition.get_text().strip()) # strip():공백을 없애주는 함수, ex)' p '.strip()
 ```
 
-![](C:\Users\student\TIL\img\캡처4.PNG)
+![](./img/캡처4.png)
 
 
 
@@ -96,7 +96,7 @@ for definition in web_page.find_all('span', {'class':'txt_search'}):
 
 > IMDb 사이트에서 영화 The dark Knight의 제목(title)과 감독(director)을 출력해본다. 
 
-![](C:\Users\student\TIL\img\the dark knight.PNG)
+![](./img/the dark knight.png)
 
 ```python
 # 라이브러리 불러오기
@@ -120,7 +120,7 @@ print('Movie Title :')
 print(title.get_text())
 ```
 
-![](C:\Users\student\TIL\img\movietitle.PNG)
+![](./img/movietitle.png)
 
 ```python
 # 영화 줄거리 출력
@@ -129,7 +129,7 @@ print('Movie Summary :')
 print(summary.get_text().strip())
 ```
 
-![](C:\Users\student\TIL\img\moviesummary.PNG)
+![](./img/moviesummary.png)
 
 ```python
 # 감독 이름을 출력(부모 tag 체크 => 그 안의 tag 추출)
@@ -139,13 +139,13 @@ for director in directors:
     print(director.get_text())
 ```
 
-![](C:\Users\student\TIL\img\moviedirector.PNG)
+![](./img/moviedirector.png)
 
 ## 3. 영화 리뷰 출력해 파일에 저장하기
 
 > 영화 The Dark Knight의 리뷰 내용을 출력하고, `txt file`로 저장해 본다. 
 
-![](C:\Users\student\AppData\Roaming\Typora\typora-user-images\image-20200110160723794.png)
+![](./img/review.png)
 
 ```python
 # 라이브러리 불러오기 생략
@@ -172,7 +172,7 @@ with open('moviereview.txt', 'w', encoding='utf-8') as f:
         f.write(review.get_text())
 ```
 
-![](C:\Users\student\TIL\img\moviereviews.PNG)
+![](./img/moviereviews.png)
 
 
 
@@ -191,7 +191,7 @@ web = urlopen(url)
 source = BeautifulSoup(web, 'html.parser')
 ```
 
-![](C:\Users\student\TIL\img\washingtonpost.PNG)
+![](./img/washingtonpost.png)
 
 ```python
 # 기사 내용 불러오기
@@ -204,7 +204,7 @@ with open('washingtonpost.txt', 'w', encoding = 'utf-8') as f:
         f.write(content.get_text()+ '\n')
 ```
 
-![](C:\Users\student\TIL\img\article.PNG)
+![](./img/article.png)
 
 
 
@@ -223,7 +223,7 @@ web = urlopen(url)
 source = BeautifulSoup(web, 'html.parser')
 ```
 
-![](C:\Users\student\TIL\img\postype.PNG)
+![](./img/postype.png)
 
 ```python
 # postype에 있는 글을 불러온다 
@@ -236,7 +236,7 @@ with open('postype.txt', 'w', encoding = 'utf-8') as f:
         f.write(content.get_text() + '\n') 
 ```
 
-![](C:\Users\student\TIL\img\article2.PNG)
+![](./img/article2.png)
 
 ```python
 # 여러 글 페이지를 불러와 저장하기
@@ -272,4 +272,4 @@ error_url # 오류가 난 페이지들 주소 확인
 
 ```
 
-![](C:\Users\student\TIL\img\article3.PNG)
+![](./img/article3.png)
