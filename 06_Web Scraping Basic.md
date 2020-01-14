@@ -5,7 +5,7 @@
 > - 다음 사전을 낱말 뜻과 설명을 스크래핑하여, 웹 스크래핑의 기초에 해당하는 코드와 라이브러리를 학습한다.
 > - 다음 사전에서 `achieve`을 검색했을 때 출력되는 화면에서 단어 뜻과 그 의미를 출력해 본다.  
 
-![캡처5](./img/캡처5.png)
+![캡처5](https://user-images.githubusercontent.com/58945760/72309452-61c3d200-36c2-11ea-8a21-6a0de1179808.PNG)
 
 ```python
 # 필요한 라이브러리 설치
@@ -39,7 +39,7 @@ web_page = BeautifulSoup(web, 'html.parser')
 print(web_page)
 ```
 
-![](./img/캡처.png)
+![capture](https://user-images.githubusercontent.com/58945760/72309424-4789f400-36c2-11ea-8046-2372609b40bf.PNG)
 
 > - **Scarping에서의 Parsing**
 >
@@ -53,7 +53,7 @@ print(web_page)
 >   - `F12` , `Ctrl` +`Shift`+`i`
 >   - 좌측 상단의 화살표 모양을 눌러 특정한 좌표의 `element`를 확인할 수 있다. 
 >
->   ![](./img/캡처2.png)
+>   ![캡처2](https://user-images.githubusercontent.com/58945760/72309492-799b5600-36c2-11ea-922f-1862702bda6f.PNG)
 
 ```python
 # 태그에 해당하는 것만 가져오기 - 예시
@@ -76,7 +76,7 @@ for tag in box2:
      print(tag.get_text())
 ```
 
-![](./img/캡처3.png)
+![캡처3](https://user-images.githubusercontent.com/58945760/72309524-8a4bcc00-36c2-11ea-9167-fdf6ec95d090.PNG)
 
 ```python
 # 단어 & 단어 뜻 전부 출력하기
@@ -88,7 +88,7 @@ for definition in web_page.find_all('span', {'class':'txt_search'}):
     print(definition.get_text().strip()) # strip():공백을 없애주는 함수, ex)' p '.strip()
 ```
 
-![](./img/캡처4.png)
+![캡처4](https://user-images.githubusercontent.com/58945760/72309552-98015180-36c2-11ea-97fd-475a6ee5f0ca.PNG)
 
 
 
@@ -96,7 +96,7 @@ for definition in web_page.find_all('span', {'class':'txt_search'}):
 
 > IMDb 사이트에서 영화 The dark Knight의 제목(title)과 감독(director)을 출력해본다. 
 
-![the dark knight](./img/the dark knight.png)
+![the dark knight](https://user-images.githubusercontent.com/58945760/72309570-a3ed1380-36c2-11ea-99ae-74b191703c6d.PNG)
 
 ```python
 # 라이브러리 불러오기
@@ -120,7 +120,7 @@ print('Movie Title :')
 print(title.get_text())
 ```
 
-![](./img/movietitle.png)
+![movietitle](https://user-images.githubusercontent.com/58945760/72309601-bb2c0100-36c2-11ea-9cf2-3914ca260ca7.PNG)
 
 ```python
 # 영화 줄거리 출력
@@ -129,7 +129,7 @@ print('Movie Summary :')
 print(summary.get_text().strip())
 ```
 
-![](./img/moviesummary.png)
+![moviesummary](https://user-images.githubusercontent.com/58945760/72309618-c8e18680-36c2-11ea-852a-5ce4fa6a2870.PNG)
 
 ```python
 # 감독 이름을 출력(부모 tag 체크 => 그 안의 tag 추출)
@@ -139,13 +139,13 @@ for director in directors:
     print(director.get_text())
 ```
 
-![](./img/moviedirector.png)
+![moviedirector](https://user-images.githubusercontent.com/58945760/72309645-e7e01880-36c2-11ea-9ff9-58df1b0c54a8.PNG)
 
 ## 3. 영화 리뷰 출력해 파일에 저장하기
 
 > 영화 The Dark Knight의 리뷰 내용을 출력하고, `txt file`로 저장해 본다. 
 
-![](./img/review.png)
+![review](https://user-images.githubusercontent.com/58945760/72309676-fc241580-36c2-11ea-8544-c7e5999bdede.PNG)
 
 ```python
 # 라이브러리 불러오기 생략
@@ -172,7 +172,7 @@ with open('moviereview.txt', 'w', encoding='utf-8') as f:
         f.write(review.get_text())
 ```
 
-![](./img/moviereviews.png)
+![moviereviews](https://user-images.githubusercontent.com/58945760/72309639-deef4700-36c2-11ea-84ae-b397ddd25757.PNG)
 
 
 
@@ -191,7 +191,7 @@ web = urlopen(url)
 source = BeautifulSoup(web, 'html.parser')
 ```
 
-![](./img/washingtonpost.png)
+![washingtonpost](https://user-images.githubusercontent.com/58945760/72309689-09410480-36c3-11ea-9656-5a6484a20f3b.PNG)
 
 ```python
 # 기사 내용 불러오기
@@ -204,7 +204,7 @@ with open('washingtonpost.txt', 'w', encoding = 'utf-8') as f:
         f.write(content.get_text()+ '\n')
 ```
 
-![](./img/article.png)
+![article](https://user-images.githubusercontent.com/58945760/72309316-fd087780-36c1-11ea-85ae-bae90274dc2f.PNG)
 
 
 
@@ -223,7 +223,7 @@ web = urlopen(url)
 source = BeautifulSoup(web, 'html.parser')
 ```
 
-![](./img/postype.png)
+![postype](https://user-images.githubusercontent.com/58945760/72309706-15c55d00-36c3-11ea-92ad-68936fd259ff.PNG)
 
 ```python
 # postype에 있는 글을 불러온다 
@@ -236,7 +236,7 @@ with open('postype.txt', 'w', encoding = 'utf-8') as f:
         f.write(content.get_text() + '\n') 
 ```
 
-![](./img/article2.png)
+![article2](https://user-images.githubusercontent.com/58945760/72309354-1d383680-36c2-11ea-8d01-3305ff1d8285.PNG)
 
 ```python
 # 여러 글 페이지를 불러와 저장하기
@@ -272,4 +272,4 @@ error_url # 오류가 난 페이지들 주소 확인
 
 ```
 
-![](./img/article3.png)
+![article3](https://user-images.githubusercontent.com/58945760/72309386-2de8ac80-36c2-11ea-8a1e-40f8f1bef1fa.PNG)
