@@ -145,3 +145,74 @@ plt.imshow(image)
 plt.show()
 ```
 
+![graph](https://user-images.githubusercontent.com/58945760/72436650-45b85180-37e4-11ea-8330-7bce98e6e3d7.PNG)
+
+#### 1.3.2 사각형 그리기
+
+> - `cv2.rectangle(img, start, end, color, thickness, lineType)`
+>   - `start`: 사각형 좌측 상단 꼭짓점(x, y)
+>   - `end`: 사각형의 우측 하단 꼭짓점(x, y)
+>   - `thickness`: 선 두께
+>     - `-1`: 채우기
+
+```python
+# 예시 1
+# 라이브러리 불러오기
+import cv2
+import matplotlib.pyplot as plt
+import numpy as np
+
+# 사각형 그릴 도화지 만들기
+image = np.full((512, 512, 3), 255, np.uint8)
+image = cv2.rectangle(image, (20, 20), (255, 255), (0, 0, 255), 10)
+
+plt.imshow(image)
+plt.show()
+
+# 예시 2
+img = cv2.imread('img/blank_500.jpg') # 흰 바탕 이미지 파일 불러오기
+cv2.rectangle(img, (50, 50), (150, 150), (255, 0, 0), -1) # -1을 주면 사각형 안이 색으로 채워짐.
+
+cv2.imshow('ractangle', img) # 'ractangle' 새 창으로 열기
+cv2.waitKey()
+cv2.destroyAllWindows()
+```
+
+![graph2](https://user-images.githubusercontent.com/58945760/72437095-5917ec80-37e5-11ea-8fe4-d32152894576.PNG)
+
+
+
+#### 1.3.3 다각형 그리기
+
+> - `cv2.polylines(img, isClosed, color, thickness, lineType)`
+>   - `points`: 꼭짓점 좌표, `Numpy`배열 리스트
+>   - `isClosed`: 닫힌 도형 여부(`True`/`False`)
+
+```python
+# 예시 1
+# 라이브러리 불러오기
+import cv2
+import matplotlib.pyplot as plt
+import numpy as 
+
+image = np.full((512, 512, 3), 255, np.uint8) # 새 도화지 만들기
+points = np.array([[5, 5], [128, 258], [483, 444], [400, 150]]) # 꼭짓점 좌표 지정
+image = cv2.polylines(image, [points], True, (255, 0, 0), 4)
+
+plt.imshow(image)
+plt.show()
+
+
+# 예시 2
+img = cv2.imread('img/blank_500.jpg')
+
+# 번개 모양 선 좌표
+pts1 = np.array([[50, 50], [150, 150], [100, 140], [200, 240]], dtype=np.int32)
+# 삼각형 모양 좌표 
+pts2 = np.array([[350, 50], [250, 200], [450, 200]], dtype=np.int32)
+# 오각형 모양 좌표
+pts3 = np.array([[350, 250], [450, 350], [400, 450], [300, 450], [250, 350]], dtype=np.int32)
+
+```
+
+![graph3](https://user-images.githubusercontent.com/58945760/72437755-cbd59780-37e6-11ea-8ecf-9a9c4d4ed832.PNG)
