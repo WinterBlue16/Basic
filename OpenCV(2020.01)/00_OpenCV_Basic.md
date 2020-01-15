@@ -115,3 +115,33 @@ cap.release()
 cv2.destroyAllWindows()
 ```
 
+
+
+### 1.3 그림그리기
+
+> - 직선, 사각형, 원까지 원하는 도형을 화면에 그려본다. 
+
+#### 1.3.1 직선그리기
+
+> - `cv2.line(img, start, end, color, thickness, lineType)` 
+>   - `img`: 그림을 그릴 이미지(`Numpy`배열)
+>   - `start`: 선이 시작되는 지점의 좌표(x, y)
+>   - `end`: 선이 끝나는 지점의 좌표(x, y)
+>   - `color`: 선의 색깔(`BGR` 형식, 0~255)
+>   - `thickness` : 선의 두께(`default` = 1)
+>   - `lineType`: 선 타입
+
+```python
+# 라이브러리 불러오기
+import cv2
+import matplotlib.pyplot as plt
+import numpy as np
+
+# 그림 그릴 도화지 만들기
+image = np.full((512, 512, 3), 255, np.uint8) # 배경 및 크기 설정 => 가로, 세로, 세 개의 채널, 색깔 넣기)
+image = cv2.line(image, (0, 0), (255, 255), (0, 255, 0), 30, cv2.LINE_AA)
+
+plt.imshow(image)
+plt.show()
+```
+
