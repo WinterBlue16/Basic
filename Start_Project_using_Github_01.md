@@ -4,7 +4,13 @@
 > - Github으로 협업하는 데는 여러가지 방법이 있지만,  여기서는 Git 초심자를 대상으로 `Collaborator`와 `branch`를 활용한 가장 간단한 협업 시스템에 대해 설명한다.
 > - `master branch` 혹은 원격 저장소의 관리자가 아닌 프로젝트  `collaborator`(협력자)의 관점에서 서술한다.  
 
+
+
 ## 0. Project를 위한 원격 저장소 생성
+
+> - 팀원 중 한 사람이 자신의  Github 페이지에 프로젝트를 위한 새로운 원격저장소를 생성한다.
+
+![tempsnip](https://user-images.githubusercontent.com/58945760/72486275-be072d00-384d-11ea-9357-2fae44f1c160.png)
 
 
 
