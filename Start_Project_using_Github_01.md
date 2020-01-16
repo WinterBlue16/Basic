@@ -10,29 +10,19 @@
 
 > - 팀원 중 한 사람이 자신의  Github 페이지에 프로젝트를 위한 새로운 원격저장소를 생성한다.
 
+<img src="https://github.com/dannylee93/Images/blob/master/Image%20Analysis%20A.I/Github_Project_00.JPG?raw=true" style="zoom:80%;" />
+
+
+
 ![tempsnip](https://user-images.githubusercontent.com/58945760/72486275-be072d00-384d-11ea-9357-2fae44f1c160.png)
 
-
+> - 프로젝트 관리자가 
 
 ## 1. 환경 세팅 
 
-- 
-
-- 뜻을 그대로 해석하면 기부자와 협력자. `Contributor`는 프로젝트의 관리자는 아니지만 한 프로젝트에
-**커밋하고 있는 모든 사람**을 지칭
-- `Contributor`이라면, 
-`Push` 권한은 프로젝트 관리자와 `Collaborator`만이 가지고 있으므로, `Fork`하여 프로젝트를 통째로 복사해온다.
-- `Fork`해온 프로젝트에서 `Push`하고 관리한다음, 원래 오리지날 저장소로 `Push`한 내용들 보낼 수 있는데,` Pull request` 통해서 한다.
-- `Collaborator`는 프로젝트의 공동 책임자이다. 즉, GitHub의 **push, pull 권한을 모두 가지고 있는 사람**을 뜻한다. 
-`Contributor`는 `Pull Request`를 통해 누구나 시도할 수 있지만,`Collaborator`는 프로젝트 관리자가 직접 추가해줘야 얻을 수 있는 권한이다.
+> - 
 
 
-
-## Github Project with Collaborator
-
-#### (1) 프로젝트 관리자가 프로젝트를 생성(repository) 
-
-<img src="https://github.com/dannylee93/Images/blob/master/Image%20Analysis%20A.I/Github_Project_00.JPG?raw=true" style="zoom:80%;" />
 
 #### (2) 프로젝트 관리자가 Settings로 들어가서 Collaborators를 선택
 
