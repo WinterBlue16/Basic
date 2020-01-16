@@ -16,78 +16,69 @@
 
 ![tempsnip](https://user-images.githubusercontent.com/58945760/72486275-be072d00-384d-11ea-9357-2fae44f1c160.png)
 
-> - 프로젝트 관리자가 
-
-## 1. 환경 세팅 
-
-> - 
-
-
-
-#### (2) 프로젝트 관리자가 Settings로 들어가서 Collaborators를 선택
+> - 프로젝트 관리자가 생성된 원격저장소의 setting 메뉴로 들어가 Collaborators를 추가
+>   1. 가운데 검색창에 추가할 Collaborator의 Github ID를 입력, `Add collaborator` 클릭
+>   2. Collaborator의 이메일로 초대장이 발송되고, 수락하면 Collaborator 등록 완료
 
 <img src="https://t1.daumcdn.net/cfile/tistory/9944DB4B5BD988A40A" alt="https://hyoje420.tistory.com/41" style="zoom:80%;" />
 
-#### (3) 가운데 검색창에  추가할 Collaborator의 GitHub 아이디를 입력
-
-- 검색창으로 검색 혹은 아이디 입력하고 `[Add collaborator]`버튼을 클릭해서 추가한다.
-
 <img src="https://github.com/dannylee93/Images/blob/master/Image%20Analysis%20A.I/Github_Project_04.JPG?raw=true" alt="04" style="zoom:80%;" />
 
-#### (4) Github 아이디와 연동된 이메일로 초대장 전송
+<img src="https://github.com/dannylee93/Images/blob/master/Image%20Analysis%20A.I/Github_Project_02.jpg?raw=true" style="zoom:80%;" />
 
-- 버튼을 클릭하면 초대장을 보낼 수 있고, 그 초대장은 각자 계정과 연동된 이메일로 발송 된다.
 
- <img src="https://github.com/dannylee93/Images/blob/master/Image%20Analysis%20A.I/Github_Project_02.jpg?raw=true" style="zoom:80%;" />
 
-#### (5) 초대된 사람은 클릭하거나, 관리자가 보낸 주소로 직접 들어와서 수락
+## 1. 환경 세팅 
 
-<img src="https://github.com/dannylee93/Images/blob/master/Image%20Analysis%20A.I/Github_Project_05.JPG?raw=true" alt="05" style="zoom: 80%;" />
+### 1.1 원격 저장소 주소 복사
 
-#### (6) 다음은 레포지토리의 메인화면, master branch의 깃허브 주소를 각자 Clone
+> - 우선 `Git Bash`를 실행
+> - 원격 저장소의 메인 화면에서 `Clone or download` 클릭, 주소를 복사
 
 <img src="https://github.com/dannylee93/Images/blob/master/Image%20Analysis%20A.I/Github_Project_01.JPG?raw=true" alt="01" style="zoom:80%;" />
 
-#### (7) `git bash` 에서 내 컴퓨터로 master branch를 Clone
+> - Git Bash에서 `git clone`을 치고 그 뒤에 복사한 원격 저장소의 주소를 붙여넣기 
+> - `master brench` 생성 완료
 
 <img src="https://github.com/dannylee93/Images/blob/master/Image%20Analysis%20A.I/Github_Project_06.JPG?raw=true" alt="06" style="zoom:80%;" />
 
-#### (8) 내 컴퓨터에 Cloning이 되면서 master branch 생성
 <img src="https://github.com/dannylee93/Images/blob/master/Image%20Analysis%20A.I/Github_Project_07.JPG?raw=true" alt="07" style="zoom:80%;" />
 
-#### (9) 아래와 같은 명령어로  master에서 내가 생성한 임의 branch 명인 [brchB] 로 변경
+### 1.2 작업용 brench 생성
+
+> - `master brench`에는 영향을 미치지 않는 작업용 `brench`를 따로 생성한다.
 
 ```shell
-$ git checkout -b [branch name]
+# 작업용 brench 생성하기
+$ git brench [브랜치 이름]
 
-# 위의 명령어는 아래의 두 명령어를 합한 것
-$ git branch [branch name]
-$ git checkout [branch name]
+# 작업용 brench로 이동하기
+$ git checkout [브랜치 이름]
+
+# 위의 두 코드를 병합(작업용 brench 생성 후 이동)
+$ git checkout -b [브랜치 이름]
 ```
 
 <img src="https://github.com/dannylee93/Images/blob/master/Image%20Analysis%20A.I/Github_Project_08.jpg?raw=true" alt="08" style="zoom:80%;" />
 
 <img src="https://github.com/dannylee93/Images/blob/master/Image%20Analysis%20A.I/Github_Project_09.jpg?raw=true" alt="09" style="zoom:80%;" />
 
-> - 반드시  다른 원격저장소와 연동된 폴더 안에 
-> - 명령어를 사용해서 나만의 브랜치를 만들면, 오른쪽과 같이 `[brchB]`로 변경된 것을 확인할 수 있다.
->   `git checkout`으로 `master`와 나의 `branch`를 이동할 수 있다.
+> - 위와 같이  작업 위치가`[brchB]`로 변경된 것을 확인할 수 있다.
+>   `git checkout`명령어로 `master`와 나의 `branch`를 자유롭게 이동할 수 있다.
 
-#### (10) 다음과 같이 master branch 아래에 각자의 branch가 생성된 것을 확인
+
+
+### 1.3 작업용 brench 생성 확인
 
 <img src="https://github.com/dannylee93/Images/blob/master/Image%20Analysis%20A.I/Github_Project_10.jpg?raw=true" alt="10" style="zoom:80%;" />
 
-#### (11) 작업을 하고나서 다음 명령어를 통해서 Commit
-
+> - 프로젝트 협업을 진행할 준비 완료
+> - 작업 후 `git push origin [브랜치 이름]`을 Git Bash에 입력하여 커밋한다. 
 > - `git push origin master`를 입력하면 `master`브랜치에 커밋되므로 주의한다. 
 
-```shell
-git push origin [내가 만든 브랜치명]
-```
 
 
-
-## 참고한 자료
+## 참고 자료
 
 - 개인 홈페이지
   - https://hyoje420.tistory.com/41
