@@ -1,10 +1,14 @@
 # Extra_Start Project using Github
 
-> 프로젝트 시 Github의 협업 시스템을 활용해 효율적으로 작업을 진행할 수 있다. 이 파일은 Git 초심자를 대상으로 `Collaborator`와 `branch`를 활용한 가장 간단한 협업 시스템에 대해 설명한다.
+> - 프로젝트 시 Github의 협업 시스템을 활용하여 효율을 높일 수 있다.
+> - Github으로 협업하는 데는 여러가지 방법이 있지만,  여기서는 Git 초심자를 대상으로 `Collaborator`와 `branch`를 활용한 가장 간단한 협업 시스템에 대해 설명한다.
+> - `master branch` 혹은 원격 저장소의 관리자가 아닌 프로젝트  `collaborator`(협력자)의 관점에서 서술한다.  
+
+## 0. Project를 위한 원격 저장소 생성
 
 
 
-## 1. 환경 Setting
+## 1. 환경 세팅 
 
 - 
 
