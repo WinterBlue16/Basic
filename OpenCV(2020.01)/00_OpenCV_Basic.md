@@ -213,6 +213,17 @@ pts2 = np.array([[350, 50], [250, 200], [450, 200]], dtype=np.int32)
 # 오각형 모양 좌표
 pts3 = np.array([[350, 250], [450, 350], [400, 450], [300, 450], [250, 350]], dtype=np.int32)
 
+# 그리기 
+cv2.polylines(img, [pts1], False, (255, 0, 0))
+cv2.polylines(img, [pts2], False, (0, 0, 0), 10)
+cv2.polylines(img, [pts3], True, (0, 0, 255), 10)
+cv2.polylines(img, [pts4], True, (0, 0, 0))
+
+# 새 윈도우 창으로 열기
+cv2.imshow('polyline', img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 ```
 
 ![graph3](https://user-images.githubusercontent.com/58945760/72437755-cbd59780-37e6-11ea-8ecf-9a9c4d4ed832.PNG)
+
