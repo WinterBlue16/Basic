@@ -250,3 +250,19 @@ plt.show()
 ```
 
 ![원](https://user-images.githubusercontent.com/58945760/72665640-ccbc3280-3a4d-11ea-82d4-ab230975dd68.PNG)
+
+#### 1.3.5 텍스트 출력하기
+
+> - 새창에 텍스트를 그려주는 함수: `cv2.putText`(`img`, `text`, `position`, `font_type`, `font_scale`, `color`)
+>   - `position`: 글자가 출력될 위치 좌표
+>   - `scale`: 글씨 크기 가중치 
+
+```python
+import cv2
+import matplotlib.pyplot as plt
+import numpy as np
+
+image = np.full((512, 512, 3), 255, np.uint8)
+image = cv2.putText(image)
+```
+
