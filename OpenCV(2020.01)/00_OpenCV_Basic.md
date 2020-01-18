@@ -227,3 +227,26 @@ cv2.destroyAllWindows()
 
 ![graph3](https://user-images.githubusercontent.com/58945760/72437755-cbd59780-37e6-11ea-8ecf-9a9c4d4ed832.PNG)
 
+
+
+#### 1.3.4 원 그리기
+
+> - 원 그리는 함수 : `cv2.circle`(`img`, `center`, `radius`, `color`, `thickness`, `lineType`)
+>   - `center`: 중심점 좌표(x, y)
+>   - `radius`: 원의 반지름
+
+```python
+# 간단한 원 그리기
+
+import cv2
+import matplolib.pyplot as plt
+import numpy as np
+
+image = np.full((512, 512, 3), 255, np.uint8)
+image = cv2.circle(image, (255, 255), 100, (0, 0, 0), -1)
+
+plt.imshow(image)
+plt.show()
+```
+
+![원](https://user-images.githubusercontent.com/58945760/72665640-ccbc3280-3a4d-11ea-82d4-ab230975dd68.PNG)
