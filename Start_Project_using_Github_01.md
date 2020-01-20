@@ -74,7 +74,7 @@ $ git checkout -b [브랜치 이름]
 
 > - 프로젝트 협업을 진행할 준비 완료
 > - 작업 후 `git push origin [브랜치 이름]`을 Git Bash에 입력하여 커밋한다. 
-> - `git push origin master`를 입력하면 `master`브랜치에 커밋되므로 주의한다. 
+> - `git push origin master`를 입력해 `error`를 발생시키지 않도록 주의한다. 
 
 
 
