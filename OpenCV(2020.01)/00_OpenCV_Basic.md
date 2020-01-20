@@ -227,3 +227,55 @@ cv2.destroyAllWindows()
 
 ![graph3](https://user-images.githubusercontent.com/58945760/72437755-cbd59780-37e6-11ea-8ecf-9a9c4d4ed832.PNG)
 
+
+
+#### 1.3.4 원 그리기
+
+> - 원 그리는 함수 : `cv2.circle`(`img`, `center`, `radius`, `color`, `thickness`, `lineType`)
+>   - `center`: 중심점 좌표(x, y)
+>   - `radius`: 원의 반지름
+
+```python
+# 간단한 원 그리기
+
+import cv2
+import matplolib.pyplot as plt
+import numpy as np
+
+image = np.full((512, 512, 3), 255, np.uint8)
+image = cv2.circle(image, (255, 255), 100, (0, 0, 0), -1)
+
+plt.imshow(image)
+plt.show()
+```
+
+![원](https://user-images.githubusercontent.com/58945760/72665640-ccbc3280-3a4d-11ea-82d4-ab230975dd68.PNG)
+
+### 1.4 텍스트 출력하기
+
+> - 새창에 텍스트를 그려주는 함수: `cv2.putText`(`img`, `text`, `position`, `font_type`, `font_scale`, `color`)
+>   - `position`: 글자가 출력될 위치 좌표
+>   - `scale`: 글씨 크기 가중치 
+
+```python
+import cv2
+import matplotlib.pyplot as plt
+import numpy as np
+
+image = np.full((512, 512, 3), 255, np.uint8)
+image = cv2.putText(image, 'What a beautiful day', (0, 200), cv2.FONT_ITALIC, 2, (255, 0, 0))
+
+cv2.imshow('text', image)
+cv2.waitKey()
+cv2.destroyAllWindows()
+```
+
+
+
+### 1.5 창 조절하기
+
+> - 창 이름 지정하는 함수: `cv2.nameWindow`(`title`, `option`)
+>   - `option`: 창 옵션 지정
+>     - `cv2.WINDOW_NORMAL`: 임의 크기의 창 열기. 창 크기 조정 가능
+>     - `cv2.WINDOW_AUTOSIZE`:  이미지와 같은 크기의 창 열기. 창 크기 조정 불가능
+>   - 
