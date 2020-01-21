@@ -278,4 +278,135 @@ cv2.destroyAllWindows()
 >   - `option`: 창 옵션 지정
 >     - `cv2.WINDOW_NORMAL`: 임의 크기의 창 열기. 창 크기 조정 가능
 >     - `cv2.WINDOW_AUTOSIZE`:  이미지와 같은 크기의 창 열기. 창 크기 조정 불가능
->   - 
+>   - `cv2.moveWindow`(`title`, `x`좌표, `y`좌표) : 창 위치 이동
+>   - `cv2.resizeWindow`(`title`, `width`, `height`): 창 크기 변경
+>   - `cv2.destroyWindow`(`title`): 창 닫기
+>   - `cv2.destroyAllWindows()`: 열린 모든 창 닫기
+
+```python
+import cv2
+
+# 이미지 불러오기
+img = cv2.imread('img/pistol.jpg')
+img_gray = cv2.imread('img/pistol.jpg', cv2.IMREAD_GRAYSCALE)
+
+# 창 이름 정하기
+cv2.namedWindow('origin')
+cv2.namedWindow('gray', cv2.WINDOW_NORMAL)
+cv2.imshow('origin', img)
+cv2.imshow('gray', img_gray)
+
+# 창 위치 변경
+cv2.moveWindow('origin', 0, 0)
+cv2.moveWindow('gray', 100, 100)
+
+# 창 크기 변환
+cv2.waitKey() # 아무 키나 눌렀을 때
+cv2.resizeWindow('origin', 200, 200)  
+cv2.resizeWindow('gray', 400, 400)
+
+cv2.waitKey()
+cv2.destroyAllWindows()
+```
+
+
+
+### 1.6 키보드 입력으로 창 움직이기
+
+> - 키보드의 `w`, `a`, `s`, `d` 키를 이용해 그림이 띄워진 윈도우 창이 상하좌우로 움직이도록 조정할 수 있다. 
+>
+> - `q`나 `Esc`를 누르면 종료되도록 설정한다.
+>
+>   
+>
+> - `cv2.waitkey(delay 시간)`: `0.001`초 단위로 숫자를 전달하면, 해당 시간동안 프로그램을 멈추고 대기, 키보드의 눌린 키에 대응하는 코드값을 정수로 반환
+>
+>   - 0: 무한대
+>   - ex) `Esc`를 누를 경우 27 출력(`ASCII`코드)
+>
+> - `ord()`: 문자의 아스키코드 출력
+
+```python
+import cv2
+
+img_file = 'img/mountain.jpg'
+img = cv2.imread(img_file)
+title = 'IMG' # 창 이름 지정
+x, y = 100, 100 # 최초 좌표 표시
+
+while True:
+    cv2.imshow(title,img)
+    cv2.moveshow(title, x, y)
+    key = cv2.waitKey(0)
+    
+    if key == ord('a'): # 왼쪽 이동
+        x -= 10
+    elif key == ord('s'): # 위로 이동
+        y += 10
+    elif key == ord('w'): # 아래로 이동
+        y -= 10
+    elif key == ord('d') # 오른쪽으로 이동
+    	x += 10
+    elif key == ord('q') or key == 27 # 마우슨 오른쪽 버튼만 누르면 창이 종료된다. 
+    	break
+        
+cv2. destroyAllWindows()        
+```
+
+
+
+### 1.7 사용자 마우스 입력 처리하기
+
+> - `callback`함수를 활용하여 마우스 입력에 따른 결과들을 조정할 수 있다.  아래의 내용을 참조한다.
+>   - `cv2.setMouseCallback`(`win_name`, `onMouse`, [, `param`]) : `win_name`함수에 `onMouse`함수 등록
+>     - `win_name`: 이벤트 등록할 윈도우 이름
+>     - `onMoouse`: 이벤트 처리를 위해 미리 선언해 놓는 콜백 함수
+>     - `param` : 필요에 따라 onMouse 함수에 전달할 인자
+>   - `MouseCallback`(`event`, `x`, `y`, `flags`, `param`): 콜백 함수 선언
+>     - `event`: 마우스 이벤트 종류
+>       - `cv2.EVENT_MOSEMOVE`: 마우스 움직임
+>       - `cv2.EVENT_LBUTTONDOWN`: 왼쪽 버튼 누름
+>       - `cv2.EVENT_RBUTTONDOWN`: 오른쪽 버튼 누름
+>       - `cv2.EVENT_MBUTTONDOWN`: 가운데 버튼 누름
+>       - `cv2.EVENT_LBUTTONUP`: 왼쪽 버튼 뗌
+>       - `cv2.EVENT_RBUTTONUP`: 오른쪽 버튼 뗌
+>       - `cv2.EVENT_MBUTTONUP`: 가운데 버튼 뗌
+>       - `cv2.EVENT_LBUTTONDBLCLK`: 왼쪽 버튼 더블클릭
+>       - `cv2.EVENT_RBUTTONDBLCLK`: 오른쪽 버튼 더블클릭
+>       - `cv2.EVENT_MBUTTONDBLCLK`: 가운데 버튼 더블클릭
+>       - `cv2.EVENT_MOUSEWHEEL`: 마우스 휠 스크롤
+>     - `x`, `y`: 마우스 좌표
+>     - `flags`: 마우스 동작과 함께 일어난 상태
+>       - `cv2.EVENT_LBUTTONDOWN(1)`: 왼쪽 버튼 누름
+>       - `cv2.EVENT_RBUTTONDOWN(2)`: 오른쪽 버튼 누름
+>       - `cv2.EVENT_MBUTTONDOWN(4)`:  가운데 버튼 누름
+>       - `cv2.EVENT_FLAG_CTRLKEY(8)`: `Ctrl` 키 누름
+>       - `cv2.EVENT_FLAG_SHIFTKEY(16)`: `Shift`키 누름
+>       - `cv2.EVENT_FLAG_ALTKEY(32)`: Alt 키 누름
+>     - `param`: `cv2.setMouseCallback()` 함수에서 전달한 인자
+
+#### 1.7.1 마우스로 동그라미 그리기
+
+```python
+import cv2
+
+window = 'mouse event'
+img = cv2.imread('img/blank_500.jpg')
+cv2.imshow(window, img)
+
+def onMouse(event, x, y, flags, param):
+    if event == cv2.EVENT_LBUTTONDOWN: # 왼쪽 버튼을 누를 경우
+        cv2.circle(img, (x, y), 50, (0,0,0), -1) # 지름 50 크기의 원을 해당 좌표에 표시
+        cv2.imshow(window, img)
+        
+cv2.setMouseCallback(window, onMouse)
+
+while True:
+    if cv2.waitKey(0):
+        break
+        
+cv2.destroyAllWindows()
+```
+
+
+
