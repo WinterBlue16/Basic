@@ -1,6 +1,6 @@
 # 00_OpenCV_Basic
 
-> 이하의 내용은 '파이썬으로 만드는 OpenCV 프로젝트'(저자 이세우)를 기반으로 한 것임을 밝힌다. 사용할 이미지 파일들은 작업파일이 있는 장소에 폴더로 저장해두는 것이 편리하다.
+> 이하의 내용은 **『파이썬으로 만드는 OpenCV 프로젝트』(저자 이세우)**를 기반으로 한 것임을 밝힌다. 사용할 이미지 파일들은 작업파일이 있는 장소에 폴더로 저장해두는 것이 편리하다.
 >
 > - OpenCV 개요
 >   - 영상처리와 컴퓨터 비전 처리를 위한 오픈소스 라이브러리
@@ -390,16 +390,17 @@ cv2. destroyAllWindows()
 ```python
 import cv2
 
-window = 'mouse event'
+window = 'mouse event' # 창 이름 지정
 img = cv2.imread('img/blank_500.jpg')
 cv2.imshow(window, img)
 
 def onMouse(event, x, y, flags, param):
     if event == cv2.EVENT_LBUTTONDOWN: # 왼쪽 버튼을 누를 경우
-        cv2.circle(img, (x, y), 50, (0,0,0), -1) # 지름 50 크기의 원을 해당 좌표에 표시
+        cv2.circle(img, (x, y), 50, (255, 0, 255), -1) 
+        # 지름 50 크기의 핑크색 원을 해당 좌표에 표시
         cv2.imshow(window, img)
         
-cv2.setMouseCallback(window, onMouse)
+cv2.setMouseCallback(window, onMouse) 
 
 while True:
     if cv2.waitKey(0):
@@ -408,5 +409,173 @@ while True:
 cv2.destroyAllWindows()
 ```
 
+![원 그리기](https://user-images.githubusercontent.com/58945760/72789685-8b0ed000-3c77-11ea-8ff0-8d49b5eccddf.png)
 
 
+
+#### 1.7.2 플래그를 이용한 `if`문으로 동그라미 그리기
+
+> - `if`문을 사용해 조건을 지정할 경우, 복잡한 조건이 먼저 나와야 다음 조건에 영향을 주지 않는다.
+
+```python
+import cv2
+
+title = 'mouse event' # 창 이름 지정
+img = cv2.imread('img/blank_500.jpg') # 도화지가 될 백색 이미지 불러오기
+cv2.imshow(title, img) # 백색 이미지 표시
+
+colors = {'black': (0, 0, 0), # 색상 미리 지정해주기
+         'red': (0, 0, 255),
+         'blue': (255, 0, 0),
+         'green': (0, 255, 0)}
+
+def onMouse(event, x, y, flags, param):
+    color = colors['black']
+    if event == cv2.EVENT_LBUTTONDOWN: # 왼쪽 버튼을 누를 경우
+        
+        if flags & cv2.EVENT_FLAG_CTRLKEY and flags & cv2.EVENT_FLAG_SHIFTKEY:
+            color = colors['green'] # ctrl 키와 Shift키를 동시에 누를 경우 녹색 원
+            
+        elif flags & cv2.EVENT_FLAG_CTRLKEY:
+            color = colors['red'] # ctrl 키만 눌렀을 때는 빨간 원
+            
+        elif flags & cv2.EVENT_FLAG_SHIFTKEY:
+            color = colors['blue'] # shift 키만 눌렀을 때는 파란 원
+            
+        cv2.circle(img, (x,y), 50, color, -1) # 원 그리기
+        cv2.imshow(title, img)
+        
+cv2.setMouseCallback(title, onMouse)
+
+while True:
+    if cv2.waitKey(0):
+        break
+
+cv2.destroyAllWindows()        
+```
+
+- 그냥 클릭할 때
+
+![1](https://user-images.githubusercontent.com/58945760/72796613-fdd17880-3c82-11ea-865b-bfcc1cbffeb0.PNG)
+
+
+
+- `ctrl`키 & `shift`키 누른 상태에서 클릭
+
+![2](https://user-images.githubusercontent.com/58945760/72796617-ff02a580-3c82-11ea-981c-0ec529fe66d4.PNG)
+
+- `ctrl`키만 누른 상태에서 클릭
+
+![3](https://user-images.githubusercontent.com/58945760/72796621-00cc6900-3c83-11ea-848f-91e7afe244a7.PNG)
+
+- `shift`키만 누른 상태에서 클릭
+
+![4](https://user-images.githubusercontent.com/58945760/72796626-01fd9600-3c83-11ea-98d8-e3c0a5dcad76.PNG)
+
+
+
+#### 1.7.3 콜백함수 이용하여 이미지 자르기
+
+> - 모든 image 원점 좌표 `(0, 0)`는 일반 좌표처럼 좌측 하단이 아닌 좌측 상단에 위치한다는 점을 기억할 것.
+>
+> ![tempsnip](https://user-images.githubusercontent.com/58945760/72795160-7e42aa00-3c80-11ea-9613-5304a6139918.png)
+
+```python
+import cv2
+import numpy as np
+
+image = cv2.imread('img/lion_face.jpg') # 이미지 불러오기
+image_to_show = np.copy(image) 
+
+mouse_pressed = False
+s_x = s_y = e_x = e_y = -1
+
+def mouse_callback(event, x, y, flags, param): # 함수 선언
+    global image_to_show, s_x, s_y, e_x, e_y, mouse_pressed
+    
+    if event == cv2.EVENT_LBUTTONDOWN:# 마우스 왼쪽 버튼 클릭할 때
+        mouse_pressed = True # 클릭 O
+        s_x, s_y = x, y # 시작 좌표 설정
+        image_to_show = np.copy(image)
+        
+    elif event == cv2.EVENT_MOUSEMOVE: # 마우스를 움직일 때
+        if mouse_pressed:
+            image_to_show = np.copy(image)
+            cv2.rectangle(image_to_show, (s_x, s_y),
+                         (x, y), (0, 255, 0), 1) # 지정한 부분에 초록색 사각형 그려주기
+            
+    elif event == cv2.EVENT_LBUTTONUP: # 마우스 왼쪽 버튼에서 손을 뗄 때
+    	mouse_pressed = False # 클릭 X
+        e_x, e_y = x, y # 끝 좌표 설정
+        
+cv2.namedWindow('image') # 창 이름 설정
+cv2.setMouseCallback('image', mouse_callback) # 이미지에 마우스 콜백 함수 적용 
+
+while True:
+    cv2.imshow('image', image_to_show) 
+    k = cv2.waitKey(1) 
+    
+    if k == ord('c'): # 'c' 버튼을 누르면
+        if s_y > e_y: # 시작 지점의 y좌표가 끝 지점의 y좌표보다 클 때 
+            s_y, e_y = e_y, s_y # 두 좌표의 위치 바꿈
+        if s_x > e_x: # 시작 지점의 x좌표가 끝 지점의 x좌표보다 클 때
+            s_x, e_x = e_x, s_x # 두 좌표의 위치 바꿈
+            
+        if e_y - s_y > 1 and e_x - s_x > 0: 
+            # 끝 지점의 y좌표에서 시작 지점의 y좌표를 뺀 값이 1보다 크고, 
+            # 끝 지점의 x좌표에서 시작 지점의 x좌표를 뺀 값이 0보다 클 때
+            image = image[s_y:e_y, s_x:e_x] # 지정한 부분의 이미지만 뽑아내기
+            image_to_show = np.copy(image)
+            
+        elif k == 27: # Esc를 누르면
+            break
+            
+cv2.destroyAllWindows() # 모든 창 종료
+```
+
+- 마우스로 영역 지정 
+
+![영역 지정](https://user-images.githubusercontent.com/58945760/72793246-9107af80-3c7d-11ea-94a2-3a68fa74222e.png)
+
+
+
+- 지정한 부분 잘라내기
+
+![자름](https://user-images.githubusercontent.com/58945760/72793250-936a0980-3c7d-11ea-8fcd-7d92ebe2e9d5.PNG)
+
+
+
+### 1.8 트랙바를 이용한 이미지 색 조정
+
+> - `cv2.createTrackbar`(`trackbar_name`, `win_name`, `value`, `count`, `onChange`) : 트랙바 생성 함수
+>   - `trackbar_name`: 트랙바 이름 지정
+>   - `win_name`: 트랙바가 있는 창 이름 
+>   - `value`: 트랙바의 시작 지점 값(`0`~ `count` 사이)
+>   - `count`: 트랙바 눈금의 갯수, 트랙바가 표시할 수 있는 최댓값
+>   - `onChange`: `TrackbarCallback`, 트랙바 이벤트를 조정하는 함수
+> - `TrackbarCallback`(`value`): 트랙바 이벤트 콜백 함수
+>   - `value`: 트랙바가 움직인 새 위치 값
+> - `pos` = `cv2.getTrackbarPos`(`trackbar_name`, `win_name`)
+>   - `trackbar_name`: 찾고자 하는 트랙바 이름
+>   - `pos`: 트랙바 위치 값
+
+```python
+win_name = "Trackbar_train"
+
+img = cv2.imread('img/blank_500.jpg')
+cv2.imshow(win_name, img)
+
+def onChange(x):
+    
+    r = cv2.getTrackbarPos('R', win_name)
+    g = cv2.getTrackbarPos('G', win_name)
+    b = cv2.getTrackbarPos('B', win_name)
+    
+while True:
+    if cv2.waitKey(1) == 27:
+        break
+        
+cv2.destroyAllWindows()
+```
+
+![트랙바](https://user-images.githubusercontent.com/58945760/72796248-581e0980-3c82-11ea-95b6-59bc01cbeff1.PNG)
