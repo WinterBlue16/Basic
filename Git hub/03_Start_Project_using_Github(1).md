@@ -78,6 +78,30 @@ $ git checkout -b [브랜치 이름]
 
 
 
+### 1.4 `master brench`에 특정 파일만 커밋하기
+
+> - 프로젝트 진행 중 개별 `brench`에서 작업하던 특정 파일을 `master brench`로 보내고 싶을 때 사용할 수 있다. 
+>
+>   - 1. `cd [브랜치가 있는 파일]`  
+>
+>     2. `git checkout master`로 `brench` 상태를 `master`로 전환한다.
+>
+>     3. `git checkout [해당 파일이 있는 브랜치명] -- [Github의 해당 파일 경로]`
+>
+>        ※ 파일 경로는 Github의 해당 브랜치의 해당 파일을 클릭한 후, 우측 상단의 `Copy path`버튼으로 복사할 수 있다. 
+>
+>     4. `git status`로 해당 파일이 `New file`로 떠 있는지 확인한다.
+>
+>     5. `git restore [해당 파일명]`
+>
+>     6. `git commit -m "커밋명"`
+>
+>     7. `git push origin master`
+
+![KakaoTalk_20200120_142534563](https://user-images.githubusercontent.com/58945760/72899248-eec4f600-3d68-11ea-9d8a-62214c6bc9d0.png)
+
+
+
 ## 참고 자료
 
 - 개인 홈페이지
