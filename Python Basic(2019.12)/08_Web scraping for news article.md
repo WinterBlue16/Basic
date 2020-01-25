@@ -29,7 +29,7 @@ https://search.naver.com/search.naver? # 네이버 검색
     query=코로나바이러스 # 검색어
 
 query = '코로나바이러스'
-url = https://search.naver.com/search.naver?where=news&sm=tab_jum&query=코로나바이러스
+url = "https://search.naver.com/search.naver?where=news&sm=tab_jum&query=" + 코로나바이러스
 ```
 
 ![zhfh](https://user-images.githubusercontent.com/58945760/73122460-8c6a3080-3fc8-11ea-85a4-562fdc7b8e63.PNG)
@@ -41,15 +41,25 @@ url = https://search.naver.com/search.naver?where=news&sm=tab_jum&query=코로�
 
 ```python
 # 라이브러리 불러오기
-from urlib.request import urlopen 
+from urllib.request import urlopen 
 
-web = request.get(url).content
-source = BeautifulSoup(web, 'html.parser') # BeautifulSoup으로 web 페이지의 HTML 구조를 parsing
+web = requests.get(url).content
+source = BeautifulSoup(web, 'html.parser') # web 페이지의 HTML 구조를 parsing
 # source를 그대로 출력할 경우, 담고 있는 텍스트가 많아 버벅거리게 될 수 있다.
 
 # 기사의 모든 제목 scraping 하기 
 news_subjects = source.find_all('a', {'class' : '_sp_each_title'})
-
-
 ```
 
+![캡처](https://user-images.githubusercontent.com/58945760/73122950-bd992f80-3fcd-11ea-8403-da8a7b579eb2.PNG)
+
+```python
+# 뉴스 제목만 뽑아 list로 저장
+news_subjects = source.find_all('a', {'class' : '_sp_each_title'})
+
+subject_list = []
+for subject in news_subjects:
+    subject_list.append(subject.get_text())
+```
+
+![캡처1](https://user-images.githubusercontent.com/58945760/73123018-60ea4480-3fce-11ea-9026-812ea57c0e43.PNG)
