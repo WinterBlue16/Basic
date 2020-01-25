@@ -1,4 +1,4 @@
-# Pandas Tutorial
+# 03_Pandas Tutorial
 
 > 2019. 12. 11에 진행했던 `pandas`와 `DataFrame` 자료형, `numpy`에 대해 배운 내용들을 서술한다. 
 

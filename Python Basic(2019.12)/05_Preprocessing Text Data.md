@@ -1,4 +1,4 @@
-# 07_Preprocessing Text Data
+# 05_Preprocessing Text Data
 
 > `Text` 데이터 전처리를 위한 실습으로 `nltk library`(Nature Language Toolkit)를 사용해 본다.
 

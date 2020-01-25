@@ -1,4 +1,4 @@
-# 08_Text Data Exploration & Visualization
+# 06_Text Data Exploration & Visualization
 
 > - `nltk`를 활용하여 글에서 가장 많이 등장하는 단어들과 그 빈도를 추출, 시각화하는 법을 학습한다. 
 

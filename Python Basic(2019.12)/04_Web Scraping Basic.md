@@ -1,4 +1,4 @@
-# 06_Web Scraping Basic
+# 04_Web Scraping Basic
 
 ## 1.  다음 어학사전  `scraping`하기 
 
