@@ -43,8 +43,9 @@ print(web_page)
 
 > - **Scarping에서의 Parsing**
 >
->   - HTML이나 XML, JavaScript 등으로 쓰여진 소스들을 각 요소별로 나누는 작업.
->   - 이러한 작업을 진행해주는 것을 parser라 부른다. 
+>   - `HTML`이나 `XML`, `JavaScript` 등으로 쓰여진 소스들을 각 요소별로 나누는 작업이지만 쉽게 말하면 가공되지 않은 데이터들에서 원하는 특정한 문자열을 추출하는 작업이다. 이러한 작업을 진행해주는 것을 `parser`라 부른다. 
+>   -  특히 `HTML`은 태그, 요소, 속성 등으로 웹 페이지를 구조적으로 표현하여 parsing이 수월한 편에 속한다.  
+>   - `Python`에서는 `HTMLParser`가 기본적으로 제공되지만, 보통 `BeautifulSoup`라이브러리(이하 bs4)를 사용한다. bs4는 `HTML`/`XML` 문자열에서 원하는 태그정보를 뽑아주는 `parser`이다.
 >
 >   
 >
