@@ -80,6 +80,28 @@ for urls in source.find_all('a', {'class':'_sp_each_title'}):
 ![3](https://user-images.githubusercontent.com/58945760/73136680-a7ee3d80-4093-11ea-88dc-c9022cc9674e.PNG)
 
 ```python
+# naver 플랫폼에 올라간 기사들 url만 추려내기
+url_list = []
 
+for urls in source.find_all('a', {'class':'_sp_each_url'}):
+    if urls.attrs['href'].startswith("https://news.naver.com"):# 해당 주소로 시작되는 url이면 l
+        url_list.append(urls['href'])# list에 추가
+        
+url_list
+```
+
+![e](https://user-images.githubusercontent.com/58945760/73136763-9c4f4680-4094-11ea-95b5-dc308df5cf56.PNG)
+
+
+
+## 2. 단일 뉴스 페이지 분석하기
+
+> - 뉴스 하나의 url을 분석하여 각 구성 요소들을 추려내는 방법을 배운다. 
+
+```python
+# 기사 전체 구조 파악하기
+web_news = requests.get(urls_list[0]).content
+source_news = BeautifulSoup(web_news, 'html.parser')
+source_news
 ```
 
