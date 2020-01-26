@@ -53,3 +53,29 @@ cv2.destroyAllWindows()
 >   - `img`: ROI 선택할 이미지, `Numpy ndarray`
 >   - `showCrossHair`: ROI 중심에 십자 모양 표시 여부
 >   - `fromCenter`: 마우스 시작 
+>   - `ret`:  영역 좌표(x, y, w, h) 선택을 취소한 경우 모두 0으로 함
+>     - `c`키를 누르면 선택 취소함 
+
+```python
+import cv2, numpy as np
+
+img = cv2.imread('img/sunset.jpg')
+
+x, y, w, h = cv2.selectROI('img', img, False)
+if w and h:
+    roi = img[y:y+h, x:x+w]
+    cv2.imshow('cropped', roi)
+    cv2.movewindow('cropped', 0, 0)
+    cv2.imwrite('cropped2.jpg', roi)
+    
+cv2.imshow('img', img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+```
+
+
+
+## 2. 컬러스페이스 
+
+> - RGB(row, column, channel)
