@@ -63,3 +63,23 @@ for subject in news_subjects:
 ```
 
 ![캡처1](https://user-images.githubusercontent.com/58945760/73123018-60ea4480-3fce-11ea-9026-812ea57c0e43.PNG)
+
+```python
+# 첫 번째 기사 url, 제목 뽑아내기
+urls = news_subjects
+first_article = urls[0]
+first_article.attrs['href']
+first_article.get_text()
+
+# 각 기사 url들 순서대로 뽑아내기 
+for urls in source.find_all('a', {'class':'_sp_each_title'}):
+    print(urls.attrs['href'])
+    # print(urls['href']) # 이 코드도 사용 가능
+```
+
+![3](https://user-images.githubusercontent.com/58945760/73136680-a7ee3d80-4093-11ea-88dc-c9022cc9674e.PNG)
+
+```python
+
+```
+
