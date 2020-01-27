@@ -133,6 +133,8 @@ print(date)
 
 ![캡처3](https://user-images.githubusercontent.com/58945760/73165898-17b60400-4138-11ea-90d9-bbb8951610df.PNG)
 
+> - 본문에서 기자 이메일 주소나 불필요한 기호들을 삭제할 때 정규표현식을 이용한다. 정규표현식에 대한 상세한 설명은 [링크](http://j.mp/2PzgFO8)를 참조한다. 
+
 ```python
 # 본문 뽑아내기
 article = source_news.find('div', {'id' : 'articleBodyContents'}).get_text()
@@ -166,4 +168,6 @@ pattern = re.compile(r'[\s\Wa-zA-Z0-9]*@')
 email_address = pattern.search(news_contents)
 news_contents = news_contents[:email_address.start()]
 ```
+
+![캡처6](https://user-images.githubusercontent.com/58945760/73167346-0cb0a300-413b-11ea-9bcd-76cba060e6cd.PNG)
 
