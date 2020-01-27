@@ -105,3 +105,65 @@ source_news = BeautifulSoup(web_news, 'html.parser')
 source_news
 ```
 
+![캡처](https://user-images.githubusercontent.com/58945760/73164945-416e2b80-4136-11ea-97cb-cd742767347b.PNG)
+
+### 2.1 기사 내용 & 발행 날짜 뽑아내기
+
+![캡처2](https://user-images.githubusercontent.com/58945760/73165127-8d20d500-4136-11ea-99c3-2fd61ae64858.PNG)
+
+```python
+# 제목 뽑아내기 
+title = source_news.find('h3', {'id' : 'articleTitle'}).get_text()
+print(title)
+
+# 날짜 뽑아내기 
+date = source_news.find('span', {'class':'t11'}).get_text()
+
+date = date.replace(" ", "")# 여백 없애주기
+date1 = date[:11]
+date2 = date[13:]
+date3 = (lambda x : 'am' if x == '오전' else 'pm')(date[11:13])
+date4 = date1 + date2 + date3
+
+date = pd.Timestamp(date4)
+print(date)
+```
+
+### 2.2 기사 본문
+
+![캡처3](https://user-images.githubusercontent.com/58945760/73165898-17b60400-4138-11ea-90d9-bbb8951610df.PNG)
+
+```python
+# 본문 뽑아내기
+article = source_news.find('div', {'id' : 'articleBodyContents'}).get_text()
+article
+```
+
+![캡처4](https://user-images.githubusercontent.com/58945760/73166136-96ab3c80-4138-11ea-9451-080be1e8e0ee.PNG)
+
+```python
+# 필요없는 부호, 문장 제외하기
+article = article.replace('\n', '') # '\n'를 ''로 교체함
+article = article.replace('// flash 오류를 우회하기 위한 함수 추가\nfunction _flash_removeCallback() {}') # 필요없는 문장을 ''로 교체함
+article = article.strip()# 공백을 제거하는 함수
+article
+```
+
+![캡처5](https://user-images.githubusercontent.com/58945760/73166588-7b8cfc80-4139-11ea-88c9-828cc268cdd2.PNG)
+
+```python
+# 기타 기자 이메일 등 주소와 불필요한 기호 제외하기
+news_contents = article
+pattern = re.compile(r'[\s\Wa-zA-Z0-9]+@')
+email_address = pattern.search(article)
+
+# '\'기호 제외하기
+pattern = re.compile(r'\'')
+news_contents = pattern.sub('', news_contents)
+
+# 기자 이메일 주소부터 그 이후 전체 삭제하기
+pattern = re.compile(r'[\s\Wa-zA-Z0-9]*@')
+email_address = pattern.search(news_contents)
+news_contents = news_contents[:email_address.start()]
+```
+
