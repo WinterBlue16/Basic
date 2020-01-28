@@ -156,3 +156,13 @@ plt.show()
 
 [image]
 
+### 2.1 BGR에서 HSV로 변환하기
+
+```python
+# 라이브러리 불러오기
+import cv2
+import numpy as np
+
+# BGR 색상
+```
+
