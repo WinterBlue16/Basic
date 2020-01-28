@@ -44,7 +44,13 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 ```
 
-[이미지]
+- 관심영역 지정
+
+![창](https://user-images.githubusercontent.com/58945760/73249650-a1c5a180-41f8-11ea-80eb-4ef1d526e2d2.PNG)
+
+- 관심영역 복제
+
+![창2](https://user-images.githubusercontent.com/58945760/73249798-eb15f100-41f8-11ea-9c79-7c431605fdf2.PNG)
 
 ### 1.2 마우스 이벤트 코드 없이 간단한 ROI 지정
 
@@ -71,11 +77,82 @@ if w and h:
 cv2.imshow('img', img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-
 ```
+
+![3](https://user-images.githubusercontent.com/58945760/73250738-c6bb1400-41fa-11ea-9c1e-9a967b1f446e.PNG)
 
 
 
 ## 2. 컬러스페이스 
 
-> - RGB(row, column, channel)
+> - 다른 색상값에 대한 보다 자세한 설명은 [링크1](https://aboooks.tistory.com/279)과 [링크2](https://myyac.tistory.com/133)를 참조한다. 여기서는 OpenCV에서 기본적으로 이해하고 넘어가야 할 BGR와 BGRA, HSV에 대해 설명한다. 
+>
+> - **BGR(Blue, Green, Red)** :
+>
+>   ![RGB_1](https://user-images.githubusercontent.com/58945760/73253570-1cde8600-4200-11ea-802f-106f539513dd.png)
+>
+>   - **Blue(파랑)**: 0~255 사이의 값 => (255, 0, 0)
+>   - **Green(초록)**: 0~255 사이의 값 => (0, 255, 0)
+>   - **Red(빨강)**: 0~255 사이의 값 => (0, 0, 255)
+>   - **Black(검정)**: (0, 0, 0)
+>   - **White(하양)**: (255, 255, 255)
+>
+> 
+>
+> - **BGRA(Blue, Green, Red, Alpha)** : 
+>
+>   ![bgracontrols](https://user-images.githubusercontent.com/58945760/73254472-d1c57280-4201-11ea-988f-d9194750607f.png)
+>
+>   - Alpha(투명도) : 0.0(완전 투명) ~ 1.0(완전 불투명) 
+>
+>   
+>
+> - **HSV(Hue: 색상, Saturation: 채도, Value: 명도)** 
+>
+>   ![다운로드](https://user-images.githubusercontent.com/58945760/73254343-93c84e80-4201-11ea-942e-bf69e3bf4834.png)
+>
+>   - BGR 색상에 부합하는 H값
+>
+>     - 빨강 : 165 ~ 180, 0 ~ 15
+>     - 초록 : 45 ~ 75
+>     - 파랑 : 90 ~ 120
+>
+>     
+>
+> - `img` = `cv2`. `imread`(`file_name`, `mode_flag`):  파일로부터 이미지 불러오기
+>   - `file_name`: 이미지경로
+>   - `mode_flag`: 색상을 어떻게 읽어올 것인지 지정할 수 있음. 
+>     - `cv2`.`IMREAD_COLOR`: BGR로 읽기. 기본값
+>     - `cv2`.`IMREAD_UNCHANGED`: (Alpha 채널이 존재할 경우)BGRA로 읽기. **마스크 채널**이라고도 함
+> - `out_img`: `cv2`.`cvtColor`(`img`, `flag`)
+>   - `img`: `Numpy`배열 이미지
+>   - `flag`: 적용할 색상 조건(총 274개)
+>     - `cv2`.`COLOR_BGR2GRAY`: BGR 이미지를 그레이스케일 이미지로
+>     - `cv2`. `COLOR_GRAY2BGR`: 그레이스케일 이미지를 BGR 이미지로
+>     - `cv2`. `COLOR_BGR2HSV`: BGR 이미지를 HSV 이미지로
+
+```python
+# 라이브러리 불러오기
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 기본값 옵션 설정하기
+img = cv2.imread('img/opencv_logo.png') 
+bgr = cv2.imread('img/opencv_logo.png', cv2.IMREAD_COLOR) 
+# IMREAD_UNCHANGED 옵션 
+bgra = cv2.imread('img/opencv_logo.png', cv2.IMREAD_UNCHANGED) 
+
+# 각 옵션에 따른 이미지 출력 확인
+print('default', img.shape, 'color', bgr.shape, 'unchanged', bgra.shape)
+
+plt.imshow(cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB))
+plt.show()
+plt.imshow(cv2.cvtColor(bgra, cv2.COLOR_BGR2RGB))
+plt.show()
+plt.imshow(cv2.cvtColor(bgra[:,:,3], cv2.COLOR_BGR2RGB))
+plt.show()
+```
+
+[image]
+
