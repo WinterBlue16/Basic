@@ -27,8 +27,9 @@
 
   ```shell
   $ git add [파일 이름] # .은 모든 변경 사항을 staging area로 올림
-  ```
-
+  $ git add [변경사항이 포함된 폴더 이름] # 폴더 내 모든 변경사항을 한 commit에 묶을 수 있다.
+```
+  
   
 
 ### (3) 버전 관리를 위한 스냅샷 저장 : `git commit`
@@ -73,7 +74,6 @@ $ git clone [연동시키고 싶은 저장소 경로]
   $ git puch origin master
   ```
 
-  
 
 ### (7) 그 외 명령어
 
