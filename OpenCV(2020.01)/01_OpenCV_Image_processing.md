@@ -150,7 +150,7 @@ plt.imshow(cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB))
 plt.show()
 plt.imshow(cv2.cvtColor(bgra, cv2.COLOR_BGR2RGB))
 plt.show()
-plt.imshow(cv2.cvtColor(bgra[:,:,3], cv2.COLOR_BGR2RGB))
+plt.imshow(cv2.cvtColor(bgra[:,:,3], cv2.COLOR_BGR2RGB)) # error()
 plt.show()
 ```
 
@@ -163,6 +163,133 @@ plt.show()
 import cv2
 import numpy as np
 
-# BGR 색상
+# BGR 색상으로 픽셀 생성
+red_bgr = np.array([[[0,0,255]]], dtype=np.uint8) # 빨강
+green_bgr = np.array([[[0,255,0]]], dtype=np.uint8) # 초록
+blue_bgr = np.array([[[255,0,0]]], dtype=np.uint8) # 파랑
+yellow_bgr = np.array([[[0,255,255]]], dtype=np.uint8) # 노랑
+
+# HSV 색상으로 변환 
+red_hsv = cv2.cvtColor(red_bgr, cv2.COLOR_BGR2HSV)
+green_hsv = cv2.cvtColor(green_bgr, cv2.COLOR_BGR2HSV)
+blue_hsv = cv2.cvtColor(blue_bgr, cv2.COLOR_BGR2HSV)
+yellow_hsv = cv2.cvtColor(yellow_bgr, cv2.COLOR_BGR2HSV)
+
+# 출력(np.array 자료형)
+print("Red:", red_hsv)
+print("Green:", green_hsv)
+print("Blue:", blue_hsv)
+print("Yellow:", yellow_hsv)
 ```
 
+![color](https://user-images.githubusercontent.com/58945760/73343633-48c33f80-42c4-11ea-9724-581fe7ed043f.PNG)
+
+
+
+## 3. 이미지 스레시홀딩
+
+### 3.1 스레시홀딩(thresholding)
+
+> - 스레시홀딩이란 바이너리 이미지를 만드는 가장 대표적인 방법 중 하나이다. 우선 바이너리 이미지가 무엇인가부터 알아보자.  
+>
+> 1. 바이너리(`binary`) 이미지 :
+>
+>    - **이진화 이미지**라고도 한다.
+>
+>    - 검은색과 흰색만으로 이미지를 표현
+>    - 0 or 1, 0 or 255 사용
+>    - **이미지 예시 1**
+>
+>    ![binary](https://user-images.githubusercontent.com/58945760/73344792-524da700-42c6-11ea-8bc8-c0828a3e7b82.png)
+>
+>    
+>
+>    - **이미지 예시 2**
+>
+>    ![binary2](https://user-images.githubusercontent.com/58945760/73344804-54176a80-42c6-11ea-995f-2feb5a84359d.png)
+>
+> 
+>
+> 2. 그레이스케일(`grayscale`) 이미지 :
+>
+>    - 흔히 흑백 이미지라고 부름
+>    - 0~255 사이의 값으로 이미지를 표현
+>
+>    - **이미지 예시 1**
+>
+>    ![grayscale](https://user-images.githubusercontent.com/58945760/73344774-4e218980-42c6-11ea-9e60-093562039e37.png)
+>
+>    
+>
+>    - **이미지 예시 2**
+>
+>    ![grayscale2](https://user-images.githubusercontent.com/58945760/73344784-4feb4d00-42c6-11ea-82cf-ed9a5b596f68.png)
+>
+>    - 스레시홀딩이란 특정한 경계값을 기준으로 모든 픽셀을 검은색(=0), 흰색(=255) 두 가지로 분류하는 것을 말한다. 따라서 결과물은 자연스레 바이너리 이미지가 된다.  
+>      - 스레시홀딩 함수 :  ret, out = cv2.threshold(img, threshold, value, type_flag)
+>        - `ret` : 스레시홀딩에 사용할 경계값
+>        - `out `: 함수 적용 결과로 나오는 바이너리 이미지
+>        - `img` : 변환할 이미지(np.array 자료형)
+>        - `threshold` : 스레시홀딩에 사용할 경계값
+>        - `value` : 경계값 기준을 충족할 경우 적용할 값
+>        - `type_flag` : 스레시홀딩 적용 방법
+>          - cv2.THRESH_BINARY
+>          - cv2.THRESH_BINARY_INV 
+>          - cv2.THRESH_TRUNC
+>          - cv2.THRESH_TOZERO 
+>          - cv2.THRESH_TOZERO_INV 
+
+```python
+# 이미지 스레시홀딩 예시
+# 1. 라이브러리 불러오기
+import cv2
+import matplotlib.pyplot as plt
+
+# 2. 이미지 불러오기(그레이스케일)
+img = cv2.imread('img/man_face.jpg', cv2.IMREAD_GRAYSCALE)
+
+# 3. 이미지에 스레시홀딩 함수들 적용
+imgs = []
+ret, t_bin = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY) # 경계값 127 # value값 255(=흰색)
+ret, t_bininv = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY_INV)
+ret, t_truc = cv2.threshold(img, 127, 255, cv2.THRESH_TRUNC)
+ret, t_2zr = cv2.threshold(img, 127, 255, cv2.THRESH_TOZERO)
+ret, t_2zrinv = cv2.threshold(img, 127, 255, cv2.THRESH_TOZERO_INV)
+
+imgs.append(t_bin)# imgs 리스트에 추가
+imgs.append(t_bininv)
+imgs.append(t_truc)
+imgs.append(t_2zr)
+imgs.append(t_2zrinv)
+
+# 4. 스레시홀딩한 이미지들 출력해 확인
+for i in imgs:# 리스트에서 이미지를 하나씩 꺼내
+    plt.imshow(cv2.cvtColor(i, cv2.COLOR_GRAY2RGB)) #출력하기
+    plt.show()
+
+```
+
+- **cv2.THRESH_BINARY 적용**
+  - 픽셀 값이 경계값을 넘을 경우 value값으로 변환, 아닐 경우 0(=검은색)으로 변환.
+
+![바이너리](https://user-images.githubusercontent.com/58945760/73348666-1f5ae180-42cd-11ea-83fb-7eb48eadd9bb.PNG)
+
+- **cv2.THRESH_BINARY_INV 적용**
+  - 위와 반대. 경계값을 넘으면 0, 넘지 않을 경우 value값으로 변환.
+
+![바이너리 반전](https://user-images.githubusercontent.com/58945760/73348671-2124a500-42cd-11ea-8272-bc59a2fa87a8.PNG)
+
+- **cv2.THRESH_TRUNC 적용**
+  -  픽셀 값이 경계값을 넘으면 value값으로 변환, 넘지 않으면 그대로 값 유지.
+
+![트렁크](https://user-images.githubusercontent.com/58945760/73348672-2255d200-42cd-11ea-9f41-807bdf82474e.PNG)
+
+- **cv2.THRESH_TOZERO 적용**
+  - 픽셀 값이 경계값을 넘으면 값 유지, 아닐 경우 0으로 변환
+
+![제로투](https://user-images.githubusercontent.com/58945760/73348676-241f9580-42cd-11ea-83b1-e71b02854a69.PNG)
+
+- **cv2.THRESH_TOZERO_INV 적용**
+  - 위와 반대. 픽셀 값이 경계값을 넘으면 0으로 변환, 아니면 값 유지
+
+![제로투 반전](https://user-images.githubusercontent.com/58945760/73348682-2681ef80-42cd-11ea-9313-1a6f2e86448a.PNG)
