@@ -28,6 +28,7 @@
   ```shell
   $ git add [파일 이름] # .은 모든 변경 사항을 staging area로 올림
   $ git add [변경사항이 포함된 폴더 이름] # 폴더 내 모든 변경사항을 한 commit에 묶을 수 있다.
+  ```
 ```
   
   
@@ -38,7 +39,7 @@
 
   ```shell
   $ git commit -m "커밋 메시지"
-  ```
+```
 
 
 
@@ -155,4 +156,16 @@ $ git clone [연동시키고 싶은 저장소 경로]
   $ git push origin master
   ```
 
-  
+
+
+
+### (3) Colab, VScode와 연동
+
+<img src="https://user-images.githubusercontent.com/58945760/74128920-b145e100-4c21-11ea-8022-2a9a99bcdf54.png" alt="colab_cover" style="zoom:50%;" />
+
+![visualstudio_code-card](https://user-images.githubusercontent.com/58945760/74128834-7774da80-4c21-11ea-9e07-6c94d685549c.png)
+
+> `github`는 Colab, VScode와 연동이 가능하다. 
+>
+> - colab은 작업 중 바로 `github`와 연동해 `bash`을 킬 필요 없이 바로 `commit`할 수 있다. 
+> - VScode 역시 저장소 안의 폴더를 작업 영역에 추가해두면 터미널을 활용해 바로바로 `commit`할 수 있다.
