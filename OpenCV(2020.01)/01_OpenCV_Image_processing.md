@@ -293,3 +293,14 @@ for i in imgs:# 리스트에서 이미지를 하나씩 꺼내
   - 위와 반대. 픽셀 값이 경계값을 넘으면 0으로 변환, 아니면 값 유지
 
 ![제로투 반전](https://user-images.githubusercontent.com/58945760/73348682-2681ef80-42cd-11ea-9313-1a6f2e86448a.PNG)
+
+
+
+### 3.2 적응형 스레시홀딩
+
+> - method에 따라 임계값을 결정하는 방법으로, 전체 픽셀이 아닌 영역에 따라 다른 임계값을 사용한다.
+> - 적용 코드
+>   - `cv2`.`adaptive Threshold`(`img`, `value`, `method`, `type_flag`, `block_size`, `C`)
+>     - img: 입력 영상
+>     - value: 경계값을 만족하는 픽셀에 적용할 값
+
