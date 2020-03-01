@@ -303,4 +303,16 @@ for i in imgs:# 리스트에서 이미지를 하나씩 꺼내
 >   - `cv2`.`adaptive Threshold`(`img`, `value`, `method`, `type_flag`, `block_size`, `C`)
 >     - img: 입력 영상
 >     - value: 경계값을 만족하는 픽셀에 적용할 값
+>     - method: 경계값을 결정하는 방법
+>       - cv2.ADPTIVE_THRESH_MEAN_C: 이웃 픽셀의 평균값으로 결정
+>       - cv2.ADPTIVE_THRESH_GAUSSIAN_C: 가우시안 분포에 따른 가중치 합으로 결정
+>     - type_flag: 스레시홀딩 적용 방법 지정(=cv2.threshold() 함수)
+>     - block_size: 전체영역에서 부분으로 나눌 크기(n*n)
+>     - C: 계산된 경계값 결과에서 가감할 상수값(음수, 양수 모두 가능)
+
+```python
+import cv2
+
+image = cv2.imread('img/sudoku.png')
+```
 
