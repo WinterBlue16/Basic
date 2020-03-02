@@ -313,6 +313,19 @@ for i in imgs:# 리스트에서 이미지를 하나씩 꺼내
 ```python
 import cv2
 
-image = cv2.imread('img/sudoku.png')
+image = cv2.imread('img/sudoku.png', cv2.IMREAD_GRAYSCALE)
+
+ret, th1 = cv2.threshold(image, 127, 255, cv2.THRESH_BINARY)
+th2 = cv2.adaptiveThreshold(image, 255, cv2.ADAPTIVE_THRESH_MEAN_C,
+                           cv2.THRESH_BINARY, 21, 3)
+
+plt.imshow(cv2.cvtColor(image, cv2.COLOR_GRAY2RGB))
+plt.show()
+
+plt.imshow(cv2.cvtColor(th1, cv2.COLOR_GRAY2RGB))
+plt.show()
+
+plt.imshow(cv2.cvtColor(th2, cv2.COLOR_GRAY2RGB))
+plt.show()
 ```
 
