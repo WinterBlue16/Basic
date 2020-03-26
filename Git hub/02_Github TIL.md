@@ -29,9 +29,8 @@
   $ git add [파일 이름] # .은 모든 변경 사항을 staging area로 올림
   $ git add [변경사항이 포함된 폴더 이름] # 폴더 내 모든 변경사항을 한 commit에 묶을 수 있다.
   ```
-```
-  
-  
+
+
 
 ### (3) 버전 관리를 위한 스냅샷 저장 : `git commit`
 
@@ -39,7 +38,7 @@
 
   ```shell
   $ git commit -m "커밋 메시지"
-```
+  ```
 
 
 
@@ -174,7 +173,7 @@ $ git clone [연동시키고 싶은 저장소 경로]
 
 
 
-## 5. git 오류 해결법 
+## 5. git 오류 해결 모음
 
 > `git add`, `commit`, `push`를 하던 도중 파일 크기나 `commit` 순서가 꼬이는 문제 등으로 오류가 발생할 수 있다.  오류는 여러 가지 원인으로 발생할 수 있고, 같은 오류 메시지가 뜨더라도 상황이 다를 수 있으므로 오류 해결 코드와 더불어 상황도 기록하기로 한다.
 
@@ -188,13 +187,45 @@ $ git clone [연동시키고 싶은 저장소 경로]
 
 - DACON 코드와 함께 2GB가 넘는 data(train, test, sample_submission)를 저장소에 `push`하려다 생긴 오류이다. 
 - 위의 메시지에도 표시되어 있듯이 일반적인 `Github`의 저장소 한도는 100MB이다. 통상적으로 `Markdown` 파일이나 `ipynb` , `py` 파일은 크기가 크지 않지만, 이미지나 대회용 data의 경우 용량이 큰 것들이 존재하므로 데이터를 `push`하기 전에 확인이 필요하다. 
-- 이미 `commit`이 되어버린 상태였지만 최근 `commit`을 취소한 후(해당 명령어는 해당 아래 참조), data 파일을 `master`폴더에서 지웠으면 간단히 해결할 수 있는 문제였다. 하지만 갑작스레 발생한 `error`에 당황한 나머지 우선 파일부터 지우고 그대로 새로운 `commit`을 해버리는 바람에 문제가 더 꼬이고 말았다.  
+- 이미 `commit`이 되어버린 상태였지만 최근 `commit`을 취소한 후(해당 명령어는 해당 아래 참조), data 파일을 `master`폴더에서 지웠으면 간단히 해결할 수 있는 문제였다. 하지만 갑작스레 발생한 `error`에 당황한 나머지 파일부터 지우고 그대로 새로운 `commit`을 해버리는 바람에 문제가 더 꼬이고 말았다.  
 
 
 
 ### (2) 앞의 commit이 제대로 push 되지 못해 commit 자체를 할 수 없는 경우 
 
- 
+- 새롭게 `commit`을 한다고 해서 먼젓번의 `commit`(대용량 파일 때문에 제대로 `push`되지 못한 `commit`)이 취소되는 것은 아니다! 
+- 선택적으로 `push`를 하는 방법이 있을 수도 있겠지만 당시 내가 아는 방법은 모든 `commit`을 한번 `push`하는 방법(`git push origin master`)뿐이었다. 당연히 위의 `commit` 부분에서 계속 걸려 위와 동일한 에러가 반복적으로 발생했다. 
+- 나는 먼저 에러가 발생한 기존 `commit`을 취소하기로 했다.  다음은 가장 최근 `commit`을 취소하는 명령어이다.([참조 페이지](https://beagle-dev.tistory.com/192))
 
- 
+```shell
+$ git reset HEAD^ # 가장 최근의 commit을 취소
+```
+
+- 그리고 다시 `push`를 시도했지만, `pull`을 먼저 하라는 메시지에 따라 `pull`을 했다. 하지만 다음과 같은 에러가 발생했다. 
+
+![오류 발생 메시지2](https://user-images.githubusercontent.com/58945760/77649022-6fdc7b80-6fac-11ea-9c44-19734d99c254.PNG)
+
+- 추적되지 않는(`untracked`)이 파일이 존재하며, 이 파일들을 지우거나 이동하라는 메시지이다. 나는 [서치한 페이지](http://vezi95.blogspot.com/2016/05/git-pull.html)를 참고하여 해결했다. 
+
+```shell
+$ git add -A # untracked 파일 모두 추가 
+$ git stash # add, commit된 사항들을 모두 저장, 워킹 디렉토리를 깨끗한 상태로 되돌린다
+```
+
+- 사실 이건 어찌어찌 오류가 나지 않도록 한 것이지 해결이라고 보기는 어렵다. `add` 명령어로 파일들을 추가한 것과 `stash`명령어로 워킹 디렉토리(`add`, `commit`한 파일들이 `push`되기 전 존재하는 작업 장소)를 깨끗이 한 것까지는 좋았는데 `stash`명령어의 쓰임을 잘 몰라 적용하지 못했다. 덕분에 나는 새로 추가할 파일들을 다른 폴더에 복사해 두었다가 다시 `add`, `commit`하는 반복작업을 해야 했다. 
+- 제대로 된 해결방법은 다음과 같다. 
+
+```shell
+$ git add -A
+$ git stash 
+$ git stash pop # stash에 저장했던 내용을 다시 워킹 디렉토리에 적용
+$ git commit -m "커밋 메시지"
+$ git push origin master
+```
+
+- 보다 더 간단한 방법도 있다.  다음 명령어는 위의 오류 메시지에서 나왔던 추적되지 않는(`untracked`) 파일들을 제거해 준다. ([참고 페이지]([https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-Stashing%EA%B3%BC-Cleaning](https://git-scm.com/book/ko/v2/Git-도구-Stashing과-Cleaning)))
+
+```shell
+$ git clean -d -f -f 
+```
 
