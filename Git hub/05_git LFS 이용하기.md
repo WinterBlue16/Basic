@@ -22,3 +22,22 @@ git LFS는 `repository`의 경로에 직접 들어가 설치를 진행해야 하
 
 ## 1. git LFS 설치하기
 
+![git lfs](https://user-images.githubusercontent.com/58945760/86791672-bdd14700-c0a4-11ea-803d-06913ac07356.PNG)
+
+- [공식 홈페이지](https://git-lfs.github.com/)에 접속한다. 
+
+- Download 버튼을 눌러 git LFS를 다운로드한다. 
+
+  > 다운로드 폴더(경로 변경 가능)에 들어가면 아래와 같은 파일이 다운로드되어 있는 것을 확인할 수 있다. 
+
+  ![2](https://user-images.githubusercontent.com/58945760/86792329-5667c700-c0a5-11ea-9ef0-f1982dec6b3f.PNG)
+
+- 파일을 열고 설치한다. 
+
+
+
+## 2. git bash로 git LFS 사용하기
+
+### 2.1 `repository`에 git LFS 설치하기
+
+> 위에서 
