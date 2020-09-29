@@ -92,8 +92,25 @@ $ git push origin master
 ![](https://i.gzn.jp/img/2015/04/07/10-years-git-linus-torvalds/00-top.png)            <img src="http://pngimg.com/uploads/github/github_PNG20.png" style="zoom:20%;" />
 
  
-
-
+ - `width`를 이용하여 업로드한 이미지의 크기를 `resize`할 수 있다. 
+   - 100%
+     <img src="http://pngimg.com/uploads/github/github_PNG20.png" width="100%">
+    
+   - 50%
+     <img src="http://pngimg.com/uploads/github/github_PNG20.png" width="50%">
+   
+   - 25% 
+     <img src="http://pngimg.com/uploads/github/github_PNG20.png" width="25%">
+   
+   
+   
+ - html에서의 `p`/`center` 태그로 이미지를 가운데 정렬할 수 있다. 
+   - 가운데 정렬 적용 전
+   <img src="http://pngimg.com/uploads/github/github_PNG20.png" width="25%">
+   
+   - 가운데 정렬 적용 후
+   <p align="center"><img src="http://pngimg.com/uploads/github/github_PNG20.png" width="25%"></p>
+ 
 
 ### 1.5 Link
 
