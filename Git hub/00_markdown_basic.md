@@ -141,6 +141,27 @@ $ git push origin master
 | working tree      | index        | history    |
 | working copy      | cache        | tree       |
 
+- 입력 방법으로 각 열을 왼쪽/가운데/오른쪽 정렬로 지정할 수 있습니다. 
+
+| working directory | stating area | remoe repo |
+| :----------------- | :------------: | ----------: |
+| working tree      | index        | history    |
+| working copy      | cache        | tree       |
+
+- 셀 안에서 값을 볼드 처리하거나 색을 바꾸는 것도 가능합니다.
+  - 볼드체(진하게)<br>
+ 
+| working directory | stating area | remoe repo |
+| ----------------- | ------------ | ---------- |
+| **working tree**      | index        | **history** |
+| working copy      | **cache**        | tree       |
+
+   - 이탤릭체<br> 
+ 
+| working directory | stating area | remoe repo |
+| ----------------- | ------------ | ---------- |
+| _working tree_      | index        | _history_ |
+| working copy      | _cache_        | tree       |
 
 
 ### 1.7 기타
