@@ -163,6 +163,7 @@ $ git push origin master
 | _working tree_      | index        | _history_ |
 | working copy      | _cache_        | tree       |
 
+- 마크다운 문법에서는 <span> 태그를 활용해 글자색을 변경하는 것도 가능하다고 알려져 있으나([설명 참고](https://inasie.github.io/it%EC%9D%BC%EB%B0%98/%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4-%ED%91%9C-%EB%A7%8C%EB%93%A4%EA%B8%B0/)), Github에서는 글자색 변경이 적용되지 않는다. 로컬에서 마크다운 문서의 글자색이 변한 것을 확인할 수 있어도, Github 페이지에서 열어봤을 때는 검은색 글자 그대로 출력된다. 
 
 ### 1.7 기타
 
