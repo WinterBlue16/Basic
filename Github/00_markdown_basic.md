@@ -91,11 +91,11 @@ $ git push origin master
 
 ![](https://i.gzn.jp/img/2015/04/07/10-years-git-linus-torvalds/00-top.png)            <img src="http://pngimg.com/uploads/github/github_PNG20.png" style="zoom:20%;" />
 
- 
+
  - `width`를 이용하여 업로드한 이미지의 크기를 `resize`할 수 있다. 
    - 100%
      <img src="http://pngimg.com/uploads/github/github_PNG20.png" width="100%">
-    
+   
    - 50%
      <img src="http://pngimg.com/uploads/github/github_PNG20.png" width="50%">
    
@@ -110,7 +110,7 @@ $ git push origin master
    
    - 가운데 정렬 적용 후
    <p align="center"><img src="http://pngimg.com/uploads/github/github_PNG20.png" width="25%"></p>
- 
+
 
 ### 1.5 Link
 
@@ -150,14 +150,14 @@ $ git push origin master
 
 - 셀 안에서 값을 볼드 처리하거나 색을 바꾸는 것도 가능합니다.
   - 볼드체(진하게)<br>
- 
+
 | working directory | stating area | remoe repo |
 | ----------------- | ------------ | ---------- |
 | **working tree**      | index        | **history** |
 | working copy      | **cache**        | tree       |
 
    - 이탤릭체<br> 
- 
+
 | working directory | stating area | remoe repo |
 | ----------------- | ------------ | ---------- |
 | _working tree_      | index        | _history_ |
@@ -165,7 +165,22 @@ $ git push origin master
 
 - 마크다운 문법에서는 <span> 태그를 활용해 글자색을 변경하는 것도 가능하다고 알려져 있으나([설명 참고](https://inasie.github.io/it%EC%9D%BC%EB%B0%98/%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4-%ED%91%9C-%EB%A7%8C%EB%93%A4%EA%B8%B0/)), Github에서는 글자색 변경이 적용되지 않습니다. 예로 로컬에서 마크다운 문서의 글자색이 변한 것을 확인할 수 있어도, Github 페이지에서 열어봤을 때는 검은색 글자 그대로 출력됩니다. 
 
-### 1.7 기타
+
+
+### 1.7 수식 
+
+> 함수나 집합, 공식 등을 입력해야 할 때 사용한다.
+
+수식은 메뉴 바에서 본문 > 수식블록을 클릭하여 손쉽게 입력할 수 있습니다. 수식 블록 활용 시 [튜토리얼 1](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference), [튜토리얼 2](https://dev-lagom.tistory.com/35)를 참고해 입력합니다. 수식 블록을 통해 입력한 수식은 기본적으로 가운데 정렬이며, 한 줄을 차지합니다. 따라서 문장 사이에 수식을 넣는 것은 typora에서는 불가능합니다. 아래는 수식 블록을 통해 입력한 수식의 예시입니다.
+$$
+y=ax+b \\
+y=ax^2+bx+c
+$$
+ 띄어쓰기는 \, 줄바꿈은 \ 연속 두 개로 할 수 있습니다. 
+
+
+
+### 1.8 기타
 
 **인용문**
 
@@ -225,6 +240,8 @@ ___
 **줄 공백 주기**
 
 - `<br>`태그를 활용하여 줄간격을 제어할 수 있습니다.
+
+
 
 
 
