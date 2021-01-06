@@ -171,12 +171,12 @@ $ git push origin master
 
 > 함수나 집합, 공식 등을 입력해야 할 때 사용한다.
 
-수식은 메뉴 바에서 본문 > 수식블록을 클릭하여 손쉽게 입력할 수 있습니다. 수식 블록 활용 시 [튜토리얼 1](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference), [튜토리얼 2](https://dev-lagom.tistory.com/35)를 참고해 입력합니다. 수식 블록을 통해 입력한 수식은 기본적으로 가운데 정렬이며, 한 줄을 차지합니다. 따라서 문장 사이에 수식을 넣는 것은 typora에서는 불가능합니다. 아래는 수식 블록을 통해 입력한 수식의 예시입니다.
+수식은 메뉴 바에서 본문 > 수식블록을 클릭하여 손쉽게 입력할 수 있습니다. 수식 블록 활용 시 [튜토리얼 1](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference), [튜토리얼 2](https://dev-lagom.tistory.com/35), [튜토리얼3](https://ko.wikipedia.org/wiki/%EC%9C%84%ED%82%A4%EB%B0%B1%EA%B3%BC:TeX_%EB%AC%B8%EB%B2%95)을 참고해 입력합니다. 수식 블록을 통해 입력한 수식은 기본적으로 가운데 정렬이며, 한 줄을 차지합니다. 따라서 문장 사이에 수식을 넣는 것은 typora에서는 불가능합니다. 아래는 수식 블록을 통해 입력한 수식의 예시입니다.
 $$
 y=ax+b \\
 y=ax^2+bx+c
 $$
- 띄어쓰기는 \, 줄바꿈은 \ 연속 두 개로 할 수 있습니다. 
+ 띄어쓰기는 \, 줄바꿈은 \ 연속 두 개로 할 수 있습니다. 문법은 기본적으로 TeX_문법에 따릅니다.
 
 
 
