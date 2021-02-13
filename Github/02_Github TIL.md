@@ -184,7 +184,7 @@ $ git remote rm origin
 
 
 
-## 5. git 오류 해결 모음
+## 5. git 오류 및 기타 문제 해결 모음
 
 > `git add`, `commit`, `push`를 하던 도중 파일 크기나 `commit` 순서가 꼬이는 문제 등으로 오류가 발생할 수 있다.  오류는 여러 가지 원인으로 발생할 수 있고, 같은 오류 메시지가 뜨더라도 상황이 다를 수 있으므로 오류 해결 코드와 더불어 상황도 기록하기로 한다.
 
@@ -239,4 +239,27 @@ $ git push origin master
 ```shell
 $ git clean -d -f -f 
 ```
+
+
+
+### (3) git pull and merge 
+
+> 발생 화면
+
+![github 에러](https://user-images.githubusercontent.com/58945760/107847360-39128c80-6e2e-11eb-9ca6-578fb9db455f.PNG)
+
+- git pull origin master를 할 때 종종 위와 같은 화면이 뜨는데, [검색 페이지](https://medium.com/javascript-in-plain-english/problem-with-git-merge-please-enter-a-commit-message-to-explain-why-this-merge-is-necessary-854757988c17)에 따르면 발생 원인은 다음과 같았다. 
+
+  - `github` 페이지에서 직접 git 저장소의 파일을 수정/삭제/생성했다. (`push` 완료됨)
+  - 그런데 이 변경 사항을 로컬 저장소에 pull 하지 않은 상태로, 로컬 저장소에서 작업을 하던 내용을 `commit`하려고 시도했다.(`add`, `commit` 완료됨)
+
+  결국 두 저장소 간에 변경 사항이 제대로 반영이 안되어 충돌이 일어난 게 문제.  이 화면은 일종의 편집기 같은 것으로 `merge`(충돌 제거를 위한 병합 처리) 메시지를 입력할 수 있는 공간이다. 이 화면에서 빠져나올 수 있는 방법은 다음과 같다. 
+
+  1. `merge` 메시지 입력하지 않을 시
+     1. `Esc` 키+ ':', 'q' 차례로 입력 : 자동으로 메시지가 입력되면서 merge 가 진행된다. 
+  2. `merge` 메시지 입력 시
+     1. 'i' 입력 : 메시지 입력 공간으로 이동
+     2. merge 메시지 입력
+     3. `Esc` 키 + ':', 'q' 차례로 입력
+     4. `Enter`  누르기
 
