@@ -96,6 +96,18 @@ $ git clone [연동시키고 싶은 저장소 경로]
   $ git config --global user.name "hphk.john@gmail.com"
   ```
 
+- `.gitignore` 생성 : 갱신 이력에 포함할 필요 없는 파일을 지정한다.
+
+  ```shell
+  $ touch .gitignore
+  ```
+
+- 현재 위치 내 파일 조회
+
+  ```shell
+  $ ls -a
+  ```
+
   
 
 ## 3. `README.md` 파일 생성
@@ -150,7 +162,7 @@ $ git remote rm origin
 
 - `TIL` 폴더 내에서 학습을 원하는 내용의 폴더를 생성하고 파일들을 생성한 후 작업을 진행한다.
 
-  ```python
+  ```shell
   $ mkdir python
   ```
 
@@ -262,4 +274,12 @@ $ git clean -d -f -f
      2. merge 메시지 입력
      3. `Esc` 키 + ':', 'q' 차례로 입력
      4. `Enter`  누르기
+
+
+
+### (4) git add 취소
+
+```shell
+$ git reset HEAD # 모든 add 취소
+```
 
