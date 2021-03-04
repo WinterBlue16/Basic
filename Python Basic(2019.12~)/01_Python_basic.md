@@ -352,7 +352,7 @@ what[0] # 9
 
 
 
-### 1. 7 집합(set)
+### 1.7 집합(set)
 
 > 형식은 `list`와 비슷하지만 `[]` 가 아닌 `{}`를 사용한다.  `list`와 다른 점은 값들의 중복을 허용하지 않는다는 점이다.  
 
@@ -534,9 +534,9 @@ while True: # 아래의 조건이 참일 동안만 진행한다.
 
 
 
-### 2. 파일 읽고 쓰기
+## 2. 파일 읽고 쓰기
 
-#### 2.1 파일 쓰기 
+### 2.1 파일 쓰기
 
 > 컴퓨터는 저장 시 데이터를 이진수(ex. 010101110)로 바꿔 저장하며, 이 때 적용되는 규칙을 `encoding`이라 한다. 열 때도 같은 `encoding`을 쓰지 않으면 글자가 깨질 수 있으므로 주의한다. 한글이 포함된 데이터를 열 때 주로 사용하는 것으로는 `utf-8`, `cp949`, `euc-kr` 등이 있다. 
 
@@ -552,7 +552,9 @@ with open('cage.txt', 'w', encoding='utf-8') as file:
 		file.write(animal)
 ```
 
-#### 2.2 파일 읽기
+#### 
+
+### 2.2. 파일 읽기 
 
 ```python
 file = open('cage.txt', 'r', encoding = 'utf-8')
@@ -562,7 +564,7 @@ cage # ['LionRabbitcamel']
 
 
 
-### 3. Python 기본 내장함수 & 외장함수
+## 3. Python 기본 내장함수 & 외장함수 
 
 ```python
 # 길이, 갯수 
@@ -659,7 +661,7 @@ check_price(24) # 'under'
 
 
 
-### 4. 라이브러리 활용(Package, Module의 상위 개념)
+## 4. 라이브러리 활용(Package, Module의 상위 개념)
 
 ```python
 %%writefile module_example.py
@@ -709,5 +711,104 @@ os.getcwd() # get current working directory
 
 
 
+## 5. 기타
 
+### 5.1 언더스코어(_)
+
+일반적으로 반복문에서 따로 변수를 지정할 필요가 없을 때, 또는 필요없는 값을 무시할 때 사용한다. 
+
+```python
+# 변수 없이 반복
+for _ in range(5):
+    print('hello world')
+    
+# 필요없는 값 무시
+dic=[['java', 'python'], ['typescript', 'javascript']]
+for _, second in dic:
+    print(second)
+for first, _ in dic:
+    print(first)
+    
+>> hello world
+>> hello world
+>> hello world
+>> hello world
+>> hello world
+>> python
+>> javascript
+>> java
+>> typescript
+```
+
+
+
+### 5.1 객체로 사용할 수 없는 단어들(식별자 사용 제한)
+
+- True
+
+- False
+
+- def
+
+- if
+
+- raise
+
+- None
+
+- del
+
+- import 
+
+- return 
+
+- elif 
+
+- in
+
+- try
+
+- and
+
+- else
+
+- is
+
+- while
+
+- as
+
+- except
+
+- lambda
+
+- with
+
+- assert
+
+- finally
+
+- nonlocal
+
+- yield
+
+- break
+
+- for
+
+- not
+
+- class
+
+- from
+
+- or
+
+- continue
+
+- global
+
+- pass
+
+  
 
