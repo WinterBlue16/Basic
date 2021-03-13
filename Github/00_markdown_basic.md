@@ -182,6 +182,14 @@ $$
 
 ### 1.8 기타
 
+**특수문자 입력**
+
+> 아래의 표를 참고하여 입력
+
+<img src="https://user-images.githubusercontent.com/58945760/111019049-1610d380-8400-11eb-912c-de40f56f5854.png" alt="FireShot Capture 168 - 마크다운 문서에서 특수문사 사용하기 (How to use symbolic character in markdown)_ - 4urdev tistory com" style="zoom:80%;" />
+
+
+
 **인용문**
 
 - `>`를 입력하고 `Enter`키를 누릅니다.
@@ -243,5 +251,7 @@ ___
 
 
 
+※ 참고 사이트
 
+마크다운 특수문자 표 인용 : https://4urdev.tistory.com/62, https://ascii.cl/htmlcodes.htm
 
