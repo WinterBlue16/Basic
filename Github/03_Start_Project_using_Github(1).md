@@ -50,7 +50,7 @@
 
 ```shell
 # 작업용 brench 생성하기
-$ git brench [브랜치 이름]
+$ git branch [브랜치 이름]
 
 # 작업용 brench로 이동하기
 $ git checkout [브랜치 이름]
