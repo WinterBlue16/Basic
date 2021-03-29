@@ -195,7 +195,7 @@ URI는 URL과 URN이라는 두 가지 요소를 포함한다.
 
   **시작 라인**
 
-  HTTP 버전+HTTP 상태 코드+이유 문구로 구성된다. 
+  **HTTP 버전+HTTP 상태 코드+이유 문구**로 구성된다. 
 
   HTTP 상태 코드는 클라이언트의 요청이 성공했는지 실패했는지를 나타낸다. 200대~500대의 번호로 표시되며 200대는 요청 성공을, 400대는 클라이언트 요청에 오류가 있음을, 500대는 서버 내부에 오류가 있음을 나타내는 코드이다. 아래서 자세하게 설명할 것이므로 여기까지만 알아두자.
 
@@ -210,3 +210,80 @@ URI는 URL과 URN이라는 두 가지 요소를 포함한다.
   클라이언트가 요청한 실제 데이터를 담고 있다. HTML 문서, 이미지, 영상, JSON 파일 등 byte로 표현할 수 있는 모든 데이터를 전송할 수 있다.  
 
   
+
+## 4. HTTP API 만들기
+
+ 회사에서 서비스에 가입한 회원 관리 API를 설계하라는 지시를 받았다고 하자.  그럴 때 설계에서 중점을 두어야 할 점과 유의해야 할 점 등에 대해 알아보자. 
+
+- 리소스 식별
+
+  URI의 가장 중요한 기준은 리소스 식별이다. '어떤 자원', '무엇'을 관리할 것인가를 우선적으로 생각해야 한다.(EX. 미네랄을 캐라=> 리소스는 '미네랄') 회원 정보 관리가 목적이라면 여기서 리소스는 '회원 정보'가 된다. API를 만들 때는 이 리소스를 중심으로 설계해야 한다. 
+
+  또한 리소스와 그 리소스로 하는 행위(수정, 삭제, 조회 등)는 분리해야 한다. URI는 아래와 같이, 오직 회원이라는 리소스만을 잡고 진행하도록 하자. 
+
+  
+
+![screen captures](https://slid-capture.s3.ap-northeast-2.amazonaws.com/public/capture_images/a286bd603b9a49cbabfa524eb3f27ac6/b5ed5e45-0d2c-4994-a03e-7440fd2efc86.png)
+
+​	
+
+ 이 때문에 위의 URI로는 리소스 식별만 가능하며, 우리가 원하는 데이터 수정, 삭제, 추가 등의 작업을 진행하기 위해서는 별도의 작업이 필요하다. 이 때 쓰이는 것이 바로 HTTP 메서드이다. 
+
+
+
+## 5. HTTP 메서드 
+
+- 메서드(method)
+
+  메서드는 클라이언트가 서버에 어떤 요청을 할 때, 기대하는 결과를 말한다. 따라서 HTTP 메서드란 클라이언트가 HTTP 프로토콜로 요청을 했을 때, 클라이언트가 받기를 기대하는 결과가 된다. 클라이언트가 보내는 요청은 매우 다양하기에, 그러한 요청을 우선 큰 분류로 나눠 처리한 후 응답하는 것이 효율적이다. 
+
+  HTTP 메서드는 클라이언트가 원하는 결과인 동시에, 많은 클라이언트들의 요청을 처리하기 좋도록 분류한 집합을 의미하기도 한다. 
+
+  HTTP 메서드에는 GET, POST, PUT, PATCH, DELETE 등이 있다. 그 중에서도 가장 보편적으로, 자주 쓰이는 메서드는 단연 GET과 POST이다. 
+
+  
+
+- GET
+
+  ![screen captures](https://slid-capture.s3.ap-northeast-2.amazonaws.com/public/capture_images/9ffb5c2bc4a14eb99d6430fdecf8a2c6/ed3537dd-7e86-4b22-a0b3-533238626ba1.png)
+
+  ```
+  GET /search?=q=hello&hl=ko HTTP/1.1
+  Host: www.google.com
+  ```
+
+  쉽게 말해 '데이터 내 놔'라고 말할 수 있다. 더 쉽게 말하면 '빨리 데이터 보게 내놓으라고.' 정도? 앞에서 알 수 있듯이 데이터베이스에 저장된 리소스들을 확인하고 싶을 때 사용한다. 
+
+  서버에 전달하는 데이터는 문자열인 쿼리 파라미터(쿼리 스트링)을 통해 전달한다. 
+
+
+
+- POST
+
+  ![screen captures](https://slid-capture.s3.ap-northeast-2.amazonaws.com/public/capture_images/9ffb5c2bc4a14eb99d6430fdecf8a2c6/596c0832-c272-49ec-9449-145db02529c8.png)
+
+  ![screen captures](https://slid-capture.s3.ap-northeast-2.amazonaws.com/public/capture_images/9ffb5c2bc4a14eb99d6430fdecf8a2c6/e04c144f-0891-4315-b096-e0051c71cd88.png)
+
+  ```
+  POST /members HTTP/1.1
+  Content-Type: application/json
+  {
+  "username": "hello"
+  "age": 20
+  }
+  ```
+
+  두 가지 정도로 말할 수 있다. '이거 좀 등록해', '이거 어떻게 처리 좀 해'. 한국어에서 처리라는 말은 생각보다 많은 것을 포함한다. 그리고 이 POST 역시 그와 마찬가지이다. 주로 클라이언트가 보낸 데이터를 새로 등록할 때 많이 쓰이지만, 그거 아니더라도 온갖 잡다한 작업, 뭔가 판단하기 애매하다 싶은 작업은 죄다 POST로 퉁칠 수 있다.   
+
+  
+
+- PUT
+- PATCH
+- DELETE
+
+
+
+
+
+
+
