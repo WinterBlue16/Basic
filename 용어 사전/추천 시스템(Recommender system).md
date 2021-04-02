@@ -42,7 +42,7 @@
 
 ![img](https://t3.daumcdn.net/thumb/R720x0.fpng/?fname=http://t1.daumcdn.net/brunch/service/user/16yJ/image/WrbNMmiPKnNFj0_dMxaeQ4-MOBs.png)
 
-**사용자-아이템의 관계(User-Item interaction)과 사용자-사용자간의 관계에 기반하여 새로운 아이템을 추천하는 방법**이다. 위의 예에서처럼, 추천받은 사용자와 선호하는 아이템들이 비슷한 다른 사용자를 찾고, 그 사용자가 선택했던 아이템을 추천해주는 것이다. 선택한 아이템들이 비슷하기 때문에 성향도 비슷하리라는 전제가 깔려 있다.  
+**사용자-아이템의 관계(User-Item interaction)과 사용자-사용자간의 관계에 기반하여 새로운 아이템을 추천하는 방법**이다. 위의 예에서처럼, 추천받은 사용자와 선호하는 아이템들이 비슷한 다른 사용자를 찾고, 그 사용자가 선택했던 아이템을 추천해주는 것이다. 선택한 아이템들이 비슷하기 때문에 성향도 비슷할 것이라는 전제가 깔려 있다.  
 
 이 방법은 세부적으로 Memory-based Filtering과 Model-based Filtering으로 나뉘며, 콘텐츠 기반 필터링과 달리 아이템에 대한 정보 없이도 추천이 가능하다는 게 장점이다. 
 
