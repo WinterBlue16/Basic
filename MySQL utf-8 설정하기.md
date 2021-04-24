@@ -4,9 +4,19 @@
 
 실행창에서 services.msc를 입력->MySQL80 찾아 마우스 오른쪽 클릭, [속성] -> 주소창의 경로 확인
 
+![my ini 경로 찾기](https://user-images.githubusercontent.com/58945760/115960872-c0772d00-a54e-11eb-9977-8c3275662de0.PNG)
+
+![my ini 경로 찾기2](https://user-images.githubusercontent.com/58945760/115960879-cbca5880-a54e-11eb-8f15-b202a259d39f.PNG)
+
+![my ini 경로 찾기3](https://user-images.githubusercontent.com/58945760/115960886-d7b61a80-a54e-11eb-9764-4baea7c93253.png)
+
+![my ini 경로 찾기4](https://user-images.githubusercontent.com/58945760/115960893-e0a6ec00-a54e-11eb-9913-e2d0026f0aad.png)
+
 ## 2. C:/ProgramData 열기
 
 실행창에 %programData%를 입력-> MySQL 폴더 -> MySQL Server 8.0 폴더-> my.ini 
+
+![programdata 들어가기](https://user-images.githubusercontent.com/58945760/115960901-edc3db00-a54e-11eb-8856-bcb6a0354b33.PNG)
 
 ## 3. my.ini 수정하기
 
@@ -36,6 +46,17 @@ character-set-server = utf8
 좌측 상단 MANAGEMENT 아래 Status and System Variables 클릭 -> System Variables 탭 -> 검색창에 character 검색-> Value 속성값이 utf8/utf8mb4인지 확인.
 
 위의 값이 잘 바뀌었다면 설정 완료.
+
+mysql commend line client에서는 아래와 같은 코드로 확인해볼 수 있다.
+
+```
+mysql> show variables like 'c%';
+mysql> status;
+```
+
+
+
+![utf8 변경 완료](https://user-images.githubusercontent.com/58945760/115960910-f9af9d00-a54e-11eb-9da7-8751aeaf7e38.PNG)
 
 
 
