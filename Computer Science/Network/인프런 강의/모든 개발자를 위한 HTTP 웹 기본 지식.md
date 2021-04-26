@@ -275,15 +275,43 @@ URI는 URL과 URN이라는 두 가지 요소를 포함한다.
 
   두 가지 정도로 말할 수 있다. '이거 좀 등록해', '이거 어떻게 처리 좀 해'. 한국어에서 처리라는 말은 생각보다 많은 것을 포함한다. 그리고 이 POST 역시 그와 마찬가지이다. 주로 클라이언트가 보낸 데이터를 새로 등록할 때 많이 쓰이지만, 그거 아니더라도 온갖 잡다한 작업, 뭔가 판단하기 애매하다 싶은 작업은 죄다 POST로 퉁칠 수 있다.   
 
-  
-
 - PUT
 - PATCH
 - DELETE
 
 
 
+## 6. HTTP 헤더- 전송 
 
+- 단순 전송 
+- 압축 전송
+- 분할 전송
+- 범위 전송
 
+## 7. HTTP 헤더 - 정보
 
+- From
 
+- Referer
+
+  현재 요청된 페이지의 이전 웹 페이지 주소를 말하며, 실무에서 많이 쓰이는 편
+
+- User-Agent
+
+- Server
+
+- Date
+
+## 8. HTTP 헤더 - 특별한 정보
+
+- Host
+
+  ![screen captures](https://slid-capture.s3.ap-northeast-2.amazonaws.com/public/capture_images/68c8390a34d64755b00031ba6c63b3c7/8a30eb59-a210-4851-8b21-e44913110e00.png)
+
+  요청에서 사용되는 정보로, 하나의 서버에서 여러 페이지가 열려 있는 상태일 때, 데이터가 어디로 가야 하는지 알려주는 위치 정보라고 보면 된다. 
+
+- Location
+
+- Allow
+
+- Retry-After
