@@ -1,8 +1,14 @@
 # MySQL utf-8 설정하기
 
+> 이 문서는 MySQL의 기본 설정을 UTF8로 바꾸기 위한 과정을 담고 있다. 
+
+해당 설정은 my.ini라는 파일을 수정함으로써 바꿀 수 있다. 다만 MySQL 설치 방법에 따라 경로가 변할 수 있으므로 유의한다. 
+
+
+
 ## 1. my.ini 경로 확인
 
-실행창에서 services.msc를 입력한다. 서비스(로컬) 목록에서 'MySQL80' 찾아 마우스 오른쪽 클릭, [속성] 클릭. 주소창의 경로 확인한다.
+우선 실행창에서 services.msc를 입력한다. 서비스(로컬) 목록에서 'MySQL80' 찾아 마우스 오른쪽 클릭, [속성] 클릭. 주소창의 경로를 확인한다.
 
 ![my ini 경로 찾기](https://user-images.githubusercontent.com/58945760/115960872-c0772d00-a54e-11eb-9977-8c3275662de0.PNG)
 
@@ -14,7 +20,7 @@
 
 ## 2. C:/ProgramData 열기
 
-ProgramData는 그냥 폴더를 클릭해서 들어갈 수는 없다. 실행창에 %programData%를 입력해야 폴더로 들어갈 수 있다. MySQL 폴더를 클릭하고, 그 안의 MySQL Server 8.0 폴더에서 my.ini를 찾는다.
+ProgramData는 그냥 폴더를 클릭해서 들어갈 수 없다. 실행창에 %programData%를 입력해야 폴더로 들어갈 수 있다. MySQL 폴더를 클릭하고, 그 안의 MySQL Server 8.0 폴더에서 my.ini를 찾는다.
 
 ![programdata 들어가기](https://user-images.githubusercontent.com/58945760/115960901-edc3db00-a54e-11eb-8856-bcb6a0354b33.PNG)
 

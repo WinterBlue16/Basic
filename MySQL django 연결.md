@@ -28,7 +28,7 @@ FLUSH PRIVILEGES;
 
 ## 2. .env, .env.local 파일 만들고 secret key, database 정보 삽입
 
-manage.py와 같은 경로에 .env, .env.local 파일을 생성한다. 그 안에는 database 정보와 secret key 등을 입력한다. 
+manage.py와 같은 경로에 .env, .env.local 파일을 생성한다. .env 파일 같은 경우 기본적인 환경 변수를 담고 있고, .env.local 같은 경우 로컬 환경에서 적용되는 환경 변수를 설정한다. 그 안에는 database 정보와 secret key 등을 입력한다. 
 
 ```python
 SECRET_KEY="시크릿 키"
