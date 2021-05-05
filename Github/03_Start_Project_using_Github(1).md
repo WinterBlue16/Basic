@@ -46,17 +46,17 @@
 
 ### 1.2 작업용 brench 생성
 
-> - `master brench`에는 영향을 미치지 않는 작업용 `brench`를 따로 생성한다.
+> - `master brench`에는 영향을 미치지 않는 작업용 `brench`를 따로 생성한다. 대체로 gitflow를 사용할 경우에는 `master` 외에 개발 전용으로 사용되는 `develop` 브랜치를 생성하고, 그 브랜치에서 기능별로 또다른 브랜치를 만들어 각 팀원이 개발을 진행한다. 
 
 ```shell
 # 작업용 brench 생성하기
-$ git branch [브랜치 이름]
+$ git branch [브랜치 이름] 
 
 # 작업용 brench로 이동하기
 $ git checkout [브랜치 이름]
 
 # 위의 두 코드를 병합(작업용 brench 생성 후 이동)
-$ git checkout -b [브랜치 이름]
+$ git checkout -b [브랜치 이름] # 만약 develop에서 뻗어나온 브랜치일 경우 git checkout -b [브랜치 이름] develop 
 ```
 
 <img src="https://github.com/dannylee93/Images/blob/master/Image%20Analysis%20A.I/Github_Project_08.jpg?raw=true" alt="08" style="zoom:80%;" />
@@ -71,6 +71,13 @@ $ git checkout -b [브랜치 이름]
 ### 1.3 작업용 brench 생성 확인
 
 <img src="https://github.com/dannylee93/Images/blob/master/Image%20Analysis%20A.I/Github_Project_10.jpg?raw=true" alt="10" style="zoom:80%;" />
+
+```shell
+# 로컬 저장소에 브랜치를 만들었다고 해서 원격 저장소에 반영되지는 않는다! 꼭 push를 해주어야 한다. 
+$ git push origin [브랜치 이름]
+```
+
+
 
 > - 프로젝트 협업을 진행할 준비 완료
 > - 작업 후 `git push origin [브랜치 이름]`을 Git Bash에 입력하여 커밋한다. 
