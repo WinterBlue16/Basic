@@ -38,6 +38,7 @@
 
   ```shell
   $ git commit -m "커밋 메시지"
+  $ git commit -a -m "커밋 메시지" # 위의 add .와 commit을 한 번에 할 수 있는 코드
   ```
 
 
