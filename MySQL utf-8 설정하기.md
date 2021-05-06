@@ -71,4 +71,5 @@ mysql> status;
 - http://www.koreaoug.org/dbms/8354
 - https://nroses-taek.tistory.com/241
 - http://june1977family.blogspot.com/2017/02/workbench-63-utf-8.html
+- https://to-dy.tistory.com/29
 
