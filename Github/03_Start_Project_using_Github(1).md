@@ -75,6 +75,12 @@ $ git checkout -b [브랜치 이름] # 만약 develop에서 뻗어나온 브랜�
 ```shell
 # 로컬 저장소에 브랜치를 만들었다고 해서 원격 저장소에 반영되지는 않는다! 꼭 push를 해주어야 한다. 
 $ git push origin [브랜치 이름]
+
+# 현재 로컬 저장소 내 모든 브랜치 조회
+$ git branch -a
+
+# 필요 없거나 잘못 만든 브랜치 삭제 
+$ git branch -b [브랜치 이름]
 ```
 
 
