@@ -79,8 +79,14 @@ $ git push origin [브랜치 이름]
 # 현재 로컬 저장소 내 모든 브랜치 조회
 $ git branch -a
 
+# 현재 사용하는 브랜치 확인
+$ git branch -v
+
 # 필요 없거나 잘못 만든 브랜치 삭제 
-$ git branch -b [브랜치 이름]
+$ git branch -d [브랜치 이름]
+
+# 원격 저장소의 브랜치 삭제
+$ git push origin --delete [브랜치 이름]
 ```
 
 
