@@ -92,9 +92,71 @@ django에서는 swagger를 통해 테스트해볼 수 있다.
 
 #### S3 버킷 만들기
 
+AWS 콘솔에서 생성
+
+#### 사용자 생성
+
+IAM에서 사용자 생성, S3에 대한 권한 부여
+
 #### S3 버킷 EC2와 연동하기
 
+
+
 #### S3 django와 연동하기
+
+```python
+#local_settings.py
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
+```
+
+```python
+# setting.py
+AWS_ACCESS_KEY_ID = AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY = AWS_SECRET_ACCESS_KEY
+
+AWS_REGION = '리전 지역'
+AWS_STORAGE_BUCKET_NAME = '버킷명'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (
+    AWS_STORAGE_BUCKET_NAME, AWS_REGION
+)
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl' : 'max-age=86400',
+}
+AWS_DEFAULT_ACL = 'public-read'
+AWS_LOCATION = 'static'
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+
+# 프로젝트 파일/static 폴더 생성
+# python manage.py collectstatic
+```
+
+```python
+# settings.py
+INSTALLED_APPS = [
+...
+    # s3 storage
+    'storages'
+]
+
+DEFAULT_FILE_STORAGE = 'config.asset_storage.MediaStorage'
+```
+
+```python
+# asset_storage.py
+
+from storages.backends.s3boto3 import S3Boto3Storage
+
+class MediaStorage(S3Boto3Storage):
+    location = 'media'
+    file_overwrite = False
+```
+
+
 
 #### Signed URL 설정하기
 
@@ -106,3 +168,9 @@ django에서는 swagger를 통해 테스트해볼 수 있다.
 - [Signed URL 설명 참조](http://pyrasis.com/book/TheArtOfAmazonWebServices/Chapter12/04)
 - [AWS EC2와 S3 연동](https://aws.amazon.com/ko/premiumsupport/knowledge-center/ec2-instance-access-s3-bucket/)
 - [AWS CLI 설치 및 기본설정](https://docs.aws.amazon.com/ko_kr/cli/latest/userguide/cli-configure-files.html)
+
+- **[S3 Storage와 django 연동](https://velog.io/@hwang-eunji/aws-s3-%EB%AF%B8%EB%94%94%EC%96%B4-%EC%84%9C%EB%B2%84-%EC%84%A4%EC%A0%95-django-%EC%84%A4%EC%A0%95)**
+
+- [S3 버킷 권한에 대하여](https://zamezzz.tistory.com/299?category=847391)
+
+- [S3 버킷 정책 관련2](https://blog.myungseokang.dev/posts/django-use-s3/)
