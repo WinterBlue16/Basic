@@ -68,7 +68,7 @@ $ sudo sh -c 'curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dea
 $ sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 $ sudo apt update
 $ sudo apt install code 
-$ code
+$ code 
 ```
 
 
@@ -76,7 +76,27 @@ $ code
 ### 6. docker 설치
 
 ```shell
+$ sudo apt-get update
+$ sudo apt-get upgrade
+$ sudo apt-get install\
+apt-transport-https\
+ca-certificates\
+gunpg-agent\
+software-properties-common
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+$ sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+$ sudo apt-get update
+$ sudo apt-get install docker-ce docker-ce-cli
+$ sudo usermod -aG docker [username]
+```
 
+설치한 후에는 다음 명령어로 설치된 도커 정보를 확인할 수 있다. 
+
+```shell
+$ docker info
 ```
 
 
@@ -84,6 +104,6 @@ $ code
 ### 7. NVIDIA 드라이버
 
 ```Shell
-$ sudo apt-get install nvidia-
+$ sudo apt-get install nvidia-driver[버전 이름]
 ```
 
