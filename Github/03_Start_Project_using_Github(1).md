@@ -56,7 +56,10 @@ $ git branch [브랜치 이름]
 $ git checkout [브랜치 이름]
 
 # 위의 두 코드를 병합(작업용 brench 생성 후 이동)
-$ git checkout -b [브랜치 이름] # 만약 develop에서 뻗어나온 브랜치일 경우 git checkout -b [브랜치 이름] develop 
+$ git checkout -b [생성할 브랜치 이름] [원격 저장소의 해당 브랜치 이름] 
+
+# origin 외 다른 브랜치를 clone해 오고 싶을 경우 # 원격 저장소와 브랜치 이름 동일
+$ git checkout -t [원격 저장소의 해당 브랜치 이름]
 ```
 
 <img src="https://github.com/dannylee93/Images/blob/master/Image%20Analysis%20A.I/Github_Project_08.jpg?raw=true" alt="08" style="zoom:80%;" />
@@ -127,3 +130,5 @@ $ git push origin --delete [브랜치 이름]
   - https://hyoje420.tistory.com/41
   - https://victorydntmd.tistory.com/91
   - https://gmlwjd9405.github.io/2018/05/12/how-to-collaborate-on-GitHub-3.html
+  - https://blog.outsider.ne.kr/641
+
