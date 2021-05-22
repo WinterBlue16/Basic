@@ -100,9 +100,11 @@ IAM에서 사용자 생성, S3에 대한 권한 부여
 
 #### S3 버킷 EC2와 연동하기
 
-
+연동을 위한 설정, 정책 설정
 
 #### S3 django와 연동하기
+
+**media, static을 사용할 경우**
 
 ```python
 #local_settings.py
@@ -160,7 +162,63 @@ class MediaStorage(S3Boto3Storage):
 
 #### Signed URL 설정하기
 
+제한된 시간만 사용자에게 이미지나 파일을 업로드 할 수 있게 서버에서 url을 제공한다. 
 
+```python
+# settings.py
+...
+# AWS
+AWS_SIGNATURE_VERSION = 's3v4'
+AWS_REGION = '본인 AWS 계정의 지역(리전)' # ex. us-east-2
+AWS_STORAGE_BUCKET_NAME = '미리 생성해둔 s3 버킷 이름' # ex. my-first-bucket
+```
+
+```python
+# s3_storage.py
+import boto3
+from django.conf import settings
+from botocore.client import Config
+
+# client에서 요청이 온 수만큼 signed url을 생성
+def sign_upload(counts, user_id):
+    s3 = boto3.client('s3', config=Config(signature_version=settings.AWS_SIGNATURE_VERSION, region_name=settings.AWS_REGION))
+    result = []
+
+    for i in range(counts):# signed url은 오직 하나의 객체와만 대응됨
+        key = 'users/' + str(user_id) + '/' + str(i) # s3 버킷 내 저장 위치, 파일명 지정
+        signed_url = s3.generate_presigned_url(
+            'put_object',
+            Params={'Bucket': settings.AWS_STORAGE_BUCKET_NAME, 'Key': key},
+            ExpiresIn=3600,
+            HttpMethod='PUT',
+        )
+        result.append({
+            'signed_url': signed_url,
+            'public_url': 'https://%s.s3.amazonaws.com/%s' % (settings.AWS_STORAGE_BUCKET_NAME, key)
+        })
+    return result
+```
+
+
+
+#### Signed URL 테스트하기
+
+>  cmd와 postman을 사용하여 테스트해볼 수 있다. Windows cmd, Postman Web를 기준으로 한다. 
+
+```shell
+# django project가 있는 폴더 내로 이동
+python manage.py shell
+>> from [signed url 생성 함수가 위치한 디렉토리] import [signed url 생성 함수]
+# from apps.core.utils.signedUrl import create_signed_url
+>> signed url 생성 함수 실행
+# create_signed_url(args)
+```
+
+위의 코드를 통해 signed url을 받아내면, 이 url을 postman에 넣어 s3 스토리지에 파일이 업로드되는지 테스트해 볼 수 있다. 이 때 들어가는 Http method는 `PUT`이다. 
+
+단, 여기서 주의할 점이 있다. 한 번 shell을 실행 중일 때 코드를 변경했다면, exit()으로 다시 shell을 종료한 후 다시 python manage.py shell을 실행해야 변경한 코드가 반영된다. 코드를 변경해도 결과가 달라지지 않는다고 안심했다가 중요한 코드를 날려먹을 수도 있으므로 주의한다. 
+
+ 
 
  ### ※ 참고 자료
 
@@ -168,9 +226,11 @@ class MediaStorage(S3Boto3Storage):
 - [Signed URL 설명 참조](http://pyrasis.com/book/TheArtOfAmazonWebServices/Chapter12/04)
 - [AWS EC2와 S3 연동](https://aws.amazon.com/ko/premiumsupport/knowledge-center/ec2-instance-access-s3-bucket/)
 - [AWS CLI 설치 및 기본설정](https://docs.aws.amazon.com/ko_kr/cli/latest/userguide/cli-configure-files.html)
-
 - **[S3 Storage와 django 연동](https://velog.io/@hwang-eunji/aws-s3-%EB%AF%B8%EB%94%94%EC%96%B4-%EC%84%9C%EB%B2%84-%EC%84%A4%EC%A0%95-django-%EC%84%A4%EC%A0%95)**
-
 - [S3 버킷 권한에 대하여](https://zamezzz.tistory.com/299?category=847391)
-
 - [S3 버킷 정책 관련2](https://blog.myungseokang.dev/posts/django-use-s3/)
+
+
+
+- [AWS CLI에서 presigned url 생성](https://medium.com/@labcloud/s3-pre-signed-url-%EB%AF%B8%EB%A6%AC-%EC%84%9C%EB%AA%85%EB%90%9C-url-%EB%A7%8C%EB%93%A4%EA%B8%B0-596aff8bdc45)
+
