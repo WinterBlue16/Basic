@@ -107,3 +107,9 @@ $ docker info
 $ sudo apt-get install nvidia-driver[버전 이름]
 ```
 
+
+
+### 참고 문헌, 사이트
+
+[docker 설치](https://kangwoo.kr/2020/07/25/%EC%9A%B0%EB%B6%84%ED%88%AC%EC%97%90-docker-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0/)
+
