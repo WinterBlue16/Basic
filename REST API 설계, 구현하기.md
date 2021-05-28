@@ -185,7 +185,7 @@ def sign_upload(counts, user_id):
     result = []
 
     for i in range(counts):# signed url은 오직 하나의 객체와만 대응됨
-        key = 'users/' + str(user_id) + '/' + str(i) # s3 버킷 내 저장 위치, 파일명 지정
+        key = 'users/' + str(user_id) + '/' +  # s3 버킷 내 저장 위치, 파일명 지정
         signed_url = s3.generate_presigned_url(
             'put_object',
             Params={'Bucket': settings.AWS_STORAGE_BUCKET_NAME, 'Key': key},
