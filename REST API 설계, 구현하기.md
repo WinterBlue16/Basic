@@ -92,7 +92,7 @@ django에서는 swagger를 통해 테스트해볼 수 있다.
 
 #### S3 버킷 만들기
 
-AWS 콘솔에서 생성
+AWS 콘솔에서 생성할 수 있다. 
 
 #### 사용자 생성
 
@@ -100,7 +100,37 @@ IAM에서 사용자 생성, S3에 대한 권한 부여
 
 #### S3 버킷 EC2와 연동하기
 
-연동을 위한 설정, 정책 설정
+정책 설정
+
+```json
+{
+    "Version": "2008-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadForGetBucketObjects",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "*"
+            },
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::버킷 이름/*"
+        },
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::계정 번호:user/서버 이름"
+            },
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::버킷 이름",
+                "arn:aws:s3:::버킷 이름/*"
+            ]
+        }
+    ]
+}
+```
+
+
 
 #### S3 django와 연동하기
 
