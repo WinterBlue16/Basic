@@ -104,7 +104,7 @@ IAM에서 사용자 생성, S3에 대한 권한 부여
 
 #### S3 버킷 EC2와 연동하기
 
-정책 설정
+> 버킷에 데이터를 업로드하고 다운로드하려면 url을 통한 접근이 가능해야 한다. 그러한 부분을 설정해주는 것이 바로 정책 설정이다.
 
 ```json
 {
@@ -196,6 +196,8 @@ class MediaStorage(S3Boto3Storage):
 
 #### Signed URL 설정하기
 
+**파일을 S3 bucket에 업로드**
+
 제한된 시간만 사용자에게 이미지나 파일을 업로드 할 수 있게 서버에서 url을 제공한다. 
 
 ```python
@@ -232,6 +234,41 @@ def sign_upload(counts, user_id):
         })
     return result
 ```
+
+
+
+**S3에 업로드된 파일을 다운로드**
+
+```python
+'''
+일정 시간만 유효한 임시 url을 생성하여 
+한정된 시간 안에만 파일 다운로드가 가능하게 한다.
+
+bucket_name = 파일이 저장되어 있는 버킷 이름
+object_name = 파일이 저장된 경로(파일명 포함)
+
+'''
+
+import logging
+import boto3
+from botocore.exceptions import ClientError
+
+def create_presigned_url(bucket_name, object_name, expiration=3600):
+    s3_client = boto3.client('s3')
+    try:
+        response=s3_client.generate_presigned_url('get_object',
+                                                 Params={'Bucket': bucket_name,
+                                                        'Key': object_name},
+                                                 ExpiresIn=expiration)
+        
+    except ClientError as e:
+        logging.error(e)
+        return None
+    
+    return response
+```
+
+
 
 
 
