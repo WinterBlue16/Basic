@@ -10,21 +10,49 @@
 
 ### 1. postgresql 설치
 
+> MAC os Catalina
+
 ```
+brew install postgresql
+pg_ctl -D /usr/local/var/postgres start && brew services start postgresql
+postgres -V
 ```
 
 
 
 ### 2.  postgresql database 생성
 
-```
+```sql
+create database django_test;
+create user user_id with password 'password';
+alter role user_id set client_encoding to 'utf8';
+alter role user_id set default_transaction_isolation to 'read committed';
+alter role user_id set time zone 'Asia/Seoul';
+grant all previleges on database 'database name' to user_id;
+\q
 ```
 
 
 
 ### 3. django 설정
 
+```bash
+pip install psycopg2
 ```
+
+
+
+```python
+DATABASES = {
+	'default': {
+		'ENGINE': 'django.db.backends.postresql',
+		'NAME' : 'database name',
+		'USER' : 'user_id',
+		'PASSWORD' : 'password',
+		'HOST' : 'localhost',
+		'PORT' : '',
+	}
+}
 ```
 
 
