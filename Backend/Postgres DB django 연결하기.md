@@ -6,11 +6,13 @@
 
 ### 0. postgresql이란?
 
+설명 적기
+
 
 
 ### 1. postgresql 설치
 
-> MAC os Catalina
+> 아래의 설치는 MAC os Catalina를 기준으로 하고 있습니다.
 
 ```
 brew install postgresql
@@ -21,6 +23,8 @@ postgres -V
 
 
 ### 2.  postgresql database 생성
+
+> django와 연동할 database를 생성합니다. 
 
 ```sql
 create database django_test;
@@ -36,11 +40,15 @@ grant all previleges on database 'database name' to user_id;
 
 ### 3. django 설정
 
+> postgres와 연동하기 위한 밑작업입니다.
+
 ```bash
 pip install psycopg2
 ```
 
 
+
+#### settings.py
 
 ```python
 DATABASES = {
@@ -59,7 +67,7 @@ DATABASES = {
 
 ### 4. 연동 확인
 
-> 가장 확실하게 확인해볼 수 있는 방법은 아래와 같다.
+> 가장 확실하게 확인해볼 수 있는 방법은 아래와 같습니다. 
 
 1. django에서 테이블을 삭제한다. 
 2. python manage.py makemigrations -> python manage.py migrate를 진행한다. 
