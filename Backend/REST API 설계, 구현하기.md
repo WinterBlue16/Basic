@@ -268,7 +268,9 @@ def create_presigned_url(bucket_name, object_name, expiration=3600):
     return response
 ```
 
-
+- NoSuchKey(해당 경로에 리소스(파일)이 존재하지 않는 경우) 주의!
+  - create_presigned_url에서 직접적으로 signed_url을 생성하는 generate_presigned_url의 경우, input된 key가 유효 여부와는 상관없이 signed_url을 생성한다. **이게 무슨 말이냐 하면, input한 key(경로)에 실제로 파일이 존재하지 않더라도 마치 그 경로에 파일이 있는 것처럼 signed_url을 생성한다는 것이다.** 사용자는 반환된 url을 클릭하고, 화면에 뜬 'NoSuchKey' 메시지를 보고 나서야 뭔가 잘못됐다는 것을 깨닫는다.
+  - **signed_url은 generate_presigned_url에서 생성되므로 try~except문으로 이 에러를 잡거나 제어할 수 없다**. 따라서 애초에 create_presigned_url에 유효한 key만이 들어갈 수 있도록 꼼꼼히 확인, 점검하는 사전 작업이 필요하다. s3 bucket 내에 정말해당 파일이 존재하는지를 체크할 수 있는 함수를 생성하고, 그 함수를 다시 검증할 수 있는 함수가 있다면 에러가 나는 상황을 피할 수 있다. 
 
 
 
