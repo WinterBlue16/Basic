@@ -80,8 +80,18 @@ python manage.py migrate
 
 # postgres DB 접속
 psql postgres
-\l
-\c '선택할 database 명'
-\dt
+\l # database 목록 조회
+\c '선택할 database 명' # database 선택 
+\dt # 선택한 database 내 table 조회
+```
+
+
+
+### 5. 기타 명령어
+
+>  postgres db 사용 시 쓰이는 명령어입니다.
+
+```bash
+\d+ "table 이름" # 해당 테이블의 모든 column 정보를 조회
 ```
 
