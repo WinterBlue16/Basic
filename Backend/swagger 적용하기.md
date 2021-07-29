@@ -30,18 +30,20 @@ pip install django
 
 #### django project 생성
 
-swagger를 적용하기 위해서는 사전에 swagger를 적용할 프로젝트를 생성해야 합니다. 
+swagger를 적용하기 위해서는 사전에 swagger를 적용할 프로젝트를 생성해야 합니다.  프로젝트를 생성하기 전 앞에서 구성해두었던 가상환경을 활성화시킵니다. 
 
-```
-
+```bash
+source env/bin/activate # 가상환경 활성화
+django-admin startproject "프로젝트 이름" # 프로젝트 생성
+cd "프로젝트 이름" # 문서로 이동
+django-admin startapp "app 이름" # 앱 생성
 ```
 
 
 
 #### DB 만들기
 
-```
-```
+그 다음은 프로젝트와 연동할 데이터베이스를 선택하고, 생성합니다. django에서는 기본적으로 sqlite3을 제공합니다. 하지만 본인의 필요에 따라 MySQL DB, postgres DB 등을 선택할 수 있습니다. 어떤 DB를 선택하느냐에 따라 연동하는 방법도 달라지기 때문에 여기서는 이 정도만 설명하겠습니다.
 
 
 
