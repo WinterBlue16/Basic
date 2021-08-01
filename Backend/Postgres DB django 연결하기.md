@@ -6,7 +6,11 @@
 
 ### 0. postgresql이란?
 
-설명 적기
+![post-thumbnail](https://media.vlpt.us/images/doohyunlm/post/120b753b-fe30-42f9-840a-6833fa89d1ed/3.png)
+
+postgresql, 혹은 postgres DB는 데이터베이스 관리 시스템(DBMS) 중 하나로 무료로 제공되고 있습니다. RDBMS 오라클(Oracle)의 개발자들이 개발에 많이 참여하였기 때문에 오라클과 비슷한 부분이 있습니다.  한국에서 많이 사용되진 않지만 전세계적으로 DB 점유율이 꾸준히 증가하는 DB입니다. 
+
+무료임에도 부지런한 업데이트로 지속적인 기능 추가가 이루어지고 있습니다. 또한 라이선스에 대한 비용 문제가 발생하지 않고, 오랫동안 사용된 오픈소스인만큼 안정적이고, 신뢰도가 높은 편입니다. 
 
 
 
@@ -81,7 +85,7 @@ python manage.py migrate
 # postgres DB 접속
 psql postgres
 \l # database 목록 조회
-\c '선택할 database 명' # database 선택 
+\c "선택할 database 명" # database 선택 
 \dt # 선택한 database 내 table 조회
 ```
 
@@ -94,4 +98,10 @@ psql postgres
 ```bash
 \d+ "table 이름" # 해당 테이블의 모든 column 정보를 조회
 ```
+
+
+
+### 6. 참고 
+
+[DB-PostgreSQL이란?](https://velog.io/@doohyunlm/SQL-PostgreSQL-%EC%86%8C%EA%B0%9C)
 
