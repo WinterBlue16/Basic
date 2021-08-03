@@ -21,12 +21,28 @@
 
 ### 1. dockerfile 작성
 
+```dockerfile
+FROM python:3.9 # project에서 사용한 python 버전에 맞게 선택
+
+ENV PYTHONBUFFERED 1
+
+COPY . /mydjangoproject # 프로젝트 폴더 안의 모든 내용을 /myproject라는 폴더 내에 복사
+WORKDIR /mydjangoproject # myproject 폴더를 작업 폴더로 지정
+COPY requirements.txt /mydjangoproject # requirements.txt를 작업 폴더로 복사
+RUN pip install -r requirements.txt # requirements.txt install
+WORKDIR /mydjangoproject/mydjangoproject # 하위 폴더를 작업 폴더로 재지정 # manage.py의 위치로 이동 
+
+CMD python manage.py migrate && python manage.py runserver 0.0.0.0:8000 # docker image 빌드 후 실행 명령어 
 ```
-```
+
+- 앞에서 지정된 작업 폴더보다 더 하위 폴더의 파일을 찾아 명령어를 실행하기 위해서는 `WORKDIR`로 다시 작업 폴더를 재지정해야 합니다. `RUN cd [하위폴더명]`과 같은 명령어는 `No such file or directory` 에러를 발생시킵니다. 
+- localhost, port 8080의 경우는 정상적으로 실행이 되지 않았습니다. 
 
 
 
 ### 2. docker-compose.yml 작성
+
+> docker-compose 파일은 여러 개의 컨테이너를 한번에 생성하고 관리하는 데 유용합니다. django 프로젝트의 경우 MySQL, postgresql 등 데이터베이스와 연동되는 경우가 많으므로 알아두면 유용하게 쓸 수 있습니다. 
 
 ```
 ```
@@ -35,11 +51,14 @@
 
 ### 3. docker image 빌드
 
-```
+> docker-compose 사용 시
+
+```bash
+docker-compose up # 도커 이미지 빌드, 컨테이너 자동 실행
 ```
 
 
 
 ### 4. 로컬 테스트
 
- 
+> 성공 메시지
