@@ -44,7 +44,23 @@ CMD python manage.py migrate && python manage.py runserver 0.0.0.0:8000 # docker
 
 > docker-compose 파일은 여러 개의 컨테이너를 한번에 생성하고 관리하는 데 유용합니다. django 프로젝트의 경우 MySQL, postgresql 등 데이터베이스와 연동되는 경우가 많으므로 알아두면 유용하게 쓸 수 있습니다. 
 
-```
+```dockerfile
+version: '3'
+
+volumes:
+	postgres_db_dev:{}
+	
+service:
+	db:
+		image: postgres
+		volumes: 
+			- postgres_db_dev:/var/lib/postgresql/data
+		environment:
+			- POSTGRES_DB:
+			- POSTGRES_USER:
+			- POSTGRES_PASSWORD:
+			- POSTGRES_IN
+			
 ```
 
 
@@ -57,8 +73,9 @@ CMD python manage.py migrate && python manage.py runserver 0.0.0.0:8000 # docker
 docker-compose up # 도커 이미지 빌드, 컨테이너 자동 실행
 ```
 
-
+`Ctrl`+`C` 로 컨테이너를 끌 수 있습니다.
 
 ### 4. 로컬 테스트
 
 > 성공 메시지
+
