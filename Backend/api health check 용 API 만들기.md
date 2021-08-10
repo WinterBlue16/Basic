@@ -4,12 +4,25 @@
 
 
 
+#### serializers.py
+
+```python
+from rest_framework import fields, serializers
+
+class healthcheckSerializer(serializers.Serializer):
+    data = serializer.CharField(required=False, allow_blank=True)
+```
+
+
+
 #### views.py
 
 ```python
 from rest_framework.generics import GenericAPIView
+from .serializers import healthcheckSerializer
 
 class ApiHealthCheckView(GenericAPIView):
+    serializer_class = healthcheckSerializer
     def get(self, request):
         return HttpResponse('{}') # 빈 {}만을 반환한다. 
     
