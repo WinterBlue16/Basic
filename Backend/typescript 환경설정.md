@@ -20,18 +20,22 @@ $ npm install -g typescript
 
 
 
-### 2. vscode 설정
+### 3. vscode 설정
 
 - 폴더 생성 후 워크 스페이스에 추가
 - hello.ts 생성
-- vscode 하단에서 새롭게 터미널 추가(powershell이 아니라 bash를 선택한다)
+- vscode 하단에서 새롭게 터미널 추가(`powershell`이 아니라 `bash`를 선택한다)
 
 ```bash
-$ tsc hello.ts
-$ node hello.js
+$ tsc hello.ts # 컴파일
+$ node hello.js # 코드 실행
 ```
 
 
+
+### 4. 더 알아보기
+
+> 공부 중 배운 부분들, 알아볼 부분들에 대해 정리합니다.
 
 
 
