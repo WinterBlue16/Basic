@@ -1,4 +1,4 @@
-## swagger 적용하기
+## django project에 swagger 적용하기
 
 > django로 어플리케이션을 생성할 때 swagger를 적용, 활용하는 방법을 정리한 문서입니다.
 
@@ -6,7 +6,7 @@
 
 ### 0. 준비
 
-먼저 django와 django를 설치할 가상환경을 구성해야 합니다.  가상환경은 conda, virtualenv 등 여러 개의 옵션을 선택할 수 있지만, 여기서는 python 3.4 이상에 기본적으로 제공되는 pyenv를 사용하겠습니다.
+먼저 `django`와 `django`를 설치할 가상환경을 구성해야 합니다.  가상환경은 `conda`, `virtualenv` 등 여러 개의 옵션을 선택할 수 있지만, 여기서는 python 3.4 이상에 기본적으로 제공되는 `pyenv`를 사용하겠습니다.
 
 
 
@@ -20,7 +20,7 @@ $ python -m venv env
 
 #### **django 설치**
 
-django의 버전은 어떤 버전을 선택하든 큰 상관은 없습니다. 본인의 기준이나 프로젝트에서 합의된 버전을 설치하면 됩니다. 
+`django`의 버전은 어떤 버전을 선택하든 큰 상관은 없습니다. 본인의 기준이나 프로젝트에서 합의된 버전을 설치하면 됩니다. 
 
 ```bash
 pip install django
@@ -30,7 +30,7 @@ pip install django
 
 #### django project 생성
 
-swagger를 적용하기 위해서는 사전에 swagger를 적용할 프로젝트를 생성해야 합니다.  프로젝트를 생성하기 전 앞에서 구성해두었던 가상환경을 활성화시킵니다. 
+`swagger`를 적용하기 위해서는 사전에 `swagger`를 적용할 프로젝트를 생성해야 합니다.  프로젝트를 생성하기 전 앞에서 구성해두었던 가상환경을 활성화시킵니다. 
 
 ```bash
 source env/bin/activate # 가상환경 활성화
@@ -97,5 +97,40 @@ urlpatterns = [
    url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
    ...
 ]
+```
+
+- urlpatterns를 바꿔줌으로써 swagger의 URL을 변경할 수 있습니다.
+- get_schema_view의 파라미터를 재설정하여 기본 swagger 문서의 내용을 변경할 수 있습니다. 문서에는 사용자가 views.py에서 생성해 놓은 api들이 나열됩니다. api에 대한 설명을 더 덧붙이고 싶거나 수정하고 싶다면 method_decorator를 활용해 커스텀할 수 있습니다. 
+
+
+
+### 2. swagger custom 
+
+> swagger 문서를 가독성 좋게 커스텀하는 과정을 알아봅니다. 
+
+- django 프로젝트에서 swagger 문서를 커스텀하는 데 가장 기본적인 라이브러리는 method_decorator입니다.
+
+```python
+from django.utils.decorators import method_decorator # 라이브러리 불러오기
+```
+
+
+
+- method_decorator는 다음과 같이 사용할 수 있습니다.
+
+```python
+@method_decorator(name='list', # GET API
+    decorator=swagger_auto_schema(
+        tags=['API에 지정할 태그'],
+        operation_description="API에 대한 간략한 설명을 넣습니다.",
+        responses={
+            200: mySerializer, # API serializer
+            401: 'Authentication Failed(40100)', # 이하 error 처리
+            403: 'Permission denied(403)',
+            404: 'Not found(404)'
+        }
+    )
+)
+
 ```
 
