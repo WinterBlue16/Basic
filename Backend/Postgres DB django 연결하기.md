@@ -93,10 +93,11 @@ psql postgres
 
 ### 5. 기타 명령어
 
->  postgres db 사용 시 쓰이는 명령어입니다.
+>  postgres db 사용 시 유용하게 쓰일 수 있는 명령어입니다.
 
 ```bash
-\d+ "table 이름" # 해당 테이블의 모든 column 정보를 조회
+\d + "table 이름" # 해당 테이블의 모든 column 정보를 조회
+truncate "table 이름" # 해당 테이블의 모든 데이터 삭제(롤백 불가)
 ```
 
 
