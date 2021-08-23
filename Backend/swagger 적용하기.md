@@ -134,3 +134,8 @@ from django.utils.decorators import method_decorator # 라이브러리 불러오
 
 ```
 
+
+
+### 3. 배포 시 swagger 적용하기
+
+> django project 개발 서버 배포 시 swagger를 적용할 수 있는 방법입니다.
