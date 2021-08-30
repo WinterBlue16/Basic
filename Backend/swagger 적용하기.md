@@ -138,4 +138,13 @@ from django.utils.decorators import method_decorator # 라이브러리 불러오
 
 ### 3. 배포 시 swagger 적용하기
 
-> django project 개발 서버 배포 시 swagger를 적용할 수 있는 방법입니다.
+> django project 개발 서버 배포 시 swagger를 적용할 수 있는 방법 및 이슈를 기록한 부분입니다.
+
+
+
+#### Uncaught syntaxerror unexpected token '<'
+
+> swagger ui에 필요한 js 파일들이 모두 존재하는데도 배포 화면에는 흰 화면만 뜨는 에러
+
+- 로컬에서와 같이 js, css 파일이 존재하고, 성공적으로 api 호출을 할 수 있는데도 정작 URL로 접속하면 Swagger ui를 볼 수 없는 아주 골치아픈 이슈입니다. 아직 해결 방법을 찾지는 못했지만 적어둡니다. 해결방법을 찾으면 여기에 기록하겠습니다.
+
