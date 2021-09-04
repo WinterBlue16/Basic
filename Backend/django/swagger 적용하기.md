@@ -142,6 +142,32 @@ from django.utils.decorators import method_decorator # 라이브러리 불러오
 
 
 
+#### 필요한 값들만 입력하도록 입력 parameter 수정하기
+
+> POST 요청 시 꼭 필요한 값들이 있고, 그렇지 않은 값들도 있습니다. 하지만 초기에는 모든 값을 입력하도록 raw data가 swagger 문서에 떠 있는 것을 볼 수 있습니다. method_decorator를 활용하여 이 중 굳이 입력할 필요가 없는 값들을 지우고, 입력이 필요한 값들만 남깁니다.
+
+```python
+from django.utils.decorators import method_decorator
+
+@method_decorator(name='create',
+                 decorator=swagger_auto_schema(
+                 request_body=openapi.Schema(
+                 type=openapi.TYPE_OBJECT,
+                 properties={
+                     '필요한 입력값 1': openapi.Schema(type=openapi.TYPE_STRING, description='입력값에 대한 설명'),
+                     '필요한 입력값 2': openapi.Schema(type=openapi.TYPE_STRING, description='입력값에 대한 설명'),
+                     ...
+                 })))
+```
+
+
+
+#### 특정한 조건으로 데이터 필터링하기, API 함수 만들기
+
+>기존의 데이터베이스에 있는 정보들 중 특정한 조건에 맞는 데이터만을 가져올 수 있도록 합니다. 
+
+
+
 #### Uncaught syntaxerror unexpected token '<'
 
 > swagger ui에 필요한 js 파일들이 모두 존재하는데도 배포 화면에는 흰 화면만 뜨는 에러
