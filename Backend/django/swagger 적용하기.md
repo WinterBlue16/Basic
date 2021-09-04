@@ -164,7 +164,43 @@ from django.utils.decorators import method_decorator
 
 #### 특정한 조건으로 데이터 필터링하기, API 함수 만들기
 
->기존의 데이터베이스에 있는 정보들 중 특정한 조건에 맞는 데이터만을 가져올 수 있도록 합니다. 
+>django_filters를 통해 기존의 데이터베이스에 있는 정보들 중 특정한 조건에 맞는 데이터만을 가져올 수 있도록 합니다. 
+
+- django-filter 설치
+
+```bash
+$ pip install django-filter
+```
+
+- settings.py 수정
+
+```python
+...
+INSTALLED_APPS=[
+    'django.contrib.admin',
+    'django.contrib.auth',
+    ...
+    'django_filters',
+]
+...
+```
+
+- views.py
+
+```python
+...
+from django_filters.rest_framework import DjangoFilterBackend
+...
+
+class MyViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
+    queryset = '데이터를 가져올 table 이름'.objects.all()
+    serializer_class = MySerializer
+    permission_class = []
+    filter_backends = (DjangoFilterBackend,)
+    filterset_fields = ('필터링하고 싶은 column명')
+```
+
+
 
 
 
