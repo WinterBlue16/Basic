@@ -200,7 +200,18 @@ class MyViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
     filterset_fields = ('필터링하고 싶은 column명')
 ```
 
+위와 같이 작성해주기만 해도 GET api를 생성했을 때 원하는 대로 필터링된 데이터를 받을 수 있다. 하지만 여기서 한 발 더 나아가, 저렇게 필터링한 데이터를 가져와 그 안에서 다시 조건을 걸어 한 번 더 데이터를 거르고 싶을 때가 있다. 그 때는 아래와 같은 코드를 사용하자. 
 
+```python
+...
+filterset_fields = ('필터링하고 싶은 column명')
+
+def list(self, request, *args, **kwargs):
+    filtered_queryset = self.filter_queryset(self.get_queryset()) # 한 번 필터링된 데이터
+    '''
+    위의 데이터를 다시 필터링할 조건 적기
+    '''
+```
 
 
 
@@ -209,4 +220,31 @@ class MyViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
 > swagger ui에 필요한 js 파일들이 모두 존재하는데도 배포 화면에는 흰 화면만 뜨는 에러
 
 - 로컬에서와 같이 js, css 파일이 존재하고, 성공적으로 api 호출을 할 수 있는데도 정작 URL로 접속하면 Swagger ui를 볼 수 없는 아주 골치아픈 이슈입니다. 아직 해결 방법을 찾지는 못했지만 적어둡니다. 해결방법을 찾으면 여기에 기록하겠습니다.
+
+- 발생 원인 : swagger ui에 필요한 js, css 파일의 경로에서 해당 파일을 찾을 수 없어 발생하는 이슈입니다. 로컬에서와 같이 파일이 존재할 거라고 생각했으나 실제로 접속해 보면 파일이 존재하지 않았습니다. 이를 해결하기 위해서는 두 가지 과정이 필요했습니다.
+
+  - 우선 swagger ui 디스플레이에 필요한 js, css 파일을 도커 이미지로 복사할 것
+  - 해당 파일의 정확한 경로를 django가 runserver 시 읽어올 수 있도록 할 것
+
+- 해결 방법
+
+  Swagger ui 디스플레이에 필요한 static file들을 따로 추출하여 s3을 통해 배포합니다. 
+
+  때문에 메인 docker 이미지 빌드 전 따로 빌드용 이미지를 만들어 먼저 python 서버를 실행해 collectstatic 명령어로 static file을 가져옵니다. 그 후 따로 만들어진 메인 docker 이미지에서 미리 만들어둔 static file들을 가져와 빌드합니다.  
+
+```
+```
+
+​		파일을 복사해 옮기는 과정에서 static file을 저장하는 경로를 설정합니다. 
+
+​		runserver 시 여기서 static file을 가져오게 하기 위해서는 django project의 settings.py에서 STATIC_ROOT와 STATIC_URL을 다시 		설정해주어야 합니다.
+
+```python
+# settings.py
+...
+STATIC_URL = '위에서 지정한 static file 저장 경로'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+```
+
+
 
