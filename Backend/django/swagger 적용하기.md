@@ -230,9 +230,45 @@ def list(self, request, *args, **kwargs):
 
   Swagger ui 디스플레이에 필요한 static file들을 따로 추출하여 s3을 통해 배포합니다. 
 
-  때문에 메인 docker 이미지 빌드 전 따로 빌드용 이미지를 만들어 먼저 python 서버를 실행해 collectstatic 명령어로 static file을 가져옵니다. 그 후 따로 만들어진 메인 docker 이미지에서 미리 만들어둔 static file들을 가져와 빌드합니다.  
+  때문에 메인 docker 이미지 생성 시 따로 빌드용 이미지를 만들어 먼저 python 서버를 실행해 collectstatic 명령어로 static file을 가져옵니다. 그 후 따로 만들어진 메인 docker 이미지에 미리 만들어둔 static file들을 가져와 빌드합니다.  이 방법으로 docker 이미지를 깔끔하게 만들 수 있고, 속도를 높일 수 있습니다. 
 
-```
+```dockerfile
+# docker image
+FROM python:3.9 as builder
+
+ENV PYTHONUNBUFFERED 1
+
+COPY . /my_django_project
+WORKDIR /my_django_project
+COPY requirements.txt /my_django_project
+RUN pip install -r requirements.txt
+RUN apt-get update && apt-get -y install sudo && sudo apt-get -y install ....
+WORKDIR /my_django_project/my_django_project
+
+# generate dummy env for static files
+ENV DJANGO_SECRET_KEY 'DJANGO_SECRET_KEY'
+ENV SECRET_VAR 1 ''
+ENV SECRET_VAR 2 ''
+ENV SECRET_VAR 3 ''
+RUN echo 'yes' | python manage.py collectstatic
+
+FROM python:3.9-slim-buster
+
+ENV PYTHONUNBUFFERED 1
+RUN apt-get update\
+	&& apt-get -y install libpq-dev gcc\
+	&& pip install psycopg2
+
+COPY . /my_django_project
+WORKDIR /my_django_project
+COPY requirements.txt /my_django_project
+RUN pip install -r requirements.txt
+RUN apt-get update && apt-get -y install sudo && sudo apt-get -y install ....
+WORKDIR /my_django_project/my_django_project
+
+COPY --from=builder /my_django_project/my_django_project/static /my_django_project/static 
+
+CMD python manage.py migrate && python manage.py runserver
 ```
 
 ​		파일을 복사해 옮기는 과정에서 static file을 저장하는 경로를 설정합니다. 
