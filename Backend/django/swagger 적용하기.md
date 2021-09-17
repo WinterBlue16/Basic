@@ -271,9 +271,7 @@ COPY --from=builder /my_django_project/my_django_project/static /my_django_proje
 CMD python manage.py migrate && python manage.py runserver
 ```
 
-​		파일을 복사해 옮기는 과정에서 static file을 저장하는 경로를 설정합니다. 
-
-​		runserver 시 여기서 static file을 가져오게 하기 위해서는 django project의 settings.py에서 STATIC_ROOT와 STATIC_URL을 다시 		설정해주어야 합니다.
+파일을 복사해 옮기는 과정에서 static file을 저장하는 경로를 설정합니다. 이 static file은 해당 어플리케이션 폴더의 하위에 위치합니다. 또한 runserver 시 여기서 static file을 가져오게 하기 위해서는 django project의 settings.py에서 STATIC_ROOT와 STATIC_URL을 다시 설정해주어야 합니다.
 
 ```python
 # settings.py
@@ -281,6 +279,5 @@ CMD python manage.py migrate && python manage.py runserver
 STATIC_URL = '위에서 지정한 static file 저장 경로'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 ```
-
 
 
