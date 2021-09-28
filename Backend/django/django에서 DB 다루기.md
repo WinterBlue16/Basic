@@ -20,3 +20,23 @@
 'DB 명'.objects.filter(column_1='조건 1', column_2='조건 2')
 ```
 
+#### 2.1. first
+
+> filter해 가져온 queryset에서 가장 첫 번째 object를 가져옵니다.
+
+```python
+'DB 명'.objects.filter(column_1='조건 1', column_2='조건 2').first()
+```
+
+
+
+#### 2.2. latest
+
+> filter해 가져온 queryset에서 특정 column 기준 가장 최근에 생성된 object를 가져옵니다.
+
+```python
+'DB 명'.objects.filter(column_1='조건 1', column_2='조건 2').latest('기준이 될 column 명')
+```
+
+
+
