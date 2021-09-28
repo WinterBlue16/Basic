@@ -36,7 +36,27 @@
 
 ```python
 'DB 명'.objects.filter(column_1='조건 1', column_2='조건 2').latest('기준이 될 column 명')
+
+# 또다른 방법
+'DB 명'.objects.filter(column_1='조건 1', column_2='조건 2').order_by('-id')[0]
+
+# 또다른 방법 2
+'DB 명'.objects.filter(column_1='조건 1', column_2='조건 2').last('기준이 될 column 명')
+```
+
+조건을 따로 주지 않을 경우, 전체 queryset에서 특정 column 기준 가장 최근에 생성된 object를 가져옵니다. 
+
+```python
+'DB 명'.objects.latest('기준이 될 column 명')
 ```
 
 
+
+### 3. all
+
+> 전체 queryset을 가져옵니다. 
+
+```python
+'DB 명'.objects.all()
+```
 
