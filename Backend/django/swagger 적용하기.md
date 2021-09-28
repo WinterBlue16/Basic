@@ -2,6 +2,9 @@
 
 > django로 어플리케이션을 생성할 때 swagger를 적용, 활용하는 방법을 정리한 문서입니다.
 
+- swagger는 협업하는 개발자들을 위해 최대한 구체적인 설명을 적고, 보기 쉽게 만드는 게 좋습니다. 
+- swagger는 개발, 테스트 서버에서는 배포를 진행하나, 실서버에서는 보안 문제로 배포를 진행하지 않습니다. 
+
 
 
 ### 0. 준비
@@ -164,6 +167,8 @@ from django.utils.decorators import method_decorator
 
 #### 특정한 조건으로 데이터 필터링하기, API 함수 만들기
 
+**django filter**
+
 >django_filters를 통해 기존의 데이터베이스에 있는 정보들 중 특정한 조건에 맞는 데이터만을 가져올 수 있도록 합니다. 
 
 - django-filter 설치
@@ -200,7 +205,7 @@ class MyViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
     filterset_fields = ('필터링하고 싶은 column명')
 ```
 
-위와 같이 작성해주기만 해도 GET api를 생성했을 때 원하는 대로 필터링된 데이터를 받을 수 있다. 하지만 여기서 한 발 더 나아가, 저렇게 필터링한 데이터를 가져와 그 안에서 다시 조건을 걸어 한 번 더 데이터를 거르고 싶을 때가 있다. 그 때는 아래와 같은 코드를 사용하자. 
+위와 같이 작성해주기만 해도 GET api를 생성했을 때 원하는 대로 필터링된 데이터를 받을 수 있습니다. 하지만 여기서 한 발 더 나아가, 저렇게 필터링한 데이터를 가져와 그 안에서 다시 조건을 걸어 한 번 더 데이터를 거르고 싶을 때가 있습니다. 그 때는 아래와 같은 코드를 사용합니다. 
 
 ```python
 ...
@@ -211,6 +216,24 @@ def list(self, request, *args, **kwargs):
     '''
     위의 데이터를 다시 필터링할 조건 적기
     '''
+```
+
+
+
+**query parameter**
+
+> 특정 값만 url에 인자로 포함시키고, 해당 값만 가져와 데이터 필터링에 사용할 수 있습니다. 
+
+- urls.py
+
+```python
+```
+
+
+
+- views.py
+
+```python
 ```
 
 
@@ -279,5 +302,4 @@ CMD python manage.py migrate && python manage.py runserver
 STATIC_URL = '위에서 지정한 static file 저장 경로'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 ```
-
 
