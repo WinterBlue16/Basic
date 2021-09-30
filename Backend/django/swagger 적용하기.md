@@ -227,14 +227,32 @@ def list(self, request, *args, **kwargs):
 - urls.py
 
 ```python
+...
+urlpatterns = [
+    path('myproject/<str:column 명>'),
+    path('myproject/<int:column 명'),
+    ...
+]
+...
 ```
 
-
+models.py에서 설정한 타입에 맞게 url을 설정하여 위처럼 넣어주면, swagger에서 query parameter로 해당 값들을 입력하고 views.py에서 request와 함께 사용할 수 있게 된다. 
 
 - views.py
 
 ```python
+...
+class MyFirstViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
+    queryset = MyModel.objects.all()
+    serializer_class = MySerializer
+    permission_classes = [] # 로그인 설정 안할 경우
+    
+    def list(self, request, column 명):
+    # do something...
+...
 ```
+
+
 
 
 
