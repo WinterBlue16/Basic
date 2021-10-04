@@ -15,10 +15,21 @@ from threading import Thread
 task = Thread(target='함수', args=('함수 인자'))
 task.start()
 ...
+
+"""
+ex. 
+task = Thread(target=my_function, args=(val1, val2))
+task.start()
+"""
 ```
 
 - tasks.py
 
 ```python
+"""
+아래는 예시입니다. 
+"""
+def my_function(a, b):
+    return a+b
 ```
 
