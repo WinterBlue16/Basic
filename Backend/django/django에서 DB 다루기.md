@@ -20,6 +20,8 @@
 'DB 명'.objects.filter(column_1='조건 1', column_2='조건 2')
 ```
 
+- get의 경우 조건에 맞는 object가 없을 경우 ObjectDoesNotExist 에러가 발생하지만, filter의 경우 조건에 맞는 object가 없으면 그냥 빈 queryset을 반환합니다. 그렇기 때문에 이런 경우를 에러로 구분하고 핸들링하기 위해서는 if len(queryset)==0과 같은 조건을 주어 분기를 나눠야 합니다.
+
 #### 2.1. first
 
 > filter해 가져온 queryset에서 가장 첫 번째 object를 가져옵니다.
