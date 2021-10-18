@@ -96,8 +96,29 @@ psql postgres
 >  postgres db 사용 시 유용하게 쓰일 수 있는 명령어입니다.
 
 ```bash
+\l # 현재 생성된 모든 데이터베이스 조회
+
+\c "데이터베이스명" # 특정 데이터베이스 선택
+
+\dt # 선택한 데이터베이스의 모든 table 조회
+
 \d + "table 이름" # 해당 테이블의 모든 column 정보를 조회
-truncate "table 이름" # 해당 테이블의 모든 데이터 삭제(롤백 불가)
+
+select*from "table 이름"; # 특정 table 전체 데이터 조회
+
+alter table "table 이름" add "column 이름" "데이터 형";
+# alter table novel add author varchar(30);
+
+alter table "table 이름" drop "column 이름"ㅣ;
+# alter table novel drop author;
+
+update "table 이름" set "값을 수정할 column 이름"="바꿀 값" where "위치 조건";
+# update novel set author='Jane Austin' where id=3;
+
+alter table "table 이름" rename column "기존의 column 이름" to "새로 바꿀 column 이름";
+# alter table novel rename published_date to published;
+
+truncate table "table 이름"; # 해당 테이블의 모든 데이터 삭제(롤백 불가)
 ```
 
 
