@@ -52,14 +52,17 @@
 # 작업용 brench 생성하기
 $ git branch [브랜치 이름] 
 
-# 작업용 brench로 이동하기
-$ git checkout [브랜치 이름]
+# 작업용 brench로 이동하기 
+$ git checkout [브랜치 이름] # git clone [원격 저장소 url] 후 원격 브랜치와 동일한 브랜치명을 입력할 경우, 해당 브랜치의 로컬 브랜치가 생성됨
 
 # 위의 두 코드를 병합(작업용 brench 생성 후 이동)
 $ git checkout -b [생성할 브랜치 이름] [원격 저장소의 해당 브랜치 이름] 
 
-# origin 외 다른 브랜치를 clone해 오고 싶을 경우 # 원격 저장소와 브랜치 이름 동일
+# master 외 다른 브랜치를 clone해 오고 싶을 경우 # 원격 저장소와 브랜치 이름 동일
 $ git checkout -t [원격 저장소의 해당 브랜치 이름]
+
+# master 외 다른 특정 브랜치 clone하고 싶을 때 
+$ git clone -b [브랜치 이름] --single-branch [저장소 url]
 ```
 
 <img src="https://github.com/dannylee93/Images/blob/master/Image%20Analysis%20A.I/Github_Project_08.jpg?raw=true" alt="08" style="zoom:80%;" />
