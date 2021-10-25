@@ -88,7 +88,7 @@ $ git branch -a
 # 현재 사용하는 브랜치 확인
 $ git branch -v
 
-# 필요 없거나 잘못 만든 브랜치 삭제 
+# 필요 없거나 잘못 만든 브랜치 삭제(로컬 브랜치 한정) # 원격 저장소의 브랜치는 홈페이지에서 직접 삭제
 $ git branch -d [브랜치 이름]
 
 # 원격 저장소의 브랜치 삭제
@@ -124,6 +124,8 @@ $ git push origin --delete [브랜치 이름]
 >     7. `git push origin master`
 
 ![KakaoTalk_20200120_142534563](https://user-images.githubusercontent.com/58945760/72899248-eec4f600-3d68-11ea-9d8a-62214c6bc9d0.png)
+
+
 
 
 

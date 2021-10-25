@@ -16,9 +16,11 @@
 - `git bash`에서 `TIL`폴더로 이동한 이후에 아래의 명령어로 `git`관리를 시작한다.
 
   ```shell
-  $ git init
+  $ git init # 폴더 내에 .git 파일을 만들어 파일 트래킹을 시작한다.
+  $ echo "# [원격 저장소 이름]" >> README.md # README 생성
+  $ $ git branch -M master
   ```
-
+  
   
 
 ### (2) Commit을 위한 Staging : `git add`
