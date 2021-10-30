@@ -2,6 +2,8 @@
 
 > 비동기 처리를 가능하게 해주는 django-crontab을 프로젝트에서 활용하는 방법에 대해 서술한 문서입니다.
 
+- 아래의 내용은 Mac을 기반으로 하고 있습니다. 
+
 
 
 ### 1. install
@@ -33,7 +35,8 @@ CRONJOBS = [
 ...
 ```
 
-
+- CRONJOBS에는 프로젝트와는 별개로 background에서 수행할 작업들을 입력합니다. 
+- '*/1 * * * *'는 1분에 한 번 해당 작업을 수행한다는 뜻입니다.
 
 ### 3. cron.py
 
@@ -62,7 +65,7 @@ def scheduled_task():
 crontab -e # crontab 설정 수정 # 모든 환경변수를 복사, 붙여넣기한다.
 ```
 
-
+- 환경변수를 사용하는 방법은 기존의 .bashrc, .bash_profile에 적은 모든 환경변수(django secret key 등)를 crontab으로 복사, 붙여넣기하면 됩니다. 
 
 ### 6. 기타
 
