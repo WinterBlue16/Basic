@@ -55,6 +55,8 @@ def scheduled_task():
 
 - command + space bar -> [보안 및 개인 정보 보호] -> 전체 디스크 접근 권한 -> bash, cron 추가
 
+
+
 ### 5. set environment variables
 
 > 환경변수를 설정합니다. 
@@ -67,11 +69,35 @@ crontab -e # crontab 설정 수정 # 모든 환경변수를 복사, 붙여넣기
 
 - 환경변수를 사용하는 방법은 기존의 .bashrc, .bash_profile에 적은 모든 환경변수(django secret key 등)를 crontab으로 복사, 붙여넣기하면 됩니다. 
 
-### 6. 기타
+
+
+### 6. crontab log 확인
+
+> crontab 작업이 제대로 진행되는지 로그를 확인합니다. 
+
+```bash
+cat /var/mail/[계정 이름]
+```
+
+
+
+### 7. 발생 이슈 정리
+
+> crontab 적용 중 발생한 이슈를 정리합니다. 
+
+#### 7.1. ERROR: unable to rename file: [Errno 2]No such file or directory
+
+#### 7.2. ERROR: unable to create directory:[Errno 30]Read-only file system
+
+
+
+### 8. 기타
 
 - 코드가 수정 및 변경될 경우 crontab에 실시간으로 반영된다. 
+
 - 외부 프로그램이 필요할 경우 crontab에서 다시 설치해줘야 한다. (ffmpeg etc)
-- 저장 경로 이슈 발생
+
+  
 
 
 
