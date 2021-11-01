@@ -127,6 +127,25 @@ alter table "table 이름" add "추가하고 싶은 column 명";
 
 # column 삭제
 alter table "table 이름" drop "삭제하고 싶은 column 명";
+
+# column 오름차순 정렬
+select*from "table 이름" order by "기준으로 할 column 명" asc; # asc 생략가능
+select "확인하고 싶은 column 명" from "table 이름" order by "기준으로 할 column 명" asc;
+
+# column 내림차순 정렬
+select*from "table 이름" order by "기준으로 할 column 명" desc;
+select "확인하고 싶은 column 명" from "table 이름" order by "기준으로 할 column 명" desc;
+
+# null이 아닌 column들만 가져오기
+select distinct column_name, table_name 
+from information_schema.columns where column_name is not null;
+
+# 특정 column의 값별로 현황 확인하기
+select "column 명" from "table 이름" group by "column 명";
+select distinct "column 명" from "table 이름";
+
+# table 정보 확인하기
+select table_name from information_schema.tables where table_schema='public';
 ```
 
 #### 주의사항
