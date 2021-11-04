@@ -41,8 +41,8 @@ def read_root():
 **서버 실행**
 
 ```bash
-uvicorn main:app --reload
+uvicorn main:app --reload # 코드가 수정될 때마다 코드가 자동으로 리로딩됩니다.
 ```
 
-
+- 서버를 실행하면 바로 localhost:8000/docs, localhost:8000/redoc에서 자동으로 생성된 문서를 확인할 수 있습니다.   
 

@@ -87,7 +87,11 @@ cat /var/mail/[계정 이름]
 
 #### 7.1. ERROR: unable to rename file: [Errno 2]No such file or directory
 
+> local에서 적용 중 발생한 이슈입니다.
+
 #### 7.2. ERROR: unable to create directory:[Errno 30]Read-only file system
+
+> local에서 적용 중 발생한 이슈입니다. 
 
 
 
@@ -96,6 +100,8 @@ cat /var/mail/[계정 이름]
 - 코드가 수정 및 변경될 경우 crontab에 실시간으로 반영된다. 
 
 - 외부 프로그램이 필요할 경우 crontab에서 다시 설치해줘야 한다. (ffmpeg etc)
+
+- 현재 docker image 빌드 후 실행 진행 중
 
   
 
