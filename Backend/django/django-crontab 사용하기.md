@@ -69,7 +69,14 @@ crontab -e # crontab 설정 수정 # 모든 환경변수를 복사, 붙여넣기
 
 - 환경변수를 사용하는 방법은 기존의 .bashrc, .bash_profile에 적은 모든 환경변수(django secret key 등)를 crontab으로 복사, 붙여넣기하면 됩니다. 
 
+- 위의 방법이 아니라 shell 명령어로 crontab에 추가하려고 한다면 아래와 같이 사용할 수 있습니다.
 
+  ```bash
+  (crontab -l ; echo "crontab에 입력할 내용")| crontab - 
+  # ex. (crontab -l ; echo "#!bin/sh")| crontab - 
+  ```
+
+  
 
 ### 6. crontab log 확인
 
