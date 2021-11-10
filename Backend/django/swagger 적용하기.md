@@ -236,7 +236,22 @@ urlpatterns = [
 ...
 ```
 
-models.py에서 설정한 타입에 맞게 url을 설정하여 위처럼 넣어주면, swagger에서 query parameter로 해당 값들을 입력하고 views.py에서 request와 함께 사용할 수 있게 된다. 
+models.py에서 설정한 타입에 맞게 url을 설정하여 위처럼 넣어주면, swagger에서 query parameter로 해당 값들을 입력하고 views.py에서 request와 함께 사용할 수 있습니다. 이 방법 외에도 아래와 같이 사용할 수 있습니다.
+
+```python
+from django.urls import paht, include
+from rest_framework.routers import DefaultRouter
+
+...
+router = DefaultRouter()
+router.register('api/<column 명>', views.MyApiViewSet)
+router.register('api2/<column 명>/<column 명>', views.MyApiViewSet) # 여러 개의 query parameter도 줄 수 있다!
+...
+```
+
+위와 같이 query parameter를 지정할 경우 swagger에서 해당 파라미터가 필수값(required)로 표시됩니다. 위에서 filterset_fields를 사용해 query parameter를 줄 경우, 해당 파라미터는 필수값으로 표시되지 않습니다.
+
+
 
 - views.py
 
@@ -252,7 +267,20 @@ class MyFirstViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
 ...
 ```
 
+위와 같이 쓰는 것도 가능하지만 아래와 같이 쓸 수도 있습니다. 
 
+```python
+...
+class MyFirstViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
+    queryset = MyModel.objects.all()
+    serializer_class = MySerializer
+    permission_classes = [] # 로그인 설정 안할 경우
+    
+    def list(self, request):
+        query_param = request.GET['column 명'] # query parameter 얻기
+    # do something...
+...
+```
 
 
 
