@@ -21,6 +21,11 @@
 ```
 
 - get의 경우 조건에 맞는 object가 없을 경우 ObjectDoesNotExist 에러가 발생하지만, filter의 경우 조건에 맞는 object가 없으면 그냥 빈 queryset을 반환합니다. 그렇기 때문에 이런 경우를 에러로 구분하고 핸들링하기 위해서는 if len(queryset)==0과 같은 조건을 주어 분기를 나눠야 합니다.
+- filter를 여러 번 적용하는 것도 가능합니다. 아래는 그 예시입니다.
+
+```python
+'DB table명'.objects.filter(column_1='조건 1', column_2='조건 2').filter(column_3='조건 3')
+```
 
 #### 2.1. first
 
