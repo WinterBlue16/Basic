@@ -93,6 +93,25 @@ psql postgres
 
 ### 5. 기타 명령어 및 주의사항
 
+#### JSONfield 사용하기
+
+> django에서 json 형식의 데이터를 담을 수 있는 jsonfield를 사용할 수 있습니다.
+
+```python
+from django.contrib.postgres.fields import JSONfield
+
+class sample(models.Model):
+    sample_info = JSONfield()
+```
+
+- json field에는 json은 물론 json 데이터들이 담긴 리스트도 들어갈 수 있습니다. 리스트를 삽입하기 위해서는 아래와 같이 default를 지정해주면 됩니다. 
+
+```python
+sample_info = JSONfield(default=list)
+```
+
+
+
 #### 명령어 모음
 
 >  postgres db 사용 시 유용하게 쓰일 수 있는 명령어입니다.

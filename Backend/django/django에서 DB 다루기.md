@@ -109,6 +109,3 @@
 # id 순으로 오름차순 정렬한 데이터를 상위 n개 보여줍니다.
 'DB table명'.objects.all().order_by('id')[:n]
 ```
-
-
-
