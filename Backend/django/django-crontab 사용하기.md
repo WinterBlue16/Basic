@@ -37,6 +37,19 @@ CRONJOBS = [
 
 - CRONJOBS에는 프로젝트와는 별개로 background에서 수행할 작업들을 입력합니다. 
 - '*/1 * * * *'는 1분에 한 번 해당 작업을 수행한다는 뜻입니다.
+- log를 지정한 곳에서 확인하고 싶을 경우, 아래와 같이 할 수 있습니다.
+
+```python
+...
+CRONJOBS = [
+    ('*/1 * * * *', 'myapp.cron.scheduled_task', '> log/myproject_cron.log') # 앱 이름.cron.실행할 함수
+]
+...
+```
+
+- 위와 같이 입력할 경우, 실행 폴더(django project의 가장 상위 폴더) 하위로 log라는 디렉토리가 생성되고, 그 안에 log 파일이 생성됩니다. 
+- 이 log 파일의 내용은 실행되면서 계속 삭제되었다가 다시 생성됩니다. 
+- log 파일에서는 에러 로그를 확인할 수 없습니다. 에러 로그를 확인하기 위해서는 var/mail/의 [사용자 계정 이름] 파일을 more이나 tail 명령어로 확인해야 합니다. 
 
 ### 3. cron.py
 
@@ -117,6 +130,8 @@ cat /var/mail/[계정 이름]
 - 외부 프로그램이 필요할 경우 crontab에서 다시 설치해줘야 한다. (ffmpeg etc)
 
 - 현재 docker image 빌드 후 실행 진행 중
+
+- kubernetes에서 EKS로 배포했을 때에는 crontab이 제대로 실행되지 않았다. 하지만 EC2의 경우 crontab이 잘 실행되었다. 
 
   
 
