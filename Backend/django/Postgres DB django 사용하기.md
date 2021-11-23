@@ -139,7 +139,11 @@ update "table 이름" set "값을 수정할 column 이름"="바꿀 값" where "�
 alter table "table 이름" rename column "기존의 column 이름" to "새로 바꿀 column 이름";
 # alter table novel rename published_date to published;
 
-truncate table "table 이름"; # 해당 테이블의 모든 데이터 삭제(롤백 불가)
+truncate table "table 이름"; # 해당 테이블의 모든 데이터 삭제(롤백 불가) # 
+truncate table "table 이름" continue identity; # 테이블의 모든 데이터 삭제 & 시퀀스 유지 
+truncate table "table 이름" restart identity; # 테이블의 모든 데이터 삭제 & 시퀀스 초기화
+truncate table "table 이름" cascade # 테이블과 연결된 데이터까지 모두 삭제(foreginkey가 존재할 경우)
+truncate table "table 이름" restrict # 테이블과 연결된 데이터가 1개라도 존재할 경우 해당 데이터는 삭제되지 않음
 
 # column 추가
 alter table "table 이름" add "추가하고 싶은 column 명";
