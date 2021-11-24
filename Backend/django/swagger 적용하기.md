@@ -121,6 +121,30 @@ from django.utils.decorators import method_decorator # 라이브러리 불러오
 
 ![KakaoTalk_20211124_235011676](https://user-images.githubusercontent.com/58945760/143260892-95a4952d-2ac4-4a99-9af8-21ace630fdb5.png)
 
+**GET**
+
+```python
+@method_decorator(name='list', # GET API
+    decorator=swagger_auto_schema(
+        manual_parameters=[openapi.Parameter('query/path 이름', in_=openapi.IN_QUERY/IN_PATH, description='query/path에 대한 설명', type=openapi.TYPE_STRING)],
+        tags=['API에 지정할 태그'],
+        operation_summary="API 표시줄에 들어갈 간략한 설명을 적습니다."
+        operation_description="API에 대한 보다 자세한 설명을 넣습니다.",
+        responses={
+            200: openapi.Response('응답에 대한 설명', mySerializer), # API serializer
+            401: 'Authentication Failed(40100)', # 이하 error 처리
+            403: 'Permission denied(403)',
+            404: 'Not found(404)'
+        }
+    )
+)
+
+```
+
+
+
+**POST**
+
 ```python
 @method_decorator(name='list', # GET API
     decorator=swagger_auto_schema(
