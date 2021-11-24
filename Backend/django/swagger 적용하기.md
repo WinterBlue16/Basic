@@ -117,17 +117,25 @@ urlpatterns = [
 from django.utils.decorators import method_decorator # 라이브러리 불러오기
 ```
 
+**method_decorator 사용하기**
 
-
-- method_decorator는 다음과 같이 사용할 수 있습니다.
+![KakaoTalk_20211124_235011676](https://user-images.githubusercontent.com/58945760/143260892-95a4952d-2ac4-4a99-9af8-21ace630fdb5.png)
 
 ```python
 @method_decorator(name='list', # GET API
     decorator=swagger_auto_schema(
         tags=['API에 지정할 태그'],
-        operation_description="API에 대한 간략한 설명을 넣습니다.",
+        operation_summary="API 표시줄에 들어갈 간략한 설명을 적습니다."
+        operation_description="API에 대한 보다 자세한 설명을 넣습니다.",
+        request_body=openapi.Schema(
+        	type=openapi.TYPE_OBJECT,
+            properties={
+                'request 필수값 1': openapi.Schema(type=openapi.TYPE_STRING, description='값에 대한 설명'),
+                'request 필수값 2': openapi.Schema(type=openapi.TYPE_INTEGER, description='값에 대한 설명')
+            }
+        )
         responses={
-            200: mySerializer, # API serializer
+            200: openapi.Response('응답에 대한 설명', mySerializer), # API serializer
             401: 'Authentication Failed(40100)', # 이하 error 처리
             403: 'Permission denied(403)',
             404: 'Not found(404)'

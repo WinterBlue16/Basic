@@ -99,7 +99,11 @@ crontab -e # crontab 설정 수정 # 모든 환경변수를 복사, 붙여넣기
 cat /var/mail/[계정 이름]
 ```
 
+- crontab의 프로세스를 확인하고 싶다면 아래와 같은 명령어를 사용할 수 있습니다.
 
+```bash
+ps -ef|grep -i cron
+```
 
 
 
