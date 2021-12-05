@@ -27,9 +27,18 @@ REST_FRAMEWORK = {
 
 #### 1.1. PageNumberPagination
 
+
+
 #### 1.2. LimitOffsetPagination
 
 
 
 ### 2. pagination custom
+
+```python
+from rest_framework.pagination import PageNumberPagination
+
+class LanguagePageNumberPagination(PageNumberPagination):
+    page_size=10 # 한 페이지에 보여주고 싶은 object 수
+```
 
