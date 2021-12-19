@@ -37,8 +37,37 @@ python manage.py test [app 이름]
 
 - urls.py가 지정한 url과 views의 viewset을 잘 연결하고 있는지 테스트합니다.
 
+```python
+from django.test import SimpleTestCase
+from django.urls import resolve, reverse
+import my_api import views # views.py
+
+class TestUrls(SimpleTestCase):
+    def setUp(self):
+        """
+        url, url name, viewset setting 등
+        테스트 실행 시 들어갈 고정값
+        """
+        ...
+     
 ```
+
+기본 코드는 위와 같고 url_name의 여부와 request 시 query의 존재 여부에 따라 다른 함수를 사용합니다.  
+
+```python
+def test_query_is_not_existed_url(self):
+    self.assertEquals(resolve(url).func.cls, views.viewset_one)
 ```
+
+
+
+```python
+def test_query_is_existed_url(self):
+    url = reverse(url, args=['something'])
+    self.assertEquals(resolve(url).func.cls, views.viewset_two)
+```
+
+
 
 
 
@@ -55,7 +84,22 @@ python manage.py test [app 이름]
 
 - api가 제대로 작동하는지를 테스트합니다.
 
-```
+```python
+
+...
+def setUp(self):
+    """
+    테스트에 필요한 변하지 않는 값들을 설정한다
+    """
+    self.client = Client()
+    ...
+    
+@classmethod
+def setUpTestData(cls):
+    """
+    테스트에 사용할 데이터를 생성
+    """
+    ...
 ```
 
 
@@ -82,6 +126,15 @@ python manage.py dumpdata [저장할 table 이름] --indent 2 > [저장할 파�
 
 - text 시 fixture로 setting
 
-```
+```python
+from django.test import TestCase, Client
+
+...
+
+class TestViews(TestCase):
+    fixtures = [
+        'dumpdata가 위치한 경로' # ../Documents/project/my_project/my_api/fixtures/data.json
+    ]
+...
 ```
 
