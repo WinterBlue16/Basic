@@ -48,18 +48,20 @@ class TestUrls(SimpleTestCase):
         url, url name, viewset setting 등
         테스트 실행 시 들어갈 고정값
         """
-        ...
+        # try something....
      
 ```
 
 기본 코드는 위와 같고 url_name의 여부와 request 시 query의 존재 여부에 따라 다른 함수를 사용합니다.  
+
+- query가 필요하지 않을 경우
 
 ```python
 def test_query_is_not_existed_url(self):
     self.assertEquals(resolve(url).func.cls, views.viewset_one)
 ```
 
-
+- query가 필요할 경우(url에 query parameter가 포함)
 
 ```python
 def test_query_is_existed_url(self):
@@ -85,14 +87,12 @@ def test_query_is_existed_url(self):
 - api가 제대로 작동하는지를 테스트합니다.
 
 ```python
-
-...
 def setUp(self):
     """
     테스트에 필요한 변하지 않는 값들을 설정한다
     """
     self.client = Client()
-    ...
+    # try something..
     
 @classmethod
 def setUpTestData(cls):
@@ -100,6 +100,44 @@ def setUpTestData(cls):
     테스트에 사용할 데이터를 생성
     """
     ...
+```
+
+**setUpTestData를 제외한 데이터들은 테스트 데이터베이스에 저장되지 않으며, 다른 함수에서 사용할 수도 없습니다.** 이게 무슨 말이냐면, 만약 POST api를 테스트해 데이터가 생성되는 것을 확인했다고 해도 이 새로 생성된 데이터를 다른 api를 테스트하는 함수에서 활용할 수는 없다는 뜻입니다.  
+
+test_urls과 같이 url_name의 여부, request 시 query의 존재 여부에 따라 다른 형식의 함수를 사용합니다. 
+
+- url_name이 존재할 경우
+
+```python
+def test_my_api_has_url_name_GET(self):
+    """
+    api를 테스트하는 함수를 만들 때는 이름만 봐도 해당 함수가 어떤 api를 테스트하는 것인지 명확히 알 수 있도록 한다. 
+    """
+    response = self.client.get(reverse('url_name'))
+    self.assertEquals(response.status_code, 200)
+```
+
+
+
+- url_name이 존재하지 않을 경우
+
+```python
+def test_my_api_without_url_name_GET(self):
+    response = 
+```
+
+
+
+- query가 필요할 경우
+
+```
+```
+
+
+
+- query가 필요하지 않은 경우
+
+```
 ```
 
 
