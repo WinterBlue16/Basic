@@ -71,8 +71,6 @@ def test_query_is_existed_url(self):
 
 
 
-
-
 #### 3.2. test models
 
 - model이 설계대로 데이터를 잘 저장하는지, validation check는 제대로 진행되는지 테스트합니다. 
@@ -119,25 +117,33 @@ def test_my_api_has_url_name_GET(self):
 
 
 
-- url_name이 존재하지 않을 경우
+- url_name이 존재하지 않을 경우/존재할 경우
 
 ```python
 def test_my_api_without_url_name_GET(self):
-    response = 
+    response = self.client.get('url') # url name이 존재할 경우 self.client.get(reverse(url name))
+    self.assertEquals(response.status_code, 200)
 ```
 
 
 
-- query가 필요할 경우
+- request data(query 포함)가 필요할 경우
 
-```
-```
-
-
-
-- query가 필요하지 않은 경우
-
-```
+```python
+def test_my_api_need_query_GET(self): # path
+    response=self.client.get('url', {"request data": "request data", 
+                                    ...})
+    self.assertEquals(response.status_code, 200)
+    
+def test_my_api_without_query_GET(self): # query
+    response=self.client.get(reverse('url name', args=['query 1', 'query 2']))
+    self.assertEquals(response.status_code, 200)
+    
+def test_my_api_without_path_GET(self): # query + path
+    response=self.client.get(reverse('url name', args=['query 1', 'query 2']), 
+                                     {"request data": "request data", 
+                                    ...})
+    self.assertEquals(response.status_code, 200)
 ```
 
 
