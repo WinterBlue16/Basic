@@ -5,9 +5,18 @@
 ### 1. 기본 명령어
 
 ```python
-# django project test 시작 명령어
+# django project test 시작 명령어 # 모든 test를 진행합니다.
 python manage.py test [app 이름]
 # python manage.py test my_app
+
+# test_urls
+python manage.py test [app 이름].tests.test_urls
+
+# test_models
+python manage.py test [app 이름].tests.test_models
+
+# test_views
+python manage.py test [app 이름].tests.test_views
 ```
 
 
@@ -75,10 +84,34 @@ def test_query_is_existed_url(self):
 
 - model이 설계대로 데이터를 잘 저장하는지, validation check는 제대로 진행되는지 테스트합니다. 
 
-```
+```python
+from django.test import TestCase
+from my_app.models import MyModel1, MyModel2
+
+class TestModels(TestCase):
+    def test_my_model_in_creation(self):
+        """
+        설계대로 데이터 object가 잘 생성되는지 확인합니다.
+        """
+        my_object1 = MyModel1.objects.create(
+            col1 = ...,
+            col2 = ...,
+            ...
+        )
+        my_object2 = MyModel2.objects.create(
+            col1 = ...,
+            col2 = ...,
+            ...
+        )
+        self.assertEquals(my_object1.col1, 'something')
+        self.assertEquals(my_object2.col2, 'something')
 ```
 
+- 모델을 테스트할 때는 각 column에 설정해놓은 제약이나 값 조건들이 데이터 생성 시 제대로 적용되는지를 확인합니다. 
 
+  - default 값이 제대로 들어가는지, unique 값을 True로 주었을 경우 중복 데이터를 제대로 걸러내는지 등
+
+  - choice를 준 값의 경우 test에서는 choice가 핸들링되지 않는 경우가 있습니다. 
 
 #### 3.3. test views
 
