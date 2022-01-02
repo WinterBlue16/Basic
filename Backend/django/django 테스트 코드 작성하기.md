@@ -19,7 +19,7 @@ python manage.py test [app 이름].tests.test_models
 python manage.py test [app 이름].tests.test_views
 ```
 
-
+- 각 테스트를 별개로 진행했을 때에는 에러가 나지 않는데 전체적으로 실행했을 때는 에러가 발생하는 경우도 있습니다. setUp과 setUpData를 꼼꼼히 확인합니다.
 
 ### 2. 디렉토리 구조
 
