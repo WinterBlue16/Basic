@@ -151,6 +151,12 @@ alter table "table 이름" add "추가하고 싶은 column 명";
 # column 삭제
 alter table "table 이름" drop "삭제하고 싶은 column 명";
 
+# 특정 조건에 맞는 값들만 삭제하기
+delete from "table 이름" where [삭제 조건];
+
+# 특정 column의 값들을 그대로 다른 column으로 옮기기
+update "table 이름" set "값을 채울 column 명"="값을 옮길 column 명"  ;
+
 # column 오름차순 정렬
 select*from "table 이름" order by "기준으로 할 column 명" asc; # asc 생략가능
 select "확인하고 싶은 column 명" from "table 이름" order by "기준으로 할 column 명" asc;
