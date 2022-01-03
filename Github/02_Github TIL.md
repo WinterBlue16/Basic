@@ -286,3 +286,12 @@ $ git clean -d -f -f
 $ git reset HEAD # 모든 add 취소
 ```
 
+
+
+### (5) git 파일 변경내용 원래대로 되돌리기
+
+```bash
+$ git reset --head # 변경사항 전체 되돌리기
+$ git checkout --[변경내용을 되돌릴 파일명] # 일부 파일의 변경사항만 되돌리기
+```
+
