@@ -175,6 +175,10 @@ select distinct "column 명" from "table 이름";
 
 # table 정보 확인하기
 select table_name from information_schema.tables where table_schema='public';
+
+# column data type(자료형과 길이 제한 명시됨) 변경하기
+alter table "table 이름" alter column "column 명" type "변경할 data type";
+# ex. alter table contents alter column content_url type varchar(300); 
 ```
 
 #### 주의사항
@@ -187,7 +191,6 @@ select table_name from information_schema.tables where table_schema='public';
     # my_table이라는 이름의 테이블에 columnName이라는 column이 있다고 가정하겠습니다.
     select columnName from my_table; # 실제로는 select columnname from my_table;로 인식됩니다.
     select "columnName" from my_table; # 바르게 인식 # 작은 따옴표도 묶으면 안 됩니다!
-    
     ```
     
     
