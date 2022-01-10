@@ -159,7 +159,7 @@ $ git remote rm origin
 
 
 
-## 4. 추가 학습 내용 관리
+## 4. 추가 학습 내용 
 
 ### (1) 추가 내용 관리
 
@@ -293,5 +293,14 @@ $ git reset HEAD # 모든 add 취소
 ```bash
 $ git reset --head # 변경사항 전체 되돌리기
 $ git checkout --[변경내용을 되돌릴 파일명] # 일부 파일의 변경사항만 되돌리기
+```
+
+
+
+### (6) git branch 이름 변경 후 원격 저장소와 연결하기
+
+```bash
+$ git branch -m [새로운 로컬 브랜치 이름] # 로컬 브랜치 이름 변경
+$ git push -u origin [브랜치 이름] # 로컬 브랜치와 원격 브랜치 이름을 모두 바꾼 후 적용
 ```
 
