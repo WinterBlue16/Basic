@@ -63,6 +63,7 @@ $ git checkout -t [원격 저장소의 해당 브랜치 이름]
 
 # master 외 다른 특정 브랜치 clone하고 싶을 때 
 $ git clone -b [브랜치 이름] --single-branch [저장소 url]
+# git clone -b develop --single-branch ...
 ```
 
 <img src="https://github.com/dannylee93/Images/blob/master/Image%20Analysis%20A.I/Github_Project_08.jpg?raw=true" alt="08" style="zoom:80%;" />
