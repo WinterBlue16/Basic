@@ -304,3 +304,17 @@ $ git branch -m [새로운 로컬 브랜치 이름] # 로컬 브랜치 이름 �
 $ git push -u origin [브랜치 이름] # 로컬 브랜치와 원격 브랜치 이름을 모두 바꾼 후 적용
 ```
 
+
+
+### (7) fork한 로컬 저장소 최신 상태로 유지하기
+
+```bash
+$ git remote add upstream [fork한 원격 저장소 주소] # upstream branch 만들기
+$ git fetch upstream # 원본 소스코드 변경 내용을 로컬에 내려받기
+$ git merge upstream/master # 변경내용 반영하기
+
+$ git pull upstream/[원격 저장소 브랜치 명] # 새로운 branch 생성 후 해당 브랜치 최신 상태로 만들기
+$ git checkout upstream/[새로운 브랜치 명] 
+$ git checkout -b [새로운 브랜치 명]
+```
+
