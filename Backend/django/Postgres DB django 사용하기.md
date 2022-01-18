@@ -179,6 +179,12 @@ select table_name from information_schema.tables where table_schema='public';
 # column data type(자료형과 길이 제한 명시됨) 변경하기
 alter table "table 이름" alter column "column 명" type "변경할 data type";
 # ex. alter table contents alter column content_url type varchar(300); 
+
+# 특정 DB OWNER 변경하기 # DB의 OWNER 변경과 해당 DB 내 table owner 변경은 별개!(연동되어 바뀌지 않음)
+alter database "DB 이름" owner to "owner로 지정할 user 이름";
+
+# 특정 table 
+alter table public."table 이름" owner to "owner로 지정할 user 이름";
 ```
 
 #### 주의사항
