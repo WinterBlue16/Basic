@@ -185,6 +185,9 @@ alter database "DB 이름" owner to "owner로 지정할 user 이름";
 
 # 특정 table 
 alter table public."table 이름" owner to "owner로 지정할 user 이름";
+
+# 백업한 db 로컬에 적용하기
+psql -U "사용자명" -d "적용할 로컬 db 이름" -f 
 ```
 
 #### 주의사항
