@@ -186,8 +186,11 @@ alter database "DB 이름" owner to "owner로 지정할 user 이름";
 # 특정 table 
 alter table public."table 이름" owner to "owner로 지정할 user 이름";
 
-# 백업한 db 로컬에 적용하기
-psql -U "사용자명" -d "적용할 로컬 db 이름" -f 
+# 백업한 db 로컬에 적용하기 # 로컬에 적용할 백업 db와 동일한 이름의 db가 존재해야 합니다.
+psql -U "사용자명" -d "적용할 로컬 db 이름" -f "백업한 db 파일.sql"
+
+# 다른 사용자 계정으로 postgres 접속하기
+psql -U "접속할 사용자명" -d "접속할 db 이름"
 ```
 
 #### 주의사항
