@@ -191,6 +191,14 @@ psql -U "사용자명" -d "적용할 로컬 db 이름" -f "백업한 db 파일.s
 
 # 다른 사용자 계정으로 postgres 접속하기
 psql -U "접속할 사용자명" -d "접속할 db 이름"
+
+# db 삭제 시 적용 코드 1
+revoke connect on database "삭제할 db 이름" from public;
+
+# db 삭제 시 적용 코드 2
+select pg_terminate_backend(pg_stat_activity.pid)
+from pg_stat_activity
+where pg_stat_activity.datname='삭제할 db 이름';
 ```
 
 #### 주의사항
