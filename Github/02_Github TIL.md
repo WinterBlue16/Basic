@@ -318,10 +318,13 @@ $ git push -u origin [브랜치 이름] # 로컬 브랜치와 원격 브랜치 �
 ```bash
 $ git remote add upstream [fork한 원격 저장소 주소] # upstream branch 만들기
 $ git fetch upstream # 원본 소스코드 변경 내용을 로컬에 내려받기
-$ git merge upstream/master # 변경내용 반영하기
+$ git merge upstream/[최신 상태를 유지하고 싶은 브랜치 명] # 변경내용 반영하기
+$ git pull origin upstream [최신 상태를 유지하고 싶은 브랜치 명] # fetch + merge 
 
 $ git pull upstream/[원격 저장소 브랜치 명] # 새로운 branch 생성 후 해당 브랜치 최신 상태로 만들기
 $ git checkout upstream/[새로운 브랜치 명] 
 $ git checkout -b [새로운 브랜치 명]
+
+$ git remote rm upstream # upstream 브랜치 삭제
 ```
 
