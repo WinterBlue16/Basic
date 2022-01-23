@@ -280,10 +280,11 @@ $ git clean -d -f -f
 
 
 
-### (4) git add 취소
+### (4) git add/commit 취소
 
 ```shell
 $ git reset HEAD # 모든 add 취소
+$ git reset --hard HEAD^ # 가장 최근 commit 자체를 완전 삭제
 ```
 
 
@@ -326,5 +327,13 @@ $ git checkout upstream/[새로운 브랜치 명]
 $ git checkout -b [새로운 브랜치 명]
 
 $ git remote rm upstream # upstream 브랜치 삭제
+```
+
+
+
+### (8) commit 기록 확인
+
+```bash
+$ git log # commit 기록 확인 # 모든 브랜치의 commit 기록을 보여줌
 ```
 
