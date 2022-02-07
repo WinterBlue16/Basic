@@ -126,6 +126,13 @@ $ git push origin --delete [브랜치 이름]
 
 ![KakaoTalk_20200120_142534563](https://user-images.githubusercontent.com/58945760/72899248-eec4f600-3d68-11ea-9d8a-62214c6bc9d0.png)
 
+### 1.5 특정 commit만 merge하기
+
+
+
+
+
+
 
 ## 참고 자료
 
