@@ -25,7 +25,17 @@ def connect(user, password, db, host, port):
 ### 2. CREATE
 
 ```python
+url = 'postgresql://{}:{}@{}:{}/{}'
+url = url.format(user, password, host, port, db)
+engine = sqlalchemy.create_engine(url, client_encoding='utf8')
+Base = declarative_base()
 
+class MyTable(Base):
+    
+    __tablename__ = 'MyTable'
+   
+	id = Column('id', Integer, primary_key=True)
+    createdAt = Column('createdAt', TIMESTAMP, server_default=func.now)
 ```
 
 
