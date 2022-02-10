@@ -25,17 +25,40 @@ def connect(user, password, db, host, port):
 ### 2. CREATE
 
 ```python
+import sqlalchemy
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import engine, Column, Integer, String, TIMESTAMP
+from sqlalchemy.sql import func
+from sqlalchemy.orm import sessionmaker, Session
+
 url = 'postgresql://{}:{}@{}:{}/{}'
 url = url.format(user, password, host, port, db)
 engine = sqlalchemy.create_engine(url, client_encoding='utf8')
 Base = declarative_base()
 
 class MyTable(Base):
+    """
+    id와 createdAt은 자동 생성
+    """
     
     __tablename__ = 'MyTable'
    
 	id = Column('id', Integer, primary_key=True)
-    createdAt = Column('createdAt', TIMESTAMP, server_default=func.now)
+    name = Column('name', String)
+    createdAt = Column('createdAt', TIMESTAMP, server_default=func.now())
+    
+def connect(engine):
+    # create table
+    Base.metadata.create_all(engine)
+    
+    Session = sessionmaker()
+    Session.configure(bind=engine)
+    
+    test = MyTable(name='winterBlue')
+    session.add(test)
+    session.commit()
+    
+connect(engine)
 ```
 
 
