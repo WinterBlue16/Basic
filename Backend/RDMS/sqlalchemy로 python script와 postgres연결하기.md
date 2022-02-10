@@ -63,3 +63,39 @@ connect(engine)
 
 
 
+### 3. table 생성 시 json/jsonb data type 지정하기
+
+#### 3.1. json
+
+```python
+from sqlalchemy import engine, Column, Integer, String, TIMESTAMP, JSON
+
+...
+
+class MyTable(Base):
+    ...
+    detail_info = Column('detail_info', JSON)
+    
+....
+```
+
+
+
+#### 3.2. jsonb
+
+```python
+from sqlalchemy.dialects.postgresql import JSONB
+
+...
+
+class MyTable(Base):
+    ...
+    detail_info = Column('detail_info', JSONB)
+    
+....
+```
+
+
+
+
+
