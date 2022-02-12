@@ -338,3 +338,22 @@ $ git remote rm upstream # upstream 브랜치 삭제
 $ git log # commit 기록 확인 # 모든 브랜치의 commit 기록을 보여줌
 ```
 
+
+
+### (9) 특정 commit만 다른 branch에 적용/merge 하기
+
+- 해당 기능이 필요한 예시 상황은 아래와 같습니다.
+  1. develop 브랜치에서 feature 브랜치를 따서 추가 기능 개발을 진행하고 있는데, 이전에 발견하지 못했던 버그를 발견해 수정
+  2. 해당 버그가 develop 브랜치와 공통된 부분이라 해당 브랜치에도 적용해야 함
+  3. 하지만 추가 기능 개발이 많이 진행된 상태라 코드가 많이 달라졌음
+  4. 추가로 해당 기능이 개발 서버에 정식으로 추가가 될지 안 될지 아직 결정이 안 된 상태임(...)
+
+```shell
+$ git log # 적용하고 싶은 commit의 id를 확인 # commit message 참고
+$ git checkout [특정 commit만 반영하고 싶은 브랜치] # commit 적용할 branch로 이동
+$ git cherry-pick [반영하고 싶은 commit id] # commit 반영
+$ git push origin [특정 commit만 반영하고 싶은 브랜치] # 원격 브랜치에 적용
+```
+
+
+
