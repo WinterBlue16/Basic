@@ -199,6 +199,12 @@ revoke connect on database "삭제할 db 이름" from public;
 select pg_terminate_backend(pg_stat_activity.pid)
 from pg_stat_activity
 where pg_stat_activity.datname='삭제할 db 이름';
+
+# db 생성
+create database "데이터베이스 이름";
+
+# db 생성(owner 지정 option)
+create database "데이터베이스 이름" owner "user 이름";
 ```
 
 #### 주의사항
