@@ -250,6 +250,15 @@ def list(self, request, *args, **kwargs):
     '''
 ```
 
+- request query 가져오기
+
+> 만약 filter를 적용한 후 request 시 보냈던 query를 사용해 작업을 진행하고 싶다면 아래와 같이 가져올 수 있습니다.
+
+```python
+request_dict = request.GET # request 데이터들을 담은 dictionary
+request_query = request.GET['query에 해당하는 model field 명'] 
+```
+
 
 
 **query parameter**
