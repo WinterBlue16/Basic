@@ -26,6 +26,8 @@ $ django_env\Scripts\activate # Scripts 폴더 내의 activate 파일 실행==�
 $ pip install django==2.2.6 # django 설치!
 ```
 
+
+
 ## 2. 새로운 프로젝트(홈페이지) 만들기
 
 이미 가상환경과 django 설치 등 환경 세팅이 완료된 상태라면 아래의 코드부터 참고하면 된다. 
@@ -68,7 +70,7 @@ $ django-admin startproject sample_page # sample_page라는 새로운 프로젝�
     └── 📄 manage.py
 ```
 
-### 2.1 기본 
+### 2.1. 기본 설정
 
 - `settings.py` 수정 및 추가
 
@@ -79,7 +81,20 @@ TIME_ZONE = 'UTC' -> 'Asia/Seoul'로 수정
 STATIC_ROOT = os.path.join(BASE_DIR, 'static') 추가
 ```
 
+- CSRF 설정(POST 시 필요)
 
+```python
+CSRF_TRUSTED_ORIGINS = ['허용할 사이트']
+```
+
+- CORS 설정
+
+```python
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True
+```
+
+- app 생성
 
 ```shell
 $ cd sample_page # sample_page 폴더로 이동
@@ -90,7 +105,7 @@ $ cd apps
 $ django-admin startapp app1 # app2, app3...
 ```
 
-- Atom에서 `settings.py` 수정
+- 가상환경 실행 & 로컬 서버 실행
 
 ```shell
 $ cd /
@@ -100,7 +115,38 @@ $ django_env\Scripts\activate # 가상환경 열기 # 자동완성 가능
 $ python manage.py runserver # 생성한 프로젝트 로컬에서 확인
 ```
 
-### 2.2 기초
+
+
+### 2.2. DB 연결 
+
+> 프로젝트와 연결시킬 database를 선택하고, 연동한다.
+
+- django는 기본 DB로 sqlite3을 제공한다. 만약 sqlite가 아닌 다른 DB(MySQL, Postgres etc)를 사용할 것이라면, 해당 DB와 연동하기 위한 작업이 필요하다. 각 DB별 연동 및 설정 방법은 별도의 문서로 분리한다.
+- 선택한 DB에 맞게 settings.py의 아래 부분을 변경한다.
+
+```python
+DATABASES = {
+	'default': {
+		'ENGINE': '',
+		'NAME': '',
+		'USER': '',
+		'PASSWORD':'',
+		'HOST':'',
+		'PORT':''
+	}
+}
+```
+
+- 연동이 끝났다면 터미널에서 아래와 같이 마이그레이션을 진행한다.
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+
+
+### 2.3. 프로젝트 생성하기
 
 - Atom에서 `urls.py` 수정
 
