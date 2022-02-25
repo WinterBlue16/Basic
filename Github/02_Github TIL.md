@@ -357,3 +357,10 @@ $ git push origin [특정 commit만 반영하고 싶은 브랜치] # 원격 브�
 
 
 
+### (10) git clone 주소 확인
+
+- 본인이 clone한 저장소가 fork한 것인지, 원본 저장소인지 확인하고 싶을 때 사용할 수 있습니다.
+
+```bash
+$ git remoto -v
+```
