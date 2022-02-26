@@ -364,3 +364,13 @@ $ git push origin [특정 commit만 반영하고 싶은 브랜치] # 원격 브�
 ```bash
 $ git remoto -v
 ```
+
+
+
+### (11) 한 개의 브랜치만 clone 한 후 다른 브랜치 추가하기
+
+```bash
+$ git remote set-branches --add origin "추가하고 싶은 원격 브랜치 명"
+$ git fetch origin "추가하고 싶은 원격 브랜치 명":"추가할 새로운 로컬 브랜치 명"
+```
+
