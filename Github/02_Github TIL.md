@@ -336,6 +336,7 @@ $ git remote rm upstream # upstream 브랜치 삭제
 
 ```bash
 $ git log # commit 기록 확인 # 모든 브랜치의 commit 기록을 보여줌
+$ git log -p # commit 기록 확인 # 파일별 상세 변경 내역 보여줌
 ```
 
 
