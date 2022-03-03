@@ -205,6 +205,9 @@ create database "데이터베이스 이름";
 
 # db 생성(owner 지정 option)
 create database "데이터베이스 이름" owner "user 이름";
+
+# DB 이름 변경
+alter database "데이터베이스 이름" rename to "새로운 데이터베이스 이름";
 ```
 
 #### 주의사항
