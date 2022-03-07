@@ -208,6 +208,13 @@ create database "데이터베이스 이름" owner "user 이름";
 
 # DB 이름 변경
 alter database "데이터베이스 이름" rename to "새로운 데이터베이스 이름";
+
+# 모든 DB 이름 출력
+select datname from pg_database;
+
+# 모든 table 정보 출력
+select relname as table_name from pg_start_user_tables;
+
 ```
 
 #### 주의사항
