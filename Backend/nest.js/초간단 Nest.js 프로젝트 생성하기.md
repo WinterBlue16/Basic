@@ -22,14 +22,24 @@ $ npm i -g @nestjs/cli
 $ nest new [프로젝트명]
 ```
 
+프로젝트 생성 후 전체적인 디렉토리 구조는 아래와 같습니다.
+
+```
+```
+
 
 
 ### 3. 새로운 controller, service 생성
 
+- 프로젝트를 생성하면 src 이하에 appController와 appService, appModule이 생성됩니다. 
+- 그냥 appController와 appService로 개발을 진행할 수도 있지만, 통상적으로 기능별로 새로운 디렉토리를 생성하고 그 디렉토리 내에 별도의 controller와 service를 생성합니다.
+
 ```bash
-$ nest g co # controller
-$ nest g s # service
+$ nest g co # controller # 입력한 이름으로 새로운 디렉토리가 생성
+$ nest g s # service # 입력한 이름으로 생성된 디렉토리 하위에 service로 저장
 ```
+
+- 새로운 controller는 자동으로 appModule에 추가됩니다.
 
 
 
@@ -38,6 +48,8 @@ $ nest g s # service
 > 여기서는 typeORM을 사용하여 DB와 연결합니다. 
 
 #### 4.1. postgres 
+
+
 
 ### 5. DB 생성 후 migration 하기
 
