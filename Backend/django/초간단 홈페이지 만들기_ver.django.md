@@ -212,8 +212,6 @@ urlpatterns = [
 
 
 
-
-
 ### 2.3 css, js 추가
 
 📂sample_site 폴더 안에 📂static 폴더 생성=>📂static 폴더 안에 📂example_site 폴더를 만들고 그 안에 style.css 파일 생성(경로 example_site/static/example_site/style.css)
@@ -284,4 +282,14 @@ $ python manage.py runserver # 결과 확인
 ```
 
 
+
+### 2.6. url slash 없애기
+
+- settings.py
+
+```django
+APPEND_SLASH = False
+```
+
+위와 같이 추가해준다.
 
