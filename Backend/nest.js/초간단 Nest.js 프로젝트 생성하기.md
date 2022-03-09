@@ -24,8 +24,7 @@ $ nest new [프로젝트명]
 
 프로젝트 생성 후 전체적인 디렉토리 구조는 아래와 같습니다.
 
-```
-```
+![img](https://res.cloudinary.com/practicaldev/image/fetch/s--qWbf42zr--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/wyhqmlwtvj4hroxq73o3.png)
 
 
 
@@ -84,10 +83,10 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
-    .setTitle('Cats example')
-    .setDescription('The cats API description')
-    .setVersion('1.0')
-    .addTag('cats')
+    .setTitle('Cats example') // swagger 문서 제목 설정
+    .setDescription('The cats API description') // swagger 문서 간단한 설명
+    .setVersion('1.0') // swagger 버전
+    .addTag('cats') // tag 설정
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
