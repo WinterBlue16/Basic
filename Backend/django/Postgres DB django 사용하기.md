@@ -215,6 +215,12 @@ select datname from pg_database;
 # 모든 table 정보 출력
 select relname as table_name from pg_start_user_tables;
 
+# DB 백업하기
+
+
+# 백업한 DB 적용하기
+psql -h "호스트 이름" -d "적용하고 싶은 로컬 데이터베이스 이름" -U "user 이름" -f "백업한 DB"
+# ex. psql -h localhost -d my_database -U winter -f backup_database.sql
 ```
 
 #### 주의사항
