@@ -118,6 +118,10 @@
 
 ```python
 # object list 생성
-# 
+object_list = ["table 명"("column명"=value, "column명"=value....) for i in range(n)]
+
+# db에 반영
+"table 명".objects.bulk_create(object_list)
 ```
 
+- save()를 사용하지 않고도 한꺼번에 데이터 생성 및 저장이 가능하고, 값이 조금만 다른 비슷한 데이터 여러 개를 한번에 생성할 수 있습니다.
