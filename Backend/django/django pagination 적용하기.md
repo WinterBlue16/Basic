@@ -14,7 +14,11 @@ pagination이란 말 그대로 책장의 페이지를 넘기는 것처럼, 요�
 - 그렇게 했는데도 pagination이 적용되지 않을 경우, def list()에 별도의 로직이 존재하지 않는지 확인할 필요가 있습니다.  GET api를 정의하는 list() 함수는 pagination 설정보다 우선으로 적용됩니다. 
 - django pagination은 django filter와 함께 사용할 수 있습니다.  
 
-### 1. settings.py 설정
+
+
+### 1. 전역 pagination 적용
+
+#### settings.py 설정
 
 ```python
 ...
@@ -24,6 +28,27 @@ REST_FRAMEWORK = {
 }
 ...
 ```
+
+
+
+### 2. class별 pagination 적용
+
+#### pagination.py 생성
+
+```python
+```
+
+#### views.py
+
+````python
+class MyViewSets(ListModelMixin):
+    ...
+    pagination_class = MyPagination 
+    ...
+    
+````
+
+
 
 #### 1.1. PageNumberPagination
 
