@@ -33,9 +33,15 @@ REST_FRAMEWORK = {
 
 ### 2. class별 pagination 적용
 
+#### 1.1. PageNumberPagination
+
 #### pagination.py 생성
 
 ```python
+from rest_framework.pagination import PageNumberPagination
+
+class LanguagePageNumberPagination(PageNumberPagination):
+    page_size=10 # 한 페이지에 보여주고 싶은 object 수
 ```
 
 #### views.py
@@ -43,27 +49,16 @@ REST_FRAMEWORK = {
 ````python
 class MyViewSets(ListModelMixin):
     ...
-    pagination_class = MyPagination 
+    pagination_class = LanguagePageNumberPagination
     ...
     
 ````
 
 
 
-#### 1.1. PageNumberPagination
-
-
-
-#### 1.2. LimitOffsetPagination
-
-
-
 ### 2. pagination custom
 
 ```python
-from rest_framework.pagination import PageNumberPagination
 
-class LanguagePageNumberPagination(PageNumberPagination):
-    page_size=10 # 한 페이지에 보여주고 싶은 object 수
 ```
 
