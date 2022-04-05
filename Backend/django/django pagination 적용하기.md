@@ -12,6 +12,7 @@ pagination이란 말 그대로 책장의 페이지를 넘기는 것처럼, 요�
 
 -  views.py에서 viewsets을 사용해 api를 구현했을 경우, viewsets 마다 pagination_class 값을 주어 pagination을 적용해야 합니다.
 - 그렇게 했는데도 pagination이 적용되지 않을 경우, def list()에 별도의 로직이 존재하지 않는지 확인할 필요가 있습니다.  GET api를 정의하는 list() 함수는 pagination 설정보다 우선으로 적용됩니다. 
+- pagination 적용 후 데이터 정렬 기준을 따로 설정하지 않았다면 경고 메시지가 뜹니다. 이 때 queryset에 get_queryset.order_by('id')(내림차순은 '-id')로 값을 주어 정렬 기준을 정할 수 있습니다. 
 - django pagination은 django filter와 함께 사용할 수 있습니다.  
 
 
@@ -53,12 +54,3 @@ class MyViewSets(ListModelMixin):
     ...
     
 ````
-
-
-
-### 2. pagination custom
-
-```python
-
-```
-

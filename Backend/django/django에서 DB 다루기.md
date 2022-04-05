@@ -125,3 +125,36 @@ object_list = ["table 명"("column명"=value, "column명"=value....) for i in ra
 ```
 
 - save()를 사용하지 않고도 한꺼번에 데이터 생성 및 저장이 가능하고, 값이 조금만 다른 비슷한 데이터 여러 개를 한번에 생성할 수 있습니다.
+
+
+
+### 7. values_list
+
+> 특정 column의 데이터만 모두 가져와 활용할 수 있습니다.
+
+```python
+# Users라는 모델(table)의 name이라는 column의 데이터만 모두 가져오기
+Users.objects.values_list('name') 
+```
+
+위의 코드로 가져온 데이터는 queryset 형태이며, 각 데이터는 tuple((value, ))로 되어있습니다. 
+
+이를 리스트로 바꾸어 활용하기 위해서는 아래와 같이 진행하면 됩니다.
+
+```python
+# queryset에서 list로 변경
+user_name_queryset = Users.object.values_list('name')
+user_name_list = list(map(lambda x : ''.join(x), user_name_queryset)
+```
+
+
+
+### 8. 특정 문자열이 포함된 value만 가져오기
+
+> 특정 문자열이 포함된 값들만 쿼리하여 가져올 수 있습니다. 
+
+```python
+user.objects.get('[컬럼명]__contains'='특정 문자열')
+user.objects.get('name__contains'='Lee')
+```
+

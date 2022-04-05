@@ -80,7 +80,7 @@ $ npm install --save @nestjs/swagger swagger-ui-express
 - main.js 변경
 
 ```js
-main.tsJS
+main.ts
 
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
