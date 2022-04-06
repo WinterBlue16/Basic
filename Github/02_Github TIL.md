@@ -377,3 +377,14 @@ $ git remote set-branches --add origin "추가하고 싶은 원격 브랜치 명
 $ git fetch origin "추가하고 싶은 원격 브랜치 명":"추가할 새로운 로컬 브랜치 명"
 ```
 
+
+
+### (12) git add 전 파일 변경/수정 부분 확인하기
+
+- 이 부분은 5번과 함께 보면 좋습니다. 
+
+```shell
+$ git status # 변경된 파일 현황 확인
+$ git diff [파일명] # 해당 파일의 변경 사항 확인
+```
+
