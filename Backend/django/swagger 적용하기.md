@@ -290,7 +290,21 @@ router.register('api2/<column 명>/<column 명>', views.MyApiViewSet) # 여러 �
 ...
 ```
 
-위와 같이 query parameter를 지정할 경우 swagger에서 해당 파라미터가 필수값(required)로 표시됩니다. 위에서 filterset_fields를 사용해 query parameter를 줄 경우, 해당 파라미터는 필수값으로 표시되지 않습니다.
+위와 같이 query parameter를 지정할 경우 swagger에서 해당 파라미터가 필수값(required)로 표시됩니다. 위에서 filterset_fields를 사용해 query parameter를 줄 경우, 해당 파라미터는 필수값으로 표시되지 않습니다. 파라미터를 필수값으로 지정하기 위해서는 아래 내용에 따라 설정을 해주면 됩니다.
+
+**query parameter 필수값으로 지정하기**
+
+- @method_decorator의 menual_parameters에 `required=True`를 지정해줍니다.  
+
+```python
+from django.utils.decorators import method_decorator
+
+@method_decorator(name='create',
+                 decorator=swagger_auto_schema(
+                 menual_parameters=[openapi.Paremter('쿼리할 data field', in_=openapi.IN_QUERY, description='field 설명', type=openapi.TYPE_STRING, required=True)],
+                 ...
+                 ))
+```
 
 
 
