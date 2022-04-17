@@ -49,3 +49,16 @@ sudo ./aws/install
 aws --version
 ```
 
+- docker 컨테이너 이미지로 만들기
+
+```bash
+docker commit [컨테이너 이름] 이미지명:태그명
+# ex. docker commit test repository:latest
+docker images # 이미지 생성 확인
+```
+
+- aws 로그인하기
+
+```bash
+
+```
