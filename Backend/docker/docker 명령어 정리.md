@@ -70,14 +70,20 @@ docker commit [컨테이너 이름] 이미지명:태그명
 docker images # 이미지 생성 확인
 ```
 
+- aws 로그인하기
+
+```bash
+aws ecr get-login-password --region [aws 리전] | docker login --username AWS --password-stdin [account ID].dkr.ecr.[aws 리전].amazonaws.com
+```
+
 - docker 이미지에 태그 지정하기
 
 ```bash
 docker tag [이미지 ID] [account ID].dkr.ecr.[aws 리전].amazonaws.com/[ecr repository 이름]:[태그명]
 ```
 
-- aws 로그인하기
+- docker ecr에 push
 
 ```bash
-aws ecr get-login-password --region [aws 리전] | docker login --username AWS --password-stdin [account ID].dkr.ecr.[aws 리전].amazonaws.com
+docker push [account ID].dkr.ecr.[aws 리전].amazonaws.com/[ecr repository 이름]:[태그명]
 ```
