@@ -87,3 +87,20 @@ docker tag [이미지 ID] [account ID].dkr.ecr.[aws 리전].amazonaws.com/[ecr r
 ```bash
 docker push [account ID].dkr.ecr.[aws 리전].amazonaws.com/[ecr repository 이름]:[태그명]
 ```
+
+## 기타
+
+위의 명령어가 실행되지 않을 경우(linux alpine 등), 아래의 명령어를 사용하여 설치를 진행합니다.
+
+- curl 설치
+
+```bash
+apk --no-cache update
+apk --no-cache add curl
+```
+
+- aws cli 설치
+
+```bash
+pip3 --no-cache-dir install aws cli
+```
