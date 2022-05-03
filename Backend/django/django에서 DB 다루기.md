@@ -1,20 +1,18 @@
 ## django에서 DB 다루기
 
-> django에서 생성한 db를 ORM으로 다루는 방법에 대한 문서입니다. 
+> django에서 생성한 db를 ORM으로 다루는 방법에 대한 문서입니다.
 
 ### 1. get
 
-> 조건에 해당하는 한 개의 object만 가져올 수 있다. 조건에 해당되는 object가 2개 이상일 경우 MultipleObjectsReturned 에러가 발생하게 된다. 
+> 조건에 해당하는 한 개의 object만 가져올 수 있다. 조건에 해당되는 object가 2개 이상일 경우 MultipleObjectsReturned 에러가 발생하게 된다.
 
 ```python
 'DB table명'.objects.get(column_1='조건 1', column_2='조건 2')
 ```
 
-
-
 ### 2. filter
 
-> 조건에 해당하는 여러 개의 object를 queryset으로 가져올 수 있다. 
+> 조건에 해당하는 여러 개의 object를 queryset으로 가져올 수 있다.
 
 ```python
 'DB table명'.objects.filter(column_1='조건 1', column_2='조건 2')
@@ -35,8 +33,6 @@
 'DB table명'.objects.filter(column_1='조건 1', column_2='조건 2').first()
 ```
 
-
-
 #### 2.2. latest
 
 > filter해 가져온 queryset에서 특정 column 기준 가장 최근에 생성된 object를 가져옵니다.
@@ -51,23 +47,19 @@
 'DB table명'.objects.filter(column_1='조건 1', column_2='조건 2').last('기준이 될 column 명')
 ```
 
-조건을 따로 주지 않을 경우, 전체 queryset에서 특정 column 기준 가장 최근에 생성된 object를 가져옵니다. 
+조건을 따로 주지 않을 경우, 전체 queryset에서 특정 column 기준 가장 최근에 생성된 object를 가져옵니다.
 
 ```python
 'DB table명'.objects.latest('기준이 될 column 명')
 ```
 
-
-
 ### 3. all
 
-> 전체 queryset을 가져옵니다. 
+> 전체 queryset을 가져옵니다.
 
 ```python
 'DB table명'.objects.all()
 ```
-
-
 
 ### 4. order_by
 
@@ -99,18 +91,14 @@
 # ex. SampleTable.objects.all().order_by('-created_at')
 ```
 
-
-
 ### 5. get last n values
 
-> 데이터 중 일부만을 잘라 보여줍니다. 
+> 데이터 중 일부만을 잘라 보여줍니다.
 
 ```python
 # id 순으로 오름차순 정렬한 데이터를 상위 n개 보여줍니다.
 'DB table명'.objects.all().order_by('id')[:n]
 ```
-
-
 
 ### 6. 데이터 한꺼번에 생성, 저장하기
 
@@ -126,18 +114,16 @@ object_list = ["table 명"("column명"=value, "column명"=value....) for i in ra
 
 - save()를 사용하지 않고도 한꺼번에 데이터 생성 및 저장이 가능하고, 값이 조금만 다른 비슷한 데이터 여러 개를 한번에 생성할 수 있습니다.
 
-
-
 ### 7. values_list
 
 > 특정 column의 데이터만 모두 가져와 활용할 수 있습니다.
 
 ```python
 # Users라는 모델(table)의 name이라는 column의 데이터만 모두 가져오기
-Users.objects.values_list('name') 
+Users.objects.values_list('name')
 ```
 
-위의 코드로 가져온 데이터는 queryset 형태이며, 각 데이터는 tuple((value, ))로 되어있습니다. 
+위의 코드로 가져온 데이터는 queryset 형태이며, 각 데이터는 tuple((value, ))로 되어있습니다.
 
 이를 리스트로 바꾸어 활용하기 위해서는 아래와 같이 진행하면 됩니다.
 
@@ -147,14 +133,34 @@ user_name_queryset = Users.object.values_list('name')
 user_name_list = list(map(lambda x : ''.join(x), user_name_queryset)
 ```
 
-
-
 ### 8. 특정 문자열이 포함된 value만 가져오기
 
-> 특정 문자열이 포함된 값들만 쿼리하여 가져올 수 있습니다. 
+> 특정 문자열이 포함된 값들만 쿼리하여 가져올 수 있습니다.
 
 ```python
 user.objects.get('[컬럼명]__contains'='특정 문자열')
 user.objects.get('name__contains'='Lee')
 ```
 
+### 9. 여러 개의 object 한꺼번에 update하기
+
+> 6의 bulk_create의 update 버전이라고 할 수 있습니다.
+
+- update의 경우 한 object를 update할 때처럼 save()를 쓰지 않아도 됩니다.
+- update의 경우 queryset에만 적용됩니다. 단일 object인 경우에는 사용할 수 없습니다.
+
+```python
+specific_users = user.objects.filter('filter하고 싶은 컬럼'='조건으로 줄 값')
+specific_users.update('update할 컬럼'='update할 값')
+```
+
+- filter한 값이 queryset인지 확인할 수 있는 방법은 아래와 같습니다.
+
+```python
+from django.db.models.query import QuerySet
+
+if isinstance(filter_objects, QuerySet):
+    print('QuerySet입니다.')
+else:
+    print('QuerySet이 아닙니다.')
+```
