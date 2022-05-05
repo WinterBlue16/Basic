@@ -207,8 +207,12 @@ psql -h "호스트 이름" -d "적용하고 싶은 로컬 데이터베이스 이
 # ex. psql -h localhost -d my_database -U winter -f backup_database.sql
 
 # view table 생성하기
+# view table 생성 시 단순한 join만 했다가는 column 명이 겹쳐 에러가 발생할 수 있음(ex. id, createdAt, updatedAt 등등)
+# 필요한 column만 선택해 보이도록 할 것
 create view [view table 명] as
-select 뷰 테이블에서 보이고 싶은 column
+select [뷰 테이블에서 보이고 싶은 column 명] as [view table에서 보이고 싶은 column 명]
+from [데이터를 가져올 테이블명]
+left join [join을 진행할 다른 테이블명] on [join을 진행할 다른 테이블명].[외래키 column명] = [데이터를 가져올 테이블명].[기본키 column 명];
 ```
 
 #### 주의사항
