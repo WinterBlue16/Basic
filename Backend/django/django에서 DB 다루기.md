@@ -14,6 +14,8 @@
 
 > 조건에 해당하는 여러 개의 object를 queryset으로 가져올 수 있다.
 
+#### 기본 filter
+
 ```python
 'DB table명'.objects.filter(column_1='조건 1', column_2='조건 2')
 ```
@@ -23,6 +25,15 @@
 
 ```python
 'DB table명'.objects.filter(column_1='조건 1', column_2='조건 2').filter(column_3='조건 3')
+```
+
+#### list를 이용한 filter
+
+> 주어진 list에 포함된 item이 value인 경우만을 filter하여 queryset을 반환합니다.
+
+```python
+'DB table명'.objects.filter(column_1__in=[리스트])
+# ex) Users.objects.filter(name__in=['John', 'Jane', 'Tina'])
 ```
 
 #### 2.1. first
