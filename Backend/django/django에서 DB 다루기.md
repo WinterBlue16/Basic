@@ -157,6 +157,8 @@ user.objects.get('name__contains'='Lee')
 
 > 6의 bulk_create의 update 버전이라고 할 수 있습니다.
 
+**update**
+
 - update의 경우 한 object를 update할 때처럼 save()를 쓰지 않아도 됩니다.
 - update의 경우 queryset에만 적용됩니다. 단일 object인 경우에는 사용할 수 없습니다.
 
@@ -174,4 +176,19 @@ if isinstance(filter_objects, QuerySet):
     print('QuerySet입니다.')
 else:
     print('QuerySet이 아닙니다.')
+```
+
+**bulk_update**
+
+- bulk_update를 사용하는 방법도 있습니다. 단, 이 경우에는 업데이트해야 하는 값들이 각각 조건이 다른 경우 제한적으로만 활용할 수 있습니다.
+
+```python
+
+user_names = ['Den', 'Chris', 'Anna']
+user = Users.objects.all()
+
+for n in user_names:
+    user.name = n
+
+bulk_update(user)
 ```
