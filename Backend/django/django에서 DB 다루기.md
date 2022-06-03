@@ -64,6 +64,17 @@
 'DB table명'.objects.latest('기준이 될 column 명')
 ```
 
+### 2.3. Q
+
+> 제시된 조건에 해당하지 않는 object만 골라 return합니다. 통상적으로 적용하는 filter와는 반대로 쓰인다고 할 수 있습니다.
+
+```python
+from my_app.models import Users
+from django.db.models import Q
+
+Users.objects.filter(~Q(age=30)) # 나이가 30인 사람들만 제외하여 queryset 돌려줌
+```
+
 ### 3. all
 
 > 전체 queryset을 가져옵니다.
