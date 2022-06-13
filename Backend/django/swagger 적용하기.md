@@ -153,11 +153,7 @@ from django.utils.decorators import method_decorator # 라이브러리 불러오
 
 ```
 
-### 3. django login unlock하기
-
-> django API 작성 시 다른 개발자가 API 문서를 django login 없이 확인할 수 있도록 합니다.
-
-### 4. 배포 시 swagger 적용하기
+### 3. 배포 시 swagger 적용하기
 
 > django project 개발 서버 배포 시 swagger를 적용할 수 있는 방법 및 이슈를 기록한 부분입니다.
 
