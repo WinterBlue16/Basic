@@ -2,6 +2,20 @@
 
 > django에서 생성한 db를 ORM으로 다루는 방법에 대한 문서입니다.
 
+### 0. created_at, updated_at 설정
+
+> 데이터 생성 시점, 데이터 업데이트 시점을 저장하는 base model을 만들고, 테이블에 일괄적으로 적용합니다.
+
+```python
+class TimeStampMixin(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+# 적용
+class Person(TimeStampMixin):
+    # do something
+```
+
 ### 1. get
 
 > 조건에 해당하는 한 개의 object만 가져올 수 있다. 조건에 해당되는 object가 2개 이상일 경우 MultipleObjectsReturned 에러가 발생하게 된다.
