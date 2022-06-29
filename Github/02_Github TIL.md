@@ -340,7 +340,13 @@ $ git stash # 변경 사항을 임시 저장
 $ git checkout [브랜치명]
 ```
 
-### (14) terminal에서 local branch끼리 merge하기
+### (14) 임시 저장된 변경 사항 한번에 삭제하기
+
+```shell
+$ git stash clear # 임시 저장된 내역 모두 삭제
+```
+
+### (15) terminal에서 local branch끼리 merge하기
 
 - 이 방법은 실수로 merge할 원격 브랜치를 삭제했을 경우 local에서 유용하게 사용할 수 있습니다.
 
