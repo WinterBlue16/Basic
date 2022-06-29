@@ -314,7 +314,7 @@ $ git push origin [특정 commit만 반영하고 싶은 브랜치] # 원격 브�
 - 본인이 clone한 저장소가 fork한 것인지, 원본 저장소인지 확인하고 싶을 때 사용할 수 있습니다.
 
 ```bash
-$ git remoto -v
+$ git remote -v
 ```
 
 ### (11) 한 개의 브랜치만 clone 한 후 다른 브랜치 추가하기
@@ -331,4 +331,20 @@ $ git fetch origin "추가하고 싶은 원격 브랜치 명":"추가할 새로�
 ```shell
 $ git status # 변경된 파일 현황 확인
 $ git diff [파일명] # 해당 파일의 변경 사항 확인
+```
+
+### (13) 변경사항 임시 저장하고 checkout하기
+
+```shell
+$ git stash # 변경 사항을 임시 저장
+$ git checkout [브랜치명]
+```
+
+### (14) terminal에서 local branch끼리 merge하기
+
+- 이 방법은 실수로 merge할 원격 브랜치를 삭제했을 경우 local에서 유용하게 사용할 수 있습니다.
+
+```shell
+$ git checkout [병합할 베이스 브랜치명]
+$ git merge [병합하고 싶은 브랜치명]
 ```
