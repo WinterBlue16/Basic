@@ -354,3 +354,9 @@ $ git stash clear # 임시 저장된 내역 모두 삭제
 $ git checkout [병합할 베이스 브랜치명]
 $ git merge [병합하고 싶은 브랜치명]
 ```
+
+### (16) 여러 commit 병합하기
+
+```shell
+$ git rebase -i HEAD
+```
