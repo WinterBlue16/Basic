@@ -213,6 +213,17 @@ create view [view table 명] as
 select [뷰 테이블에서 보이고 싶은 column 명] as [view table에서 보이고 싶은 column 명]
 from [데이터를 가져올 테이블명]
 left join [join을 진행할 다른 테이블명] on [join을 진행할 다른 테이블명].[외래키 column명] = [데이터를 가져올 테이블명].[기본키 column 명];
+
+# 중복값 찾기
+SELECT
+	[중복 체크하고 싶은 column 1],
+	[중복 체크하고 싶은 column 2],
+    COUNT(*) AS "Count"
+FROM [테이블명]
+GROUP BY
+	[중복 체크하고 싶은 column 1],
+	[중복 체크하고 싶은 column 2]
+ORDER BY [정렬 기준으로 삼고 싶은 column 명];
 ```
 
 #### 주의사항
