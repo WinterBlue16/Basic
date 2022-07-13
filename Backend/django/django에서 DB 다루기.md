@@ -217,3 +217,20 @@ for n in user_names:
 
 bulk_update(user)
 ```
+
+### 10. table 이름 custom하기
+
+- 아래의 코드를 사용하여 따로 table명을 정의하지 않을 경우, 자동으로 app 이름*소문자*모델명으로 table명이 지정되게 됩니다.
+- 모델이 생성되어 마이그레이션된 후에도 얼마든지 아래의 방법을 사용하여 이름을 변경할 수 있습니다.
+
+```python
+class TimeStampMixin(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+# 적용
+class Person(TimeStampMixin):
+    # do something
+    class Meta:
+        db_table = "Person" # default: my_app_person
+```
